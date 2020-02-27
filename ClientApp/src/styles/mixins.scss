@@ -1,0 +1,19 @@
+@import 'color-palette';
+
+.webkit-pretty-scroll {
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: $grey-color;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: $grey-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: $dark-grey-color;
+  }
+}

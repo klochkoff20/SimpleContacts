@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="IdentityServer4" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CloudHospital.Infrastructure\SimpleContacts.Infrastructure.csproj" />
+    <ProjectReference Include="..\SimpleContacts.DAL\SimpleContacts.DAL.csproj" />
+    <ProjectReference Include="..\SimpleContacts.Entities\SimpleContacts.Entities.csproj" />
+    <ProjectReference Include="..\SimpleContacts.ViewModels\SimpleContacts.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

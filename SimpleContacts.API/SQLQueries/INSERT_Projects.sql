@@ -1,0 +1,26 @@
+USE [SimpleContacts]
+GO
+
+INSERT INTO [dbo].[Projects]
+           ([Id]
+           ,[Name]
+		   ,[DepartmentId])
+     VALUES
+			('d7f0fbc6-5fe9-47cb-b97d-8ff6e9b3defc','Game of Thrones', '3E8168FB-8A52-46E2-8F3D-24FF5F02D0BD'),
+			('e3e53093-5527-476c-8894-725ea47a8904','Anna Karenina', '3E8168FB-8A52-46E2-8F3D-24FF5F02D0BD'),
+			('3884a15c-dac2-46e9-b73c-36b03258ef8c','To the Lighthouse', '3E8168FB-8A52-46E2-8F3D-24FF5F02D0BD'),
+			('1e64eebb-6578-4568-b124-e858fb56fa2f','The Lord of The Rings', '78367B19-8D9D-495D-8E24-5E37B466D8CA'),
+			('7b5ca816-e1d4-43d3-b8ca-cc4063e33694','The Great Gatsby', '78367B19-8D9D-495D-8E24-5E37B466D8CA'),
+			('7b24a9c6-9fc6-48f1-b187-88bf87211fc9','Paradise Lost', '78367B19-8D9D-495D-8E24-5E37B466D8CA'),
+			('8ca4fd94-7a71-494d-b859-75b0bdda97d2','Lolita', 'CBADD9B4-83EB-4299-9EE2-733C4680C16F'),
+			('7122bb47-3186-4837-af6b-bf080bce53f9','Alice Adventures in Wonderland', 'CBADD9B4-83EB-4299-9EE2-733C4680C16F'),
+			('6f619c3a-bfd5-4218-a099-e3722f7c4d8b','The Great Gatsby', 'CBADD9B4-83EB-4299-9EE2-733C4680C16F'),
+			('826c9ba5-8a0a-4667-abd6-6a125ffa9c06','The Sound and the Fury', '8659D832-2C53-44E5-86F2-B2DF01FD0555'),
+			('4b7d2596-408e-42c8-9061-24450eb2188a','To the Lighthouse', '8659D832-2C53-44E5-86F2-B2DF01FD0555'),
+			('0674398d-14b9-4db2-bb1c-a0a29883b8c6','The Lord of The Rings', '8659D832-2C53-44E5-86F2-B2DF01FD0555'),
+			('85605ac7-7cb1-4eda-8ee0-09c083e7419d','Wuthering Heights', '8CF57329-C9DF-4B1F-8881-D9CABB1CEEAE'),
+			('c0a58533-4684-42df-8a15-523148c0a16f','The Brothers Karamazov', '8CF57329-C9DF-4B1F-8881-D9CABB1CEEAE'),
+			('9c97ee9d-973f-4308-bf98-25be007eb43a','The Magic Mountain', '8CF57329-C9DF-4B1F-8881-D9CABB1CEEAE');
+GO
+
+

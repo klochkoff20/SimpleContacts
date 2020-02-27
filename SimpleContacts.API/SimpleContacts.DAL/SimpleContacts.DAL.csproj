@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200217141928_UserRoles.cs" />
+    <Compile Remove="Migrations\20200217141928_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200217142924_UserRoles.cs" />
+    <Compile Remove="Migrations\20200217142924_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200217143333_UserRoles.cs" />
+    <Compile Remove="Migrations\20200217143333_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200217143830_UserRoles.cs" />
+    <Compile Remove="Migrations\20200217143830_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200217144042_UserRoles.cs" />
+    <Compile Remove="Migrations\20200217144042_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200217144241_UserRoles.cs" />
+    <Compile Remove="Migrations\20200217144241_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200217150533_UserRoles.cs" />
+    <Compile Remove="Migrations\20200217150533_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200218145117_UserRoles.cs" />
+    <Compile Remove="Migrations\20200218145117_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200219142347_UserRoles.cs" />
+    <Compile Remove="Migrations\20200219142347_UserRoles.Designer.cs" />
+    <Compile Remove="Migrations\20200221135057_UserRolesMany.cs" />
+    <Compile Remove="Migrations\20200221135057_UserRolesMany.Designer.cs" />
+    <Compile Remove="Migrations\20200225135159_UpdatedNaming.cs" />
+    <Compile Remove="Migrations\20200225135159_UpdatedNaming.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="3.0.36" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CloudHospital.Infrastructure\SimpleContacts.Infrastructure.csproj" />
+    <ProjectReference Include="..\SimpleContacts.Common\SimpleContacts.Common.csproj" />
+    <ProjectReference Include="..\SimpleContacts.Entities\SimpleContacts.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
