@@ -4,10 +4,8 @@ using SimpleContacts.Entities.Entities;
 
 namespace SimpleContacts.ViewModels
 {
-    public class FileAttachmentViewModel
+    public class FileAttachmentViewModel : BasicInfo<Guid>
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
         public DateTime AddedAt { get; set; }
         public UserViewModel AddedBy { get; set; }
 

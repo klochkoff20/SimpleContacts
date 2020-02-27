@@ -1,39 +1,13 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, MatSort, PageEvent } from '@angular/material';
-import { VacanciesService } from '../../services/vacancies.service';
+import { MatPaginator, MatSort } from '@angular/material';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { merge, Observable, observable, of } from 'rxjs';
+import { merge, of } from 'rxjs';
 import * as moment from 'moment';
 
-export interface Vacancy {
-  id: string;
-  name: string;
-  department: any;
-  project: any;
-  priority: string;
-  targetDate: string;
-  salary: string;
-  responsibleUser: any;
-  status: number;
-}
-
-enum columns {
-  id,
-  name,
-  department,
-  project,
-  priority,
-  targetDate,
-  salary,
-  responsibleUser,
-  status
-}
-
-interface Status {
-  value: number;
-  name: string;
-}
+import { VacanciesService } from '../../services/vacancies.service';
+import { vacanciesColumns } from '../../shared/enums/vacancies-columns.enum';
+import { VacancyGeneralInfo } from '../../shared/interfaces/vacancy-general-info.interface';
+import { BasicInfo } from '../../shared/interfaces/basic-info.interface';
 
 @Component({
   selector: 'app-vacancies',
@@ -42,27 +16,27 @@ interface Status {
 })
 export class VacanciesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
-    columns[columns.id],
-    columns[columns.name],
-    columns[columns.department],
-    columns[columns.project],
-    columns[columns.priority],
-    columns[columns.targetDate],
-    columns[columns.salary],
-    columns[columns.responsibleUser],
-    columns[columns.status]
+    vacanciesColumns[vacanciesColumns.id],
+    vacanciesColumns[vacanciesColumns.name],
+    vacanciesColumns[vacanciesColumns.department],
+    vacanciesColumns[vacanciesColumns.project],
+    vacanciesColumns[vacanciesColumns.priority],
+    vacanciesColumns[vacanciesColumns.targetDate],
+    vacanciesColumns[vacanciesColumns.salary],
+    vacanciesColumns[vacanciesColumns.responsibleUser],
+    vacanciesColumns[vacanciesColumns.status]
   ];
-  statuses: Status[] = [
-    { value: 0, name: 'New' },
-    { value: 1, name: 'On Hold' },
-    { value: 2, name: 'In Progress' },
-    { value: 3, name: 'Payment' },
-    { value: 4, name: 'Complete' },
-    { value: 5, name: 'Replacement' },
-    { value: 6, name: 'Canceled' }
+  statuses: BasicInfo<number>[] = [
+    { id: 0, name: 'New' },
+    { id: 1, name: 'On Hold' },
+    { id: 2, name: 'In Progress' },
+    { id: 3, name: 'Payment' },
+    { id: 4, name: 'Complete' },
+    { id: 5, name: 'Replacement' },
+    { id: 6, name: 'Canceled' }
   ];
-  data: Vacancy[] = [];
 
+  data: VacancyGeneralInfo[] = [];
   resultsLength: number;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -71,7 +45,6 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
   filterChange: EventEmitter<any> = new EventEmitter();
 
   constructor(private vacanciesService: VacanciesService) {
@@ -91,7 +64,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
         switchMap(() => {
           this.isLoadingResults = true;
           return this.vacanciesService.getVacancies(
-            this.paginator.pageIndex + 1, this.paginator.pageSize, this.sort.direction, columns[this.sort.active], this.filter);
+            this.paginator.pageIndex + 1, this.paginator.pageSize, this.sort.direction, vacanciesColumns[this.sort.active], this.filter);
         }),
         map(data => {
           this.isLoadingResults = false;
@@ -110,8 +83,8 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    if (event.target.value !== '') {
-      this.filter = event.target.value;
+    if ((event.target as HTMLInputElement).value !== '') {
+      this.filter = (event.target as HTMLInputElement).value;
     } else {
       this.filter = '%20';
     }

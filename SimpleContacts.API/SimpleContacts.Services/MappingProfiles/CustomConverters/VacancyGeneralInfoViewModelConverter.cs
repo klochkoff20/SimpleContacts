@@ -14,11 +14,11 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
             {
                 Id = source.Id,
                 Name = source.Name,
-                Department = context.Mapper.Map<VacancyDepartmentViewModel>(source.Department),
-                Project = context.Mapper.Map<ProjectViewModel>(source.Project),
+                Department = context.Mapper.Map<BasicInfo<Guid>>(source.Department),
+                Project = context.Mapper.Map<BasicInfo<Guid>>(source.Project),
                 Priority = Enum.GetName(typeof(VacancyPriority), source.Priority),
                 TargetDate = source.TargetDate,
-                ResponsibleUser = context.Mapper.Map<UserNameViewModel>(source.ResponsibleUser),
+                ResponsibleUser = context.Mapper.Map<BasicInfo<string>>(source.ResponsibleUser),
                 Salary = $"{source.SalaryMin}-{source.SalaryMax}$",
                 Status = source.Status
             };

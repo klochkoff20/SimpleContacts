@@ -15,6 +15,7 @@ import { OrganizerComponent } from './organizer/organizer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import {
+    MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
         MatFormFieldModule,
         MatInputModule,
         MatProgressSpinnerModule,
-        MatSelectModule
+        MatSelectModule,
+        MatCheckboxModule
     ],
   providers: [],
   bootstrap: [AppComponent]

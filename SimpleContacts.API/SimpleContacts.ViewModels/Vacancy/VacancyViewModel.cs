@@ -5,12 +5,10 @@ using SimpleContacts.Entities.Entities;
 
 namespace SimpleContacts.ViewModels
 {
-    public class VacancyViewModel
+    public class VacancyViewModel : BasicInfo<Guid>
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
         public DepartmentViewModel Department { get; set; }
-        public ProjectViewModel Project { get; set; }
+        public BasicInfo<Guid> Project { get; set; }
         public VacancyPriority Priority { get; set; }
         public DateTime TargetDate { get; set; }
         public EmploymentType EmploymentType { get; set; }

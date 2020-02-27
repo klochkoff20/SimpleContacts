@@ -37,7 +37,7 @@ namespace SimpleContacts.DAL.Implementations
 
             var vacancies = new List<Vacancy>();
 
-            if (!String.IsNullOrEmpty(filter))dfbgf
+            if (!String.IsNullOrEmpty(filter))
             {
                 query = query.Where(e => e.Name.Contains(filter)
                                       || e.Department.Name.StartsWith(filter)

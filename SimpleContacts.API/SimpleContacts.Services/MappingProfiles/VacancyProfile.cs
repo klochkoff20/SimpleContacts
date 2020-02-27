@@ -2,6 +2,7 @@
 using SimpleContacts.ViewModels;
 using SimpleContacts.Entities.Entities;
 using SimpleContacts.Services.MappingProfiles.CustomConverters;
+using System;
 
 namespace SimpleContacts.Services.MappingProfiles
 {
@@ -10,10 +11,12 @@ namespace SimpleContacts.Services.MappingProfiles
         public VacancyProfile()
         {
             CreateMap<Vacancy, VacancyViewModel>().ReverseMap();
+            CreateMap<Vacancy, BasicInfo<Guid>>().ReverseMap();
+
 
             CreateMap<Vacancy, VacancyGeneralInfoViewModel>().ConvertUsing<VacancyGeneralInfoViewModelConverter>();
 
-            CreateMap<Department, VacancyDepartmentViewModel>();
+            CreateMap<Department, BasicInfo<Guid>>();
         }
     }
 }

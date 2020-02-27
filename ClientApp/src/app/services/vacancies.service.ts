@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
+import { VacancyGeneralInfo } from '../shared/interfaces/vacancy-general-info.interface';
+import { PagedListResponse } from '../shared/interfaces/paged-list-response.interface';
 
 @Injectable({providedIn: 'root'})
 export class VacanciesService {
@@ -11,7 +13,6 @@ export class VacanciesService {
   }
 
   public getVacancies(pageIndex: number, pageSize: number, order: string, field: number, filter: string) {
-    console.log(filter);
-    return this.http.get<any>(this.host + `/${pageIndex}/${pageSize}/${order}/${field}/${filter}`);
+    return this.http.get<PagedListResponse<VacancyGeneralInfo>>(this.host + `/${pageIndex}/${pageSize}/${order}/${field}/${filter}`);
   }
 }

@@ -13,11 +13,11 @@ namespace SimpleContacts.Services.MappingProfiles
 
             CreateMap<User, UserGeneralInfoViewModel>()
                 .ForMember(
-                            viewModel => viewModel.FullName,
+                            viewModel => viewModel.Name,
                             opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}")
                 );
 
-            CreateMap<User, UserNameViewModel>().ConvertUsing<UserNameViewModelConverter>();
+            CreateMap<User, BasicInfo<string>>().ConvertUsing<UserNameViewModelConverter>();
         }
     }
 }

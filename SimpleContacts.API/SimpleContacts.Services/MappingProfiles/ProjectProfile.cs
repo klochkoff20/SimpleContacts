@@ -1,9 +1,7 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using SimpleContacts.Entities.Entities;
 using SimpleContacts.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleContacts.Services.MappingProfiles
 {
@@ -11,8 +9,7 @@ namespace SimpleContacts.Services.MappingProfiles
     {
         public ProjectProfile()
         {
-            CreateMap<Project, ProjectViewModel>().ReverseMap();
-
+            CreateMap<Project, BasicInfo<Guid>>();
         }
     }
 }

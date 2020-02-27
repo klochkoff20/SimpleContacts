@@ -4,14 +4,14 @@ using SimpleContacts.ViewModels;
 
 namespace SimpleContacts.Services.MappingProfiles.CustomConverters
 {
-    public class UserNameViewModelConverter : ITypeConverter<User, UserNameViewModel>
+    public class UserNameViewModelConverter : ITypeConverter<User, BasicInfo<string>>
     {
-        public UserNameViewModel Convert(User source, UserNameViewModel destination, ResolutionContext context)
+        public BasicInfo<string> Convert(User source, BasicInfo<string> destination, ResolutionContext context)
         {
-            var user = new UserNameViewModel
+            var user = new BasicInfo<string>
             {
                 Id = source.Id,
-                FullName = $"{source.FirstName} {source.LastName}"
+                Name = $"{source.FirstName} {source.LastName}"
             };
 
             return user;
