@@ -1,7 +1,6 @@
 ﻿using SimpleContacts.Common.Enums;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleContacts.ViewModels
 {
@@ -9,8 +8,10 @@ namespace SimpleContacts.ViewModels
     {
         public DepartmentStatus Status { get; set; }
         public IList<BasicInfo<Guid>> Projects { get; set; }
-        public IList<DepartmentVacancyViewModel> Vacancies { get; set; }
-        public UserGeneralInfoViewModel ResponsibleUser { get; set; }
-        public IList<DepartmentContactsViewModel> DepartmentContacts { get; set; }
+        public IList<BasicInfo<Guid>> Vacancies { get; set; }
+        public BasicInfo<string> ResponsibleUser { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        //public IList<DepartmentContactsViewModel> DepartmentContacts { get; set; }
     }
 }

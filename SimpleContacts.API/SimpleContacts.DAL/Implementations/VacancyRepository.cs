@@ -20,9 +20,9 @@ namespace SimpleContacts.DAL.Implementations
         public async Task<IEnumerable<Vacancy>> GetAllVacanciesAsync()
         {
             var query = Entities
-                            .IncludeOptimized(e => e.Department)
-                            .IncludeOptimized(e => e.Project)
-                            .IncludeOptimized(e => e.ResponsibleUser);
+                    .IncludeOptimized(e => e.Department)
+                    .IncludeOptimized(e => e.Project)
+                    .IncludeOptimized(e => e.ResponsibleUser);
 
             var vacancies = await Task.Run(() => query.ToList());
             return vacancies;
@@ -31,9 +31,9 @@ namespace SimpleContacts.DAL.Implementations
         public async Task<IEnumerable<Vacancy>> GetAllVacanciesSortedAsync(string order, VacancySortField field, string filter)
         {
             var query = Entities
-                   .IncludeOptimized(e => e.Department)
-                   .IncludeOptimized(e => e.Project)
-                   .IncludeOptimized(e => e.ResponsibleUser);
+                    .IncludeOptimized(e => e.Department)
+                    .IncludeOptimized(e => e.Project)
+                    .IncludeOptimized(e => e.ResponsibleUser);
 
             var vacancies = new List<Vacancy>();
 

@@ -9,6 +9,7 @@ using SimpleContacts.Entities.Entities;
 using SimpleContacts.Services.Abstractions;
 using SimpleContacts.Infrastructure.Helpers;
 using SimpleContacts.Infrastructure.APIResponce;
+using SimpleContacts.Common.Enums;
 
 namespace SimpleContacts.Services.Implementations
 {
@@ -43,12 +44,22 @@ namespace SimpleContacts.Services.Implementations
             return response;
         }
 
-        public async Task<ResponseMessageResult<PagedList<CandidateViewModel>>> GetAllCandidatesAsync(int page, int pageSize)
+        public async Task<ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>> GetAllCandidatesAsync(int pageIndex, int pageSize)
         {
-            var response = new ResponseMessageResult<PagedList<CandidateViewModel>>();
-            var candidates = await _candidateRepository.GetAllAsync();
+            var response = new ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>();
+            var candidates = await _candidateRepository.GetAllCandidatesAsync();
 
-            response.Content = _mapper.Map<List<CandidateViewModel>>(candidates).ToPagedList(page, pageSize);
+            response.Content = _mapper.Map<List<CandidateGeneralInfoViewModel>>(candidates).ToPagedList(pageIndex, pageSize);
+            return response;
+        }
+
+        public async Task<ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>> GetAllCandidatesSortedAsync
+            (int pageIndex, int pageSize, string order, CandidateSortField field, string filter)
+        {
+            var response = new ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>();
+            var candidates = await _candidateRepository.GetAllCandidatesSortedAsync(order, field, filter);
+
+            response.Content = _mapper.Map<List<CandidateGeneralInfoViewModel>>(candidates).ToPagedList(pageIndex, pageSize);
             return response;
         }
 

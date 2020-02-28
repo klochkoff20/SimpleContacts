@@ -11,7 +11,7 @@ namespace SimpleContacts.Services.MappingProfiles
         {
             CreateMap<Department, DepartmentViewModel>().ReverseMap();
 
-            CreateMap<Department, DepartmentGeneralInfoViewModel>().ConvertUsing<DepartmentGeneralInfoViewModelConverter>();
+            CreateMap<Department, DepartmentGeneralInfoViewModel>().ConvertUsing<DepartmentGeneralInfoConverter>();
 
             CreateMap<DepartmentsContacts, DepartmentContactsViewModel>().ReverseMap();
 
@@ -20,6 +20,8 @@ namespace SimpleContacts.Services.MappingProfiles
                     viewModel => viewModel.Salary,
                     opt => opt.MapFrom(src => $"{src.SalaryMin}-{src.SalaryMax}$")
                 );
+
+            CreateMap<DepartmentsContacts, DepartmentContactsViewModel>().ConvertUsing<DepartmentContactsConverter>();
         }
     }
 }

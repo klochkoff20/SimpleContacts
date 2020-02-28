@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using SimpleContacts.Common.Enums;
-using SimpleContacts.Entities.Entities;
 
 namespace SimpleContacts.ViewModels
 {

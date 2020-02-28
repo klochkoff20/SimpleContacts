@@ -17,7 +17,11 @@ namespace SimpleContacts.Services.MappingProfiles
                             opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}")
                 );
 
-            CreateMap<User, BasicInfo<string>>().ConvertUsing<UserNameViewModelConverter>();
+            CreateMap<User, BasicInfo<string>>()
+                 .ForMember(
+                            viewModel => viewModel.Name,
+                            opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}")
+                );
         }
     }
 }

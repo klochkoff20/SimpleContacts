@@ -29,16 +29,18 @@ namespace SimpleContacts.Entities.Entities
         public string CurrentPosition { get; set; }
         public EmploymentType EmploymentType { get; set; }
         public string Education { get; set; }
+        public string DesiredPosition { get; set; }
         public int DesiredSalary { get; set; }
         public Currency Currency { get; set; }
         public string HomePage { get; set; }
-        public CandidateStatus CandidateStatus { get; set; }
-        public CandidateSource CandidateSource { get; set; }
+        public DateTime? AddingDate { get; set; } 
+        public CandidateStatus Status { get; set; }
+        public CandidateSource AddingSource { get; set; }
         public string Skills { get; set; }
         public string Description { get; set; }
         public DateTime? ReminderDate { get; set; }
 
-        public virtual User ResponcibleUser { get; set; }
+        public virtual User ResponsibleUser { get; set; }
         public virtual Contact Contact { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<CandidatesVacancies> CandidatesVacancies { get; set; }

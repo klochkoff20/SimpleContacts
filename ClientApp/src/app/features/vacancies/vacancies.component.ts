@@ -5,7 +5,7 @@ import { merge, of } from 'rxjs';
 import * as moment from 'moment';
 
 import { VacanciesService } from '../../services/vacancies.service';
-import { vacanciesColumns } from '../../shared/enums/vacancies-columns.enum';
+import { vacanciesColumn } from '../../shared/enums/vacancies-column.enum';
 import { VacancyGeneralInfo } from '../../shared/interfaces/vacancy-general-info.interface';
 import { BasicInfo } from '../../shared/interfaces/basic-info.interface';
 
@@ -16,15 +16,15 @@ import { BasicInfo } from '../../shared/interfaces/basic-info.interface';
 })
 export class VacanciesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
-    vacanciesColumns[vacanciesColumns.id],
-    vacanciesColumns[vacanciesColumns.name],
-    vacanciesColumns[vacanciesColumns.department],
-    vacanciesColumns[vacanciesColumns.project],
-    vacanciesColumns[vacanciesColumns.priority],
-    vacanciesColumns[vacanciesColumns.targetDate],
-    vacanciesColumns[vacanciesColumns.salary],
-    vacanciesColumns[vacanciesColumns.responsibleUser],
-    vacanciesColumns[vacanciesColumns.status]
+    vacanciesColumn[vacanciesColumn.id],
+    vacanciesColumn[vacanciesColumn.name],
+    vacanciesColumn[vacanciesColumn.department],
+    vacanciesColumn[vacanciesColumn.project],
+    vacanciesColumn[vacanciesColumn.priority],
+    vacanciesColumn[vacanciesColumn.targetDate],
+    vacanciesColumn[vacanciesColumn.salary],
+    vacanciesColumn[vacanciesColumn.responsibleUser],
+    vacanciesColumn[vacanciesColumn.status]
   ];
   statuses: BasicInfo<number>[] = [
     { id: 0, name: 'New' },
@@ -64,7 +64,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
         switchMap(() => {
           this.isLoadingResults = true;
           return this.vacanciesService.getVacancies(
-            this.paginator.pageIndex + 1, this.paginator.pageSize, this.sort.direction, vacanciesColumns[this.sort.active], this.filter);
+            this.paginator.pageIndex + 1, this.paginator.pageSize, this.sort.direction, vacanciesColumn[this.sort.active], this.filter);
         }),
         map(data => {
           this.isLoadingResults = false;

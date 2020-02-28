@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SimpleContacts.Common.Enums;
 using SimpleContacts.Infrastructure.APIResponce;
 using SimpleContacts.Services.Abstractions;
 using SimpleContacts.ViewModels;
@@ -22,10 +23,18 @@ namespace SimpleContacts.Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<DepartmentViewModel>>))]
-        public async Task<ActionResult<ResponseMessageResult<PagedList<DepartmentViewModel>>>> GetAll(int page = -1, int pageSize = 15)
+        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>))]
+        public async Task<ActionResult<ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>>> GetAll(int page = -1, int pageSize = 15)
         {
             return await _departmentService.GetAllDepartmentsAsync(page, pageSize);
+        }
+
+        [HttpGet("{pageIndex:int}/{pageSize:int}/{order}/{field:int}/{filter}")]
+        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>))]
+        public async Task<ActionResult<ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>>> GetAllSorted
+            (int pageIndex = -1, int pageSize = 15, string order = "", DepartmentSortField field = 0, string filter = "")
+        {
+            return await _departmentService.GetAllDepartmentsSortedAsync(pageIndex, pageSize, order, field, filter);
         }
 
         [HttpGet("{id:Guid}")]

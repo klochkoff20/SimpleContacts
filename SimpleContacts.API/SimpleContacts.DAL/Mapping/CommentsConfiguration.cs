@@ -7,6 +7,11 @@ namespace SimpleContacts.DAL.Mapping
     {
         public static void Configure(ModelBuilder builder)
         {
+            builder.Entity<Comment>().HasOne(e => e.Department)
+                    .WithMany(e => e.Comments)
+                    .HasForeignKey(e => e.DepartmentId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
             builder.Entity<Comment>().HasOne(e => e.Candidate)
                    .WithMany(e => e.Comments)
                    .HasForeignKey(e => e.CandidateId)

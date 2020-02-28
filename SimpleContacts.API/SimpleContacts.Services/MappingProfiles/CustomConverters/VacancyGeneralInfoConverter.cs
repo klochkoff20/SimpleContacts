@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using SimpleContacts.ViewModels;
-using SimpleContacts.Entities.Entities;
 using SimpleContacts.Common.Enums;
-using System;
+using SimpleContacts.Entities.Entities;
 
 namespace SimpleContacts.Services.MappingProfiles.CustomConverters
 {
-    public class VacancyGeneralInfoViewModelConverter : ITypeConverter<Vacancy, VacancyGeneralInfoViewModel>
+    public class VacancyGeneralInfoConverter : ITypeConverter<Vacancy, VacancyGeneralInfoViewModel>
     {
         public VacancyGeneralInfoViewModel Convert(Vacancy source, VacancyGeneralInfoViewModel destination, ResolutionContext context)
         {

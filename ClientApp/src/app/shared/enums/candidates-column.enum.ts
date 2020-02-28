@@ -1,8 +1,8 @@
-export enum candidatesColumns {
+export enum candidatesColumn {
   id,
   name,
   position,
-  responsible,
+  responsibleUser,
   addingDate,
   addingSource,
   lastActivity,

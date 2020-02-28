@@ -1,4 +1,4 @@
-export enum vacanciesColumns {
+export enum vacanciesColumn {
   id,
   name,
   department,

@@ -10,11 +10,9 @@ namespace SimpleContacts.Services.MappingProfiles
     {
         public VacancyProfile()
         {
-            CreateMap<Vacancy, VacancyViewModel>().ReverseMap();
-            CreateMap<Vacancy, BasicInfo<Guid>>().ReverseMap();
-
-
-            CreateMap<Vacancy, VacancyGeneralInfoViewModel>().ConvertUsing<VacancyGeneralInfoViewModelConverter>();
+            CreateMap<Vacancy, VacancyViewModel>();
+            CreateMap<Vacancy, VacancyGeneralInfoViewModel>().ConvertUsing<VacancyGeneralInfoConverter>();
+            CreateMap<Vacancy, BasicInfo<Guid>>();
 
             CreateMap<Department, BasicInfo<Guid>>();
         }

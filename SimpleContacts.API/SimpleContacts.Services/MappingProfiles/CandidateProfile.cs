@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SimpleContacts.Entities.Entities;
+using SimpleContacts.Services.MappingProfiles.CustomConverters;
 using SimpleContacts.ViewModels;
 
 namespace SimpleContacts.Services.MappingProfiles
@@ -10,6 +11,7 @@ namespace SimpleContacts.Services.MappingProfiles
         {
             CreateMap<Candidate, CandidateViewModel>().ReverseMap();
 
+            CreateMap<Candidate, CandidateGeneralInfoViewModel>().ConvertUsing<CandidateGeneralInfoConverter>();
             
         }
     }

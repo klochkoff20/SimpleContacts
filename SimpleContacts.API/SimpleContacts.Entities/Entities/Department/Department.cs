@@ -17,8 +17,8 @@ namespace SimpleContacts.Entities.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-        public string Email { get; set; }
         public string Phone { get; set; }
+        public string Email { get; set; }
         public string Skype { get; set; }
         public DepartmentStatus Status { get; set; }
         public string Description { get; set; }
@@ -31,5 +31,6 @@ namespace SimpleContacts.Entities.Entities
         public virtual ICollection<Vacancy> Vacancies { get; set; }
         public virtual ICollection<DepartmentsContacts> ContactsDepartments { get; set; }   
         public virtual ICollection<DepartmentsAttachments> DepartmentsAttachments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

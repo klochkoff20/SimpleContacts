@@ -9,6 +9,7 @@ using SimpleContacts.Entities.Entities;
 using SimpleContacts.Services.Abstractions;
 using SimpleContacts.Infrastructure.Helpers;
 using SimpleContacts.Infrastructure.APIResponce;
+using SimpleContacts.Common.Enums;
 
 namespace SimpleContacts.Services.Implementations
 {
@@ -43,12 +44,22 @@ namespace SimpleContacts.Services.Implementations
             return response;
         }
 
-        public async Task<ResponseMessageResult<PagedList<DepartmentViewModel>>> GetAllDepartmentsAsync(int page, int pageSize)
+        public async Task<ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>> GetAllDepartmentsAsync(int pageIndex, int pageSize)
         {
-            var response = new ResponseMessageResult<PagedList<DepartmentViewModel>>();
+            var response = new ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>();
             var departments = await _departmentRepository.GetAllAsync();
 
-            response.Content = _mapper.Map<List<DepartmentViewModel>>(departments).ToPagedList(page, pageSize);
+            response.Content = _mapper.Map<List<DepartmentGeneralInfoViewModel>>(departments).ToPagedList(pageIndex, pageSize);
+            return response;
+        }
+
+        public async Task<ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>> GetAllDepartmentsSortedAsync
+            (int pageIndex, int pageSize, string order, DepartmentSortField field, string filter)
+        {
+            var response = new ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>();
+            var departments = await _departmentRepository.GetAllDepartmentsSortedAsync(order, field, filter);
+
+            response.Content = _mapper.Map<List<DepartmentGeneralInfoViewModel>>(departments).ToPagedList(pageIndex, pageSize);
             return response;
         }
 

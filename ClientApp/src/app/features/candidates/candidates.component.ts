@@ -4,7 +4,7 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
 
-import { candidatesColumns } from '../../shared/enums/candidates.columns.enum';
+import { candidatesColumn } from '../../shared/enums/candidates-column.enum';
 import { CandidateGeneralInfo } from '../../shared/interfaces/candidate-general-info.interface';
 import { CandidatesService } from '../../services/candidates.service';
 
@@ -15,14 +15,14 @@ import { CandidatesService } from '../../services/candidates.service';
 })
 export class CandidatesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
-    candidatesColumns[candidatesColumns.id],
-    candidatesColumns[candidatesColumns.name],
-    candidatesColumns[candidatesColumns.position],
-    candidatesColumns[candidatesColumns.responsible],
-    candidatesColumns[candidatesColumns.addingDate],
-    candidatesColumns[candidatesColumns.addingSource],
-    candidatesColumns[candidatesColumns.lastActivity],
-    candidatesColumns[candidatesColumns.actions]
+    candidatesColumn[candidatesColumn.id],
+    candidatesColumn[candidatesColumn.name],
+    candidatesColumn[candidatesColumn.position],
+    candidatesColumn[candidatesColumn.responsibleUser],
+    candidatesColumn[candidatesColumn.addingDate],
+    candidatesColumn[candidatesColumn.addingSource],
+    candidatesColumn[candidatesColumn.lastActivity],
+    candidatesColumn[candidatesColumn.actions]
   ];
 
   data: CandidateGeneralInfo[] = [];
@@ -53,13 +53,12 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
         switchMap(() => {
           this.isLoadingResults = true;
           return this.candidatesService.getCandidates(
-            this.paginator.pageIndex + 1, this.paginator.pageSize, this.sort.direction, candidatesColumns[this.sort.active], this.filter);
+            this.paginator.pageIndex + 1, this.paginator.pageSize, this.sort.direction, candidatesColumn[this.sort.active], this.filter);
         }),
         map(data => {
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data.content.totalItems;
-          console.log(data);
           return data.content.items;
         }),
         catchError(error => {

@@ -41,7 +41,7 @@
 
   .mat-elevation-z8 {
     position: relative;
-    min-height: 456px;
+    min-height: 256px;
 
     .loading-shade {
       position: absolute;
@@ -67,7 +67,7 @@
 
   .table-container {
     position: relative;
-    min-height: 400px;
+    min-height: 200px;
     max-height: 636px;
     overflow: auto;
 
@@ -85,21 +85,9 @@
         max-width: 250px;
       }
 
-      .mat-column-department,
-      .mat-column-project {
-        min-width: 150px;
-        max-width: 230px;
-      }
-
-      .mat-column-priority {
-        min-width: 70px;
-        max-width: 140px;
-      }
-
-      .mat-column-targetDate,
-      .mat-column-salary {
-        min-width: 100px;
-        max-width: 150px;
+      .mat-column-position {
+        min-width: 200px;
+        max-width: 250px;
       }
 
       .mat-column-responsibleUser {
@@ -107,7 +95,17 @@
         max-width: 200px;
       }
 
-      .mat-column-status {
+      .mat-column-addingDate,
+      .mat-column-addingSource {
+        min-width: 100px;
+        max-width: 150px;
+      }
+      .mat-column-lastActivity {
+        min-width: 120px;
+        max-width: 220px;
+      }
+
+      .mat-column-actions {
         padding-right: 20px;
         min-width: 120px;
         max-width: 160px;

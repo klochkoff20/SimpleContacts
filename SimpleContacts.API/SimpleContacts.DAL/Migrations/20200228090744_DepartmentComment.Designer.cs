@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleContacts.DAL;
 
 namespace SimpleContacts.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200228090744_DepartmentComment")]
+    partial class DepartmentComment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,11 +134,14 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<DateTime?>("AddingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte>("AddingSource")
-                        .HasColumnType("tinyint");
-
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<byte>("CandidateSource")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("CandidateStatus")
+                        .HasColumnType("tinyint");
 
                     b.Property<Guid>("ContactId")
                         .HasColumnType("uniqueidentifier");
@@ -200,9 +205,6 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<string>("Skills")
                         .HasColumnType("nvarchar(1024)")
                         .HasMaxLength(1024);
-
-                    b.Property<byte>("Status")
-                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 

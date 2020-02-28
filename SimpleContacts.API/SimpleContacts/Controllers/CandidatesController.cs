@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SimpleContacts.Common.Enums;
 using SimpleContacts.Infrastructure.APIResponce;
 using SimpleContacts.Services.Abstractions;
 using SimpleContacts.ViewModels;
@@ -9,20 +10,29 @@ namespace SimpleContacts.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CandidateController : ControllerBase
+    public class CandidatesController : ControllerBase
     {
         private readonly ICandidateService _candidateService;
 
-        public CandidateController(ICandidateService candidateService)
+        public CandidatesController(ICandidateService candidateService)
         {
             _candidateService = candidateService;
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<CandidateViewModel>>))]
-        public async Task<ActionResult<ResponseMessageResult<PagedList<CandidateViewModel>>>> GetAll(int page = -1, int pageSize = 15)
+        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>))]
+        public async Task<ActionResult<ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>>> GetAll
+            (int pageIndex = -1, int pageSize = 15)
         {
-            return await _candidateService.GetAllCandidatesAsync(page, pageSize);
+            return await _candidateService.GetAllCandidatesAsync(pageIndex, pageSize);
+        }
+
+        [HttpGet("{pageIndex:int}/{pageSize:int}/{order}/{field:int}/{filter}")]
+        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>))]
+        public async Task<ActionResult<ResponseMessageResult<PagedList<CandidateGeneralInfoViewModel>>>> GetAllSorted
+            (int pageIndex = -1, int pageSize = 15, string order = "", CandidateSortField field = 0, string filter = "")
+        {
+            return await _candidateService.GetAllCandidatesSortedAsync(pageIndex, pageSize, order, field, filter);
         }
 
         [HttpGet("{id:Guid}")]
