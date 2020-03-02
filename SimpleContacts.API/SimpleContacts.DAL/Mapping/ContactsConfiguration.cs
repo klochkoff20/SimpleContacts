@@ -16,7 +16,6 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<Contact>().Property(e => e.LinkedIn).HasMaxLength(128);
             builder.Entity<Contact>().Property(e => e.Telegram).HasMaxLength(128);
             builder.Entity<Contact>().Property(e => e.Facebook).HasMaxLength(128);
-            builder.Entity<Contact>().Property(e => e.GooglePlus).HasMaxLength(128);
         }
     }
 }

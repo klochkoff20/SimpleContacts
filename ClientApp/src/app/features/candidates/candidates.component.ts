@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatSort } from '@angular/material';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { candidatesColumn } from '../../shared/enums/candidates-column.enum';
 import { CandidateGeneralInfo } from '../../shared/interfaces/candidate-general-info.interface';
 import { CandidatesService } from '../../services/candidates.service';
+import { CreateCandidateComponent } from './create-candidate/create-candidate.component';
 
 @Component({
   selector: 'app-candidates',
@@ -36,7 +37,7 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(private candidatesService: CandidatesService) {
+  constructor(private candidatesService: CandidatesService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -83,5 +84,16 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
 
   formatDate(date) {
     return moment(date).format('DD/MM/YYYY');
+  }
+
+  createCandidate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(CreateCandidateComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

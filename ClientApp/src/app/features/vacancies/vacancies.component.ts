@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatDialogConfig } from '@angular/material';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
@@ -8,6 +8,7 @@ import { VacanciesService } from '../../services/vacancies.service';
 import { vacanciesColumn } from '../../shared/enums/vacancies-column.enum';
 import { VacancyGeneralInfo } from '../../shared/interfaces/vacancy-general-info.interface';
 import { BasicInfo } from '../../shared/interfaces/basic-info.interface';
+import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
 
 @Component({
   selector: 'app-vacancies',
@@ -47,7 +48,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(private vacanciesService: VacanciesService) {
+  constructor(private vacanciesService: VacanciesService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -94,5 +95,16 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
 
   formatDate(date) {
     return moment(date).format('DD/MM/YYYY');
+  }
+
+  createVacancy() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(CreateVacancyComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }

@@ -52,6 +52,7 @@
 
     .pages-wrap {
       .pages-list {
+        transition: linear 300ms;
         list-style: none;
         display: flex;
         flex-direction: row;

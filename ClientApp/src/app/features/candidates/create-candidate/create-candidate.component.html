@@ -1,0 +1,228 @@
+<h2 mat-dialog-title>Create new vacancy</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>First name</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Last name</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Date of birth</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-label>Gender</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let gender of genders" [value]="gender.id">
+        {{ gender.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>City of residence</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-checkbox color="primary">Ready to relocate</mat-checkbox>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-label>Desired position</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Industry</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Experience</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let experience of candidateExperience" [value]="experience.id">
+        {{ experience.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-label>Current place of work</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Current position</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Employment type</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let type of employmentTypes" [value]="type.id">
+        {{ type.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-label>Education</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Languages</mat-label>
+    <mat-select multiple>
+      <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-label>Desired salary</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-radio-group color="primary">
+    <mat-radio-button value="0" checked>
+      <mat-form-field>
+        <mat-label>Phone number</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </mat-radio-button>
+
+    <mat-radio-button value="1">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </mat-radio-button>
+
+    <mat-radio-button value="2">
+      <mat-form-field>
+        <mat-label>Skype</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </mat-radio-button>
+
+    <mat-radio-button value=3>
+      <mat-form-field>
+        <mat-label>LinkedIn</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </mat-radio-button>
+
+    <!--TEMPORARY-->
+    <br>
+
+    <mat-radio-button value="4">
+      <mat-form-field>
+        <mat-label>Telegram</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </mat-radio-button>
+
+    <mat-radio-button value="5">
+      <mat-form-field>
+        <mat-label>Facebook</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field>
+    <mat-label>Home page</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let status of candidateStatuses" [value]="status.id">
+        {{ status.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Source</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let source of candidateSources" [value]="source.id">
+        {{ source.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-chip-list #chipList aria-label="Skills selection">
+      <mat-chip
+        *ngFor="let skill of skills"
+        [selectable]="true"
+        [removable]="true"
+        (removed)="removeSkill(skill)">
+        {{ skill }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Skills..."
+        #skillInput
+        [formControl]="skillCtrl"
+        [matAutocomplete]="skillAutocomplete"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+        (matChipInputTokenEnd)="addSkill($event)">
+    </mat-chip-list>
+    <mat-autocomplete #skillAutocomplete="matAutocomplete" (optionSelected)=skillSelected($event)>
+      <mat-option *ngFor="let skillOption of filteredSkills | async" [value]="skillOption">
+        {{ skillOption }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Skills as text</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+
+  <!--TEMPORARY-->
+  <br>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close [mat-dialog-close]="false">Close</button>
+  <button mat-button [mat-dialog-close]="true">Create</button>
+</mat-dialog-actions>
+

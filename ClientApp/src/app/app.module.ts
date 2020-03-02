@@ -11,19 +11,25 @@ import { CandidatesComponent } from './features/candidates/candidates.component'
 import { DepartmentsComponent } from './features/departments/departments.component';
 import { ReportsComponent } from './features/reports/reports.component';
 import { AccountsComponent } from './features/accounts/accounts.component';
-import { OrganizerComponent } from './organizer/organizer.component';
+import { OrganizerComponent } from './features/organizer/organizer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import {
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    MatSortModule
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatCheckboxModule, MatChipsModule, MatDatepickerModule,
+  MatDialogModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule, MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule, MatRadioModule,
+  MatSelectModule,
+  MatSortModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateVacancyComponent } from './features/vacancies/create-vacancy/create-vacancy.component';
+import { CreateCandidateComponent } from './features/candidates/create-candidate/create-candidate.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -47,23 +53,38 @@ const appRoutes: Routes = [
     DepartmentsComponent,
     ReportsComponent,
     AccountsComponent,
-    OrganizerComponent
+    OrganizerComponent,
+    CreateVacancyComponent,
+    CreateCandidateComponent
   ],
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        FontAwesomeModule,
-        RouterModule.forRoot(appRoutes),
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatProgressSpinnerModule,
-        MatSelectModule,
-        MatCheckboxModule
-    ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FontAwesomeModule,
+    RouterModule.forRoot(appRoutes),
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatRadioModule,
+    MatChipsModule,
+    MatIconModule,
+    ReactiveFormsModule
+  ],
+  entryComponents: [
+    CreateVacancyComponent,
+    CreateCandidateComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

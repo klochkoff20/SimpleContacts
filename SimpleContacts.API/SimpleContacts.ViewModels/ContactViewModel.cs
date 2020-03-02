@@ -16,7 +16,6 @@ namespace SimpleContacts.ViewModels
         public string LinkedIn { get; set; }
         public string Telegram { get; set; }
         public string Facebook { get; set; }
-        public string GooglePlus { get; set; }
         public int? PreferableMethod { get; set; }
 
         //public IList<CandidateViewModel> Candidates { get; set; }

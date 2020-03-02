@@ -31,7 +31,6 @@ namespace SimpleContacts.Entities.Entities
         public string Education { get; set; }
         public string DesiredPosition { get; set; }
         public int DesiredSalary { get; set; }
-        public Currency Currency { get; set; }
         public string HomePage { get; set; }
         public DateTime? AddingDate { get; set; } 
         public CandidateStatus Status { get; set; }
