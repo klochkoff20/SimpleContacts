@@ -9,7 +9,6 @@ namespace SimpleContacts.Entities.Entities
         Vacancy()
         {
             Comments = new HashSet<Comment>();
-            VacanciesLanguages = new HashSet<VacanciesLanguages>();
             VacanciesAttachments = new HashSet<VacanciesAttachments>();
             CandidatesVacancies = new HashSet<CandidatesVacancies>();
         }
@@ -22,6 +21,7 @@ namespace SimpleContacts.Entities.Entities
         public DateTime TargetDate { get; set; }
         public EmploymentType EmploymentType { get; set; }
         public string Location { get; set; }
+        public string Languages { get; set; }
         public int? SalaryMin { get; set; }
         public int? SalaryMax { get; set; }
         public int? RequiredExperience { get; set; }
@@ -44,7 +44,6 @@ namespace SimpleContacts.Entities.Entities
         public virtual User ResponsibleUser { get; set; }
         public virtual User UpdatedUser { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<VacanciesLanguages> VacanciesLanguages { get; set; }
         public virtual ICollection<VacanciesAttachments> VacanciesAttachments { get; set; }
         public virtual ICollection<CandidatesVacancies> CandidatesVacancies { get; set; }
     }

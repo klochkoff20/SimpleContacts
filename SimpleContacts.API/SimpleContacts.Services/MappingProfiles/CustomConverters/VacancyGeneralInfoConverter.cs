@@ -19,7 +19,6 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
                 Priority = Enum.GetName(typeof(VacancyPriority), source.Priority),
                 TargetDate = source.TargetDate,
                 ResponsibleUser = context.Mapper.Map<BasicInfo<string>>(source.ResponsibleUser),
-                Salary = $"{source.SalaryMin}-{source.SalaryMax}$",
                 Status = source.Status
             };
 

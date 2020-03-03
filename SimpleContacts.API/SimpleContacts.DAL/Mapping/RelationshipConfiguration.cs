@@ -14,16 +14,6 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<Role>().HasMany(r => r.Users).WithOne().HasForeignKey(r => r.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Role>().Property(e => e.Description).HasMaxLength(128);
 
-            builder.Entity<CandidatesSkills>().HasKey(e => new { e.CandidateId, e.SkillId });
-            builder.Entity<CandidatesSkills>().HasOne(e => e.Candidate)
-                   .WithMany(e => e.CandidatesSkills)
-                   .HasForeignKey(e => e.CandidateId)
-                   .OnDelete(DeleteBehavior.NoAction);
-            builder.Entity<CandidatesSkills>().HasOne(e => e.Skill)
-                   .WithMany(e => e.CandidatesSkills)
-                   .HasForeignKey(e => e.SkillId)
-                   .OnDelete(DeleteBehavior.NoAction);
-
             builder.Entity<CandidatesTags>().HasKey(e => new { e.CandidateId, e.TagId });
             builder.Entity<CandidatesTags>().HasOne(e => e.Candidate)
                    .WithMany(e => e.CandidatesTags)
@@ -32,16 +22,6 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<CandidatesTags>().HasOne(e => e.Tag)
                    .WithMany(e => e.CandidatesTags)
                    .HasForeignKey(e => e.TagId)
-                   .OnDelete(DeleteBehavior.NoAction);
-
-            builder.Entity<CandidatesLanguages>().HasKey(e => new { e.CandidateId, e.LanguageId });
-            builder.Entity<CandidatesLanguages>().HasOne(e => e.Candidate)
-                   .WithMany(e => e.CandidatesLanguages)
-                   .HasForeignKey(e => e.CandidateId)
-                   .OnDelete(DeleteBehavior.NoAction);
-            builder.Entity<CandidatesLanguages>().HasOne(e => e.Language)
-                   .WithMany(e => e.CandidatesLanguages)
-                   .HasForeignKey(e => e.LanguageId)
                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<CandidatesAttachments>().HasKey(e => new { e.CandidateId, e.FileId });
@@ -82,16 +62,6 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<DepartmentsAttachments>().HasOne(e => e.FileAttachment)
                    .WithMany(e => e.DepartmentsAttachments)
                    .HasForeignKey(e => e.FileId)
-                   .OnDelete(DeleteBehavior.NoAction);
-
-            builder.Entity<VacanciesLanguages>().HasKey(e => new { e.VacancyId, e.LanguageId });
-            builder.Entity<VacanciesLanguages>().HasOne(e => e.Vacancy)
-                   .WithMany(e => e.VacanciesLanguages)
-                   .HasForeignKey(e => e.VacancyId)
-                   .OnDelete(DeleteBehavior.NoAction);
-            builder.Entity<VacanciesLanguages>().HasOne(e => e.Language)
-                   .WithMany(e => e.VacanciesLanguages)
-                   .HasForeignKey(e => e.LanguageId)
                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.Entity<VacanciesAttachments>().HasKey(e => new { e.VacancyId, e.FileId });

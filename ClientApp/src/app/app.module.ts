@@ -30,6 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateVacancyComponent } from './features/vacancies/create-vacancy/create-vacancy.component';
 import { CreateCandidateComponent } from './features/candidates/create-candidate/create-candidate.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CustomChipListComponent } from './shared/components/custom-chip-list/custom-chip-list.component';
 
 
 
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
     AccountsComponent,
     OrganizerComponent,
     CreateVacancyComponent,
-    CreateCandidateComponent
+    CreateCandidateComponent,
+    CustomChipListComponent
   ],
   imports: [
     HttpClientModule,

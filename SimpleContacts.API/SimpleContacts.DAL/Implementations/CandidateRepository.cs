@@ -39,7 +39,8 @@ namespace SimpleContacts.DAL.Implementations
                 query = query.Where(e => e.Contact.FirstName.Contains(filter)
                                       || e.Contact.LastName.Contains(filter)
                                       || e.DesiredPosition.Contains(filter)
-                                      || e.ResponsibleUser.LastName.Contains(filter));
+                                      || e.ResponsibleUser.LastName.Contains(filter)
+                                      || e.Skills.Contains(filter));
             }
 
             if(field != CandidateSortField.NoSort)

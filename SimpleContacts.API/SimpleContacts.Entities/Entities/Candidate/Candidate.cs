@@ -10,9 +10,7 @@ namespace SimpleContacts.Entities.Entities
         {
             Comments = new HashSet<Comment>();
             CandidatesVacancies = new HashSet<CandidatesVacancies>();
-            CandidatesLanguages = new HashSet<CandidatesLanguages>();
             CandidatesAttachments = new HashSet<CandidatesAttachments>();
-            CandidatesSkills = new HashSet<CandidatesSkills>();
             CandidatesTags = new HashSet<CandidatesTags>();
         }
 
@@ -20,6 +18,7 @@ namespace SimpleContacts.Entities.Entities
         public DateTime? BirthDate { get; set; }
         public Gender Gender { get; set; }
         public string Location { get; set; }
+        public string Languages { get; set; }
         public Guid ContactId { get; set; }
         public bool ReadyToRelocate { get; set; }
         public string ResponsibleBy { get; set; }
@@ -43,9 +42,7 @@ namespace SimpleContacts.Entities.Entities
         public virtual Contact Contact { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<CandidatesVacancies> CandidatesVacancies { get; set; }
-        public virtual ICollection<CandidatesLanguages> CandidatesLanguages { get; set; }
         public virtual ICollection<CandidatesAttachments> CandidatesAttachments { get; set; }
-        public virtual ICollection<CandidatesSkills> CandidatesSkills { get; set; }
         public virtual ICollection<CandidatesTags> CandidatesTags { get; set; }
     }
 }

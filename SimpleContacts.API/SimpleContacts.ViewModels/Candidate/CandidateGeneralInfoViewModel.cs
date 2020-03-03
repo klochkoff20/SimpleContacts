@@ -11,6 +11,7 @@ namespace SimpleContacts.ViewModels
         public DateTime? AddingDate { get; set; }
         public string AddingSource { get; set; }
         public CandidateStatus Status { get; set; }
+        public List<string> Skills { get; set; }
         public List<CommentViewModel> Comments { get; set; }
     }
 }

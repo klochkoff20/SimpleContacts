@@ -9,7 +9,6 @@ namespace SimpleContacts.ViewModels
         public BasicInfo<Guid> Project { get; set; }
         public string Priority { get; set; }
         public DateTime TargetDate { get; set; }
-        public string Salary { get; set; }
         public BasicInfo<string> ResponsibleUser { get; set; }
         public VacancyStatus Status { get; set; }
     }

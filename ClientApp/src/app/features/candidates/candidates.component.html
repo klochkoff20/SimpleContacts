@@ -52,6 +52,15 @@
           <td mat-cell *matCellDef="let row"> {{ row.desiredPosition }} </td>
         </ng-container>
 
+        <ng-container matColumnDef="skills">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> SKILLS </th>
+          <td mat-cell *matCellDef="let row">
+            <ng-template ngFor let-skill [ngForOf]="row.skills">
+              {{ skill }},<br>
+            </ng-template>
+          </td>
+        </ng-container>
+
         <ng-container matColumnDef="responsibleUser">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> RESPONSIBLE </th>
           <td mat-cell *matCellDef="let row"> {{ row.responsibleUser.name }} </td>
@@ -75,14 +84,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
           <td mat-cell *matCellDef="let row">
-            <mat-form-field>
-              <mat-select [value]="row.status">
-                <mat-option *ngFor="let status of statuses"
-                            [value]="status.value">
-                  {{ status.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+           buttons
           </td>
         </ng-container>
 
@@ -91,8 +93,8 @@
       </table>
     </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 50, 100]"
-                   [pageSize]="10"
+    <mat-paginator [pageSizeOptions]="[5, 15, 50, 100]"
+                   [pageSize]="15"
                    [length]="resultsLength"
                    showFirstLastButtons>
     </mat-paginator>

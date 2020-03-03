@@ -4,10 +4,10 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
 
-import { DepartmentGeneralInfo } from '../../shared/interfaces/department-general-info.interface';
 import { DepartmentsService } from '../../services/departments.service';
-import { departmentsColumn } from '../../shared/enums/departments-column.enum';
-import { BasicInfo } from '../../shared/interfaces/basic-info.interface';
+import { BasicInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
+import { DEPARTMENT_STATUSES } from '../../shared/constants';
+import { departmentsColumn } from '../../shared/enums';
 
 
 @Component({
@@ -25,14 +25,7 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
     departmentsColumn[departmentsColumn.responsibleUser],
     departmentsColumn[departmentsColumn.contacts]
   ];
-  statuses: BasicInfo<number>[] = [
-    { id: 0, name: 'In Progress' },
-    { id: 1, name: 'Future' },
-    { id: 2, name: 'On Hold' },
-    { id: 3, name: 'All Done' },
-    { id: 4, name: 'Canceled' },
-    { id: 5, name: 'Deleted' }
-  ];
+  statuses: BasicInfo<number>[] = DEPARTMENT_STATUSES;
 
   data: DepartmentGeneralInfo[] = [];
   resultsLength: number;
@@ -81,7 +74,7 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    if ((event.target as HTMLInputElement).value !== '') {
+    if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
     } else {
       this.filter = '%20';

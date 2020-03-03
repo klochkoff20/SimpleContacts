@@ -5,10 +5,10 @@ import { merge, of } from 'rxjs';
 import * as moment from 'moment';
 
 import { VacanciesService } from '../../services/vacancies.service';
-import { vacanciesColumn } from '../../shared/enums/vacancies-column.enum';
-import { VacancyGeneralInfo } from '../../shared/interfaces/vacancy-general-info.interface';
-import { BasicInfo } from '../../shared/interfaces/basic-info.interface';
+import { BasicInfo, VacancyGeneralInfo } from '../../shared/interfaces';
 import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
+import { VACANCY_STATUSES } from '../../shared/constants';
+import { vacanciesColumn } from '../../shared/enums';
 
 @Component({
   selector: 'app-vacancies',
@@ -23,19 +23,10 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
     vacanciesColumn[vacanciesColumn.project],
     vacanciesColumn[vacanciesColumn.priority],
     vacanciesColumn[vacanciesColumn.targetDate],
-    vacanciesColumn[vacanciesColumn.salary],
     vacanciesColumn[vacanciesColumn.responsibleUser],
     vacanciesColumn[vacanciesColumn.status]
   ];
-  statuses: BasicInfo<number>[] = [
-    { id: 0, name: 'New' },
-    { id: 1, name: 'On Hold' },
-    { id: 2, name: 'In Progress' },
-    { id: 3, name: 'Payment' },
-    { id: 4, name: 'Complete' },
-    { id: 5, name: 'Replacement' },
-    { id: 6, name: 'Canceled' }
-  ];
+  statuses: BasicInfo<number>[] = VACANCY_STATUSES;
 
   data: VacancyGeneralInfo[] = [];
   resultsLength: number;
@@ -84,7 +75,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    if ((event.target as HTMLInputElement).value !== '') {
+    if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
     } else {
       this.filter = '%20';

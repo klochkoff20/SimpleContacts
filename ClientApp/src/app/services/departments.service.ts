@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { PagedListResponse } from '../shared/interfaces/paged-list-response.interface';
-import { DepartmentGeneralInfo } from '../shared/interfaces/department-general-info.interface';
+import { DepartmentGeneralInfo, PagedListResponse } from '../shared/interfaces';
 
 @Injectable({providedIn: 'root'})
 export class DepartmentsService {

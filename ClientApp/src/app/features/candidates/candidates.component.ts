@@ -4,21 +4,23 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
 
-import { candidatesColumn } from '../../shared/enums/candidates-column.enum';
-import { CandidateGeneralInfo } from '../../shared/interfaces/candidate-general-info.interface';
+import { candidatesColumn } from '../../shared/enums';
 import { CandidatesService } from '../../services/candidates.service';
 import { CreateCandidateComponent } from './create-candidate/create-candidate.component';
+import { CandidateGeneralInfo } from '../../shared/interfaces';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-candidates',
   templateUrl: './candidates.component.html',
-  styleUrls: ['./candidates.component.scss']
+  styleUrls: [ './candidates.component.scss' ]
 })
 export class CandidatesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     candidatesColumn[candidatesColumn.id],
     candidatesColumn[candidatesColumn.name],
     candidatesColumn[candidatesColumn.position],
+    candidatesColumn[candidatesColumn.skills],
     candidatesColumn[candidatesColumn.responsibleUser],
     candidatesColumn[candidatesColumn.addingDate],
     candidatesColumn[candidatesColumn.addingSource],
@@ -33,14 +35,21 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
   errorMessage = '';
   filter = '%20';
 
+  createCandidateForm: FormGroup;
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(private candidatesService: CandidatesService, private dialog: MatDialog) {
+  constructor(
+    private candidatesService: CandidatesService,
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder
+  ) {
   }
 
   ngOnInit() {
+    this.createCandidateForm = this.initCreateCandidateForm();
   }
 
   ngAfterViewInit() {
@@ -72,8 +81,12 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
       ).subscribe(data => this.data = data);
   }
 
+  initCreateCandidateForm(): FormGroup {
+    return this.formBuilder.group({});
+  }
+
   applyFilter(event: Event) {
-    if ((event.target as HTMLInputElement).value !== '') {
+    if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
     } else {
       this.filter = '%20';

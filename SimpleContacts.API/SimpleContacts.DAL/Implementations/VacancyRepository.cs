@@ -33,7 +33,8 @@ namespace SimpleContacts.DAL.Implementations
             var query = Entities
                     .IncludeOptimized(e => e.Department)
                     .IncludeOptimized(e => e.Project)
-                    .IncludeOptimized(e => e.ResponsibleUser);
+                    .IncludeOptimized(e => e.ResponsibleUser)
+                    .Where(e => e.Status < VacancyStatus.Complete);
 
             var vacancies = new List<Vacancy>();
 
@@ -66,8 +67,6 @@ namespace SimpleContacts.DAL.Implementations
                     .IncludeOptimized(e => e.UpdatedUser)
                     .IncludeOptimized(e => e.ResponsibleUser)
                     .IncludeOptimized(e => e.Comments)
-                    .IncludeOptimized(e => e.VacanciesLanguages)
-                        .IncludeOptimized(e => e.VacanciesLanguages.Select(s => s.Language))
                     .IncludeOptimized(e => e.VacanciesAttachments)
                         .IncludeOptimized(e => e.VacanciesAttachments.Select(s => s.Vacancy))
                     .IncludeOptimized(e => e.CandidatesVacancies)

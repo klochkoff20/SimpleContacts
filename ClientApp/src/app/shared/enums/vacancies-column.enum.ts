@@ -5,7 +5,6 @@ export enum vacanciesColumn {
   project,
   priority,
   targetDate,
-  salary,
   responsibleUser,
   status
 }

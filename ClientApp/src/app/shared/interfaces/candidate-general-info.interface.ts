@@ -7,4 +7,5 @@ export interface CandidateGeneralInfo extends BasicInfo<string> {
   addingSource: string;
   status: number;
   lastActivity: string;
+  skills: string[];
 }

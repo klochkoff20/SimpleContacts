@@ -22,9 +22,6 @@ namespace SimpleContacts.Common.Enums
         [Description("TargetDate")]
         TargetDate,
 
-        [Description("Salary")]
-        SalaryMin,
-
         [Description("Responsible")]
         ResponsibleUser,
 
