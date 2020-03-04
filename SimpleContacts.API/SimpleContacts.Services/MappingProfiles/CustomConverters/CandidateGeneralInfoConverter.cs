@@ -14,7 +14,7 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
             var candidate = new CandidateGeneralInfoViewModel
             {
                 Id = source.Id,
-                Name = $"{source.Contact.FirstName} {source.Contact.LastName}",
+                Name = $"{source.FirstName} {source.LastName}",
                 DesiredPosition = source.DesiredPosition,
                 ResponsibleUser = context.Mapper.Map<BasicInfo<string>>(source.ResponsibleUser),
                 AddingDate = source.AddingDate,

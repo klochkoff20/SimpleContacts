@@ -29,7 +29,7 @@ namespace SimpleContacts.Services.Implementations
             _candidateRepository = candidateRepository;
         }
 
-        public async Task<ResponseMessageResult<string>> CreateCandidateAsync(CandidateViewModel candidate)
+        public async Task<ResponseMessageResult<string>> CreateCandidateAsync(CandidateInsertViewModel candidate)
         {
             var response = new ResponseMessageResult<string>();
 
@@ -38,8 +38,8 @@ namespace SimpleContacts.Services.Implementations
             await _candidateRepository.AddAsync(newCandidate);
             await _unitOfWork.SaveChangesAsync();
 
-            response.Content = candidate.Id.ToString();
-            response.Message = $"Candidate [{candidate.Contact.FullName}] Id: [{candidate.Id}] was successfully added";
+            response.Content = candidate.FirstName.ToString();
+            response.Message = $"Candidate [{candidate.FirstName}] Id: [{newCandidate.Id}] was successfully added";
 
             return response;
         }

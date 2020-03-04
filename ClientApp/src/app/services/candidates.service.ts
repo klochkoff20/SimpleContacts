@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 import { CandidateGeneralInfo, PagedListResponse } from '../shared/interfaces';
+import { CandidateInsert } from '../shared/interfaces/candidate-insert.interface';
 
 @Injectable({providedIn: 'root'})
 export class CandidatesService {
@@ -13,5 +14,9 @@ export class CandidatesService {
 
   public getCandidates(pageIndex: number, pageSize: number, order: string, field: number, filter: string) {
     return this.http.get<PagedListResponse<CandidateGeneralInfo>>(this.host + `/${pageIndex}/${pageSize}/${order}/${field}/${filter}`);
+  }
+
+  public createCandidate(candidate: CandidateInsert) {
+    return this.http.post<CandidateInsert>(this.host, candidate);
   }
 }

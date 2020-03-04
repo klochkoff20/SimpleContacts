@@ -47,7 +47,7 @@ namespace SimpleContacts.Web.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<BaseResponseMessageResult>> Create(CandidateViewModel candidate)
+        public async Task<ActionResult<BaseResponseMessageResult>> Create(CandidateInsertViewModel candidate)
         {
             return await _candidateService.CreateCandidateAsync(candidate);
         }

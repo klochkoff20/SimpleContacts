@@ -1,7 +1,8 @@
-<h2 mat-dialog-title>Create new vacancy</h2>
-<mat-dialog-content>
+<h2 mat-dialog-title>Create new candidate</h2>
+<mat-dialog-content class="container webkit-pretty-scroll">
   <form class="form-container"
-        [formGroup]="createCandidateForm">
+        [formGroup]="createCandidateForm"
+        >
 
     <mat-form-field>
       <mat-label>First name</mat-label>
@@ -16,17 +17,6 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Date of birth</mat-label>
-      <input matInput [matDatepicker]="picker"
-             formControlName="dateOfBirth">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker startView="multi-year"></mat-datepicker>
-    </mat-form-field>
-
-    <!--TEMPORARY-->
-    <br>
-
-    <mat-form-field>
       <mat-label>Gender</mat-label>
       <mat-select formControlName="gender">
         <mat-option *ngFor="let gender of genders"
@@ -37,17 +27,27 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Date of birth</mat-label>
+      <input matInput [matDatepicker]="picker"
+             formControlName="dateOfBirth">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
       <mat-label>City of residence</mat-label>
       <input matInput
              formControlName="location">
     </mat-form-field>
 
-    <mat-checkbox color="primary"
-                  formControlName="readyToRelocate">
+    <mat-checkbox color="accent"
+                  formControlName="readyToRelocate"
+                  [ngModel]="false">
       Ready to relocate
     </mat-checkbox>
 
-    <!--TEMPORARY-->
     <br>
 
     <mat-form-field>
@@ -63,6 +63,24 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Employment type</mat-label>
+      <mat-select formControlName="employmentType">
+        <mat-option *ngFor="let type of employmentTypes"
+                    [value]="type.id">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Desired salary</mat-label>
+      <input matInput
+             formControlName="desiredSalary">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field>
       <mat-label>Experience</mat-label>
       <mat-select formControlName="experience">
         <mat-option *ngFor="let experience of candidateExperience"
@@ -71,9 +89,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-
-    <!--TEMPORARY-->
-    <br>
 
     <mat-form-field>
       <mat-label>Current place of work</mat-label>
@@ -87,17 +102,6 @@
              formControlName="currentPosition">
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Employment type</mat-label>
-      <mat-select formControlName="employmentType">
-        <mat-option *ngFor="let type of employmentTypes"
-                    [value]="type.id">
-          {{ type.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <!--TEMPORARY-->
     <br>
 
     <mat-form-field>
@@ -116,19 +120,9 @@
       </mat-select>
     </mat-form-field>
 
-    <!--TEMPORARY-->
     <br>
 
-    <mat-form-field>
-      <mat-label>Desired salary</mat-label>
-      <input matInput
-             formControlName="desiredSalary">
-    </mat-form-field>
-
-    <!--TEMPORARY-->
-    <br>
-
-    <mat-radio-group color="primary">
+    <mat-radio-group color="accent">
       <mat-radio-button value="0" checked>
         <mat-form-field>
           <mat-label>Phone number</mat-label>
@@ -153,6 +147,8 @@
         </mat-form-field>
       </mat-radio-button>
 
+      <br>
+
       <mat-radio-button value=3>
         <mat-form-field>
           <mat-label>LinkedIn</mat-label>
@@ -160,9 +156,6 @@
                  formControlName="linkedIn">
         </mat-form-field>
       </mat-radio-button>
-
-      <!--TEMPORARY-->
-      <br>
 
       <mat-radio-button value="4">
         <mat-form-field>
@@ -187,7 +180,6 @@
              formControlName="homePage">
     </mat-form-field>
 
-    <!--TEMPORARY-->
     <br>
 
     <mat-form-field>
@@ -210,17 +202,14 @@
       </mat-select>
     </mat-form-field>
 
-    <!--TEMPORARY-->
     <br>
 
     <app-custom-chip-list
       [autocompleteValues]="candidateSkills"
+      placeholder="Skills"
       (onNewChipSelect)="skillSelected($event)"
       formControlName="skills">
     </app-custom-chip-list>
-
-    <!--TEMPORARY-->
-    <br>
 
     <mat-form-field>
       <mat-label>Description</mat-label>
@@ -228,10 +217,11 @@
                 formControlName="description">
       </textarea>
     </mat-form-field>
+
+    <mat-dialog-actions>
+      <button mat-button type="submit" (click)="createCandidate()">Add candidate</button>
+      <button mat-button mat-dialog-close [mat-dialog-close]="false">Cancel</button>
+    </mat-dialog-actions>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close [mat-dialog-close]="false">Close</button>
-  <button mat-button [mat-dialog-close]="true">Create</button>
-</mat-dialog-actions>
 

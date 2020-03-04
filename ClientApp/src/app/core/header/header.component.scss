@@ -16,53 +16,55 @@
   z-index: 100;
 
   .header {
-    height: 65px;
+    height: 75px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: $blue-color;
+    background-image: url("./../../../assets/images/Header-background.jpg");
     color: $white-color;
     font-size: $font-size-h5;
 
     .logo {
-      .link {
-        display: flex;
-        align-items: center;
-        width: 115px;
-        margin-right: 10px;
-        font-size: $font-size-h4;
+      height: 60px;
+      width: 140px;
+      margin-right: 20px;
 
-        .icon {
-          font-size: $font-size-h1;
-          margin-right: 10px;
-        }
+      background-image: url("./../../../assets/icons/LogoFull.svg");
+      background-repeat: no-repeat;
+      background-size: cover;
 
-        &:hover {
-          color: $light-blue-color;
-        }
-      }
-    }
-
-    .search {
       &:hover {
-        color: $light-blue-color;
+        background-image: url("./../../../assets/icons/LogoFullBlue.svg");
+      }
+
+      &:focus {
+        outline: none;
       }
     }
 
     .pages-wrap {
+      display: flex;
+      align-items: center;
+      height: 100%;
+
       .pages-list {
-        transition: linear 300ms;
         list-style: none;
         display: flex;
         flex-direction: row;
+        align-items: center;
         padding: 0;
         margin: 0 80px;
+        height: 100%;
 
         .pages-list-item {
-          font-weight: 600;
+          display: flex;
+          align-items: center;
           padding: 10px;
           margin: 0 10px;
+          height: 100%;
+          box-sizing: border-box;
+          opacity: 1;
 
           .link {
             display: flex;
@@ -74,21 +76,23 @@
           }
 
           &.link-active {
-            border-radius: 10px;
-            color: $light-blue-color;
-            background-color: $white-color;
+            background-color: rgba(255, 255, 255, 0.3);
+
+            &:hover {
+              color: white;
+            }
           }
 
           &:hover {
-            color: $light-blue-color;
+            color: $grey-color;
           }
-
         }
       }
     }
 
     .side-buttons {
       display: flex;
+      align-items: center;
       flex-direction: row;
 
       .icon {
@@ -99,7 +103,7 @@
         }
 
         &:hover {
-          color: $light-blue-color;
+          color: $grey-color;
         }
       }
     }

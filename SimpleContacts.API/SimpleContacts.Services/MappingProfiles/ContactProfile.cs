@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using SimpleContacts.Entities.Entities;
+using SimpleContacts.Services.MappingProfiles.CustomConverters;
 using SimpleContacts.ViewModels;
+using System;
 
 namespace SimpleContacts.Services.MappingProfiles
 {
@@ -13,6 +15,10 @@ namespace SimpleContacts.Services.MappingProfiles
                             viewModel => viewModel.FullName,
                             opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}")
                 );
+
+            CreateMap<InsertContactViewModel, Contact>().ConvertUsing<InsertContactConverter>();
+
+
 
             //CreateMap<ContactViewModel, Contact>()
             //    .ForMember(

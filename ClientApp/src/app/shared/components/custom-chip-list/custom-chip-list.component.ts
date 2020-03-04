@@ -24,10 +24,14 @@ export class CustomChipListComponent implements ControlValueAccessor {
   chips: string[] = [];
 
   @Input() autocompleteValues: string[];
+  @Input() placeholder: string;
   @Output() onNewChipSelect = new EventEmitter<string | string[]>();
 
   @ViewChild('chipInput', { static: false }) chipInput: ElementRef<HTMLInputElement>;
   @ViewChild('chipAutocomplete', { static: false }) matAutocomplete: MatAutocomplete;
+
+  onChange: any = () => { };
+  onTouch: any = () => { };
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.filteredAutocomplete = this.chipCtrl.valueChanges.pipe(
@@ -36,42 +40,29 @@ export class CustomChipListComponent implements ControlValueAccessor {
     );
   }
 
-  val = ''; // this is the updated value that the class accesses
-
-  onChange: any = () => { };
-  onTouch: any = () => { };
-
-  set value(val) {  // this value is updated by programmatic changes
-    if (val !== undefined && this.val !== val) {
-      this.val = val;
-      this.onChange(val);
-      this.onTouch(val);
+  writeValue(value: any) {
+    if (value !== '') {
+      this.chips.push(value);
     }
   }
 
-// this method sets the value programmatically
-  writeValue(value: any) {
-    this.value = value;
-  }
-
-// upon UI element value changes, this method gets triggered
   registerOnChange(fn: any) {
     this.onChange = fn;
   }
 
-// upon touching the element, this method gets triggered
   registerOnTouched(fn: any) {
     this.onTouch = fn;
   }
-
 
   addChip(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
     if (value.trim() && this.chips.indexOf(value.trim()) === -1) {
-      this.chips.push(value.trim());
-      this.onNewChipSelect.emit(this.chips);
+      this.writeValue(value.trim());
+      this.onChange(this.chips);
+      this.onTouch(this.chips);
+      this.onNewChipSelect.emit(this.chips.toString());
     }
 
     if (input) {
@@ -86,14 +77,18 @@ export class CustomChipListComponent implements ControlValueAccessor {
 
     if (index >= 0) {
       this.chips.splice(index, 1);
-      this.onNewChipSelect.emit(this.chips);
+      this.onChange(this.chips);
+      this.onTouch(this.chips);
+      this.onNewChipSelect.emit(this.chips.toString());
     }
   }
 
   chipSelected(event: MatAutocompleteSelectedEvent): void {
     if (this.chips.indexOf(event.option.viewValue) === -1) {
       this.chips.push(event.option.viewValue);
-      this.onNewChipSelect.emit(this.chips);
+      this.onChange(this.chips);
+      this.onTouch(this.chips);
+      this.onNewChipSelect.emit(this.chips.toString());
     }
 
     this.chipInput.nativeElement.value = '';

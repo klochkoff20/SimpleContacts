@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleContacts.DAL;
 
 namespace SimpleContacts.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200304155308_ContactFieldsInCandidate")]
+    partial class ContactFieldsInCandidate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,8 +167,7 @@ namespace SimpleContacts.DAL.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("EmploymentType")
                         .HasColumnType("tinyint");
@@ -175,13 +176,10 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Facebook")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(64)")
-                        .HasMaxLength(64);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Gender")
                         .HasColumnType("tinyint");
@@ -198,21 +196,17 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(64)")
-                        .HasMaxLength(64);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LinkedIn")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PreferableMethod")
                         .HasColumnType("int");
@@ -228,15 +222,13 @@ namespace SimpleContacts.DAL.Migrations
                         .HasMaxLength(1024);
 
                     b.Property<string>("Skype")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Telegram")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

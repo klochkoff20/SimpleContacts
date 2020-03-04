@@ -12,6 +12,8 @@ namespace SimpleContacts.Services.MappingProfiles
             CreateMap<Candidate, CandidateViewModel>().ReverseMap();
 
             CreateMap<Candidate, CandidateGeneralInfoViewModel>().ConvertUsing<CandidateGeneralInfoConverter>();
+
+            CreateMap<CandidateInsertViewModel, Candidate>().ConvertUsing<InsertCandidateConverter>();
             
         }
     }

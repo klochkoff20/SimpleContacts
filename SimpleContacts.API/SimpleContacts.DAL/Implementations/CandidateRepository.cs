@@ -19,7 +19,6 @@ namespace SimpleContacts.DAL.Implementations
         public async Task<IEnumerable<Candidate>> GetAllCandidatesAsync()
         {
             var query = Entities
-                    .IncludeOptimized(e => e.Contact)
                     .IncludeOptimized(e => e.ResponsibleUser);
 
             var candidates = await Task.Run(() => query.ToList());
@@ -29,15 +28,14 @@ namespace SimpleContacts.DAL.Implementations
         public async Task<IEnumerable<Candidate>> GetAllCandidatesSortedAsync(string order, CandidateSortField field, string filter)
         {
             var query = Entities
-                    .IncludeOptimized(e => e.Contact)
                     .IncludeOptimized(e => e.ResponsibleUser);
 
             var candidates = new List<Candidate>();
 
             if(!string.IsNullOrEmpty(filter))
             {
-                query = query.Where(e => e.Contact.FirstName.Contains(filter)
-                                      || e.Contact.LastName.Contains(filter)
+                query = query.Where(e => e.FirstName.Contains(filter)
+                                      || e.LastName.Contains(filter)
                                       || e.DesiredPosition.Contains(filter)
                                       || e.ResponsibleUser.LastName.Contains(filter)
                                       || e.Skills.Contains(filter));

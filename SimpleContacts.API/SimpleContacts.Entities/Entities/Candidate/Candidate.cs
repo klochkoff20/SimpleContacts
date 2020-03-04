@@ -15,11 +15,12 @@ namespace SimpleContacts.Entities.Entities
         }
 
         public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public DateTime? BirthDate { get; set; }
         public Gender Gender { get; set; }
         public string Location { get; set; }
         public string Languages { get; set; }
-        public Guid ContactId { get; set; }
         public bool ReadyToRelocate { get; set; }
         public string ResponsibleBy { get; set; }
         public string Industry { get; set; }
@@ -30,16 +31,21 @@ namespace SimpleContacts.Entities.Entities
         public string Education { get; set; }
         public string DesiredPosition { get; set; }
         public int DesiredSalary { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        public string Skype { get; set; }
+        public string LinkedIn { get; set; }
+        public string Telegram { get; set; }
+        public string Facebook { get; set; }
+        public int? PreferableMethod { get; set; }
         public string HomePage { get; set; }
         public DateTime? AddingDate { get; set; } 
         public CandidateStatus Status { get; set; }
         public CandidateSource AddingSource { get; set; }
         public string Skills { get; set; }
         public string Description { get; set; }
-        public DateTime? ReminderDate { get; set; }
 
         public virtual User ResponsibleUser { get; set; }
-        public virtual Contact Contact { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<CandidatesVacancies> CandidatesVacancies { get; set; }
         public virtual ICollection<CandidatesAttachments> CandidatesAttachments { get; set; }

@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace SimpleContacts.Entities.Entities
+namespace SimpleContacts.ViewModels
 {
-    public class Contact
+    public class InsertContactViewModel
     {
-        public Contact()
-        {
-            Candidates = new HashSet<Candidate>();
-            ContactsDepartments = new HashSet<DepartmentsContacts>();
-        }
-
-        public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string FullName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Skype { get; set; }
@@ -21,8 +16,5 @@ namespace SimpleContacts.Entities.Entities
         public string Telegram { get; set; }
         public string Facebook { get; set; }
         public int? PreferableMethod { get; set; }
-        
-        public virtual ICollection<Candidate> Candidates { get; set; }
-        public virtual ICollection<DepartmentsContacts> ContactsDepartments { get; set; }
     }
 }

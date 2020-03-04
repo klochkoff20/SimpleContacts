@@ -1,4 +1,4 @@
-<mat-form-field>
+<mat-form-field class="container">
   <mat-chip-list #chipList aria-label="Skills selection">
     <mat-chip
       *ngFor="let chip of chips"
@@ -8,8 +8,9 @@
       {{ chip }}
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
+
     <input
-      placeholder="Skills..."
+      [placeholder]="placeholder"
       #chipInput
       [formControl]="chipCtrl"
       [matAutocomplete]="chipAutocomplete"
