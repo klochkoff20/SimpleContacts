@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SimpleContacts.Common.Enums;
@@ -20,11 +21,10 @@ namespace SimpleContacts.Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<VacancyGeneralInfoViewModel>>))]
-        public async Task<ActionResult<ResponseMessageResult<PagedList<VacancyGeneralInfoViewModel>>>> GetAll
-            (int pageIndex = -1, int pageSize = 15)
+        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<List<VacancyGeneralInfoViewModel>>))]
+        public async Task<ActionResult<ResponseMessageResult<List<VacancyGeneralInfoViewModel>>>> GetAll()
         {
-            return await _vancancyService.GetAllVacanciesAsync(pageIndex, pageSize);
+            return await _vancancyService.GetAllVacanciesAsync();
         }
 
         [HttpGet("{pageIndex:int}/{pageSize:int}/{order}/{field:int}/{filter}")]
@@ -47,7 +47,7 @@ namespace SimpleContacts.Web.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<BaseResponseMessageResult>> Create(VacancyViewModel vacancy)
+        public async Task<ActionResult<BaseResponseMessageResult>> Create(VacancyInsertViewModel vacancy)
         {
             return await _vancancyService.CreateVacancyAsync(vacancy);
         }

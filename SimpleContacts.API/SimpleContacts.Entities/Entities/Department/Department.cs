@@ -6,7 +6,7 @@ namespace SimpleContacts.Entities.Entities
 {
     public class Department
     {
-        Department()
+        public Department()
         {
             Projects = new HashSet<Project>();
             Vacancies = new HashSet<Vacancy>();
@@ -23,6 +23,7 @@ namespace SimpleContacts.Entities.Entities
         public DepartmentStatus Status { get; set; }
         public string Description { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime CreatedAt { get; set; }
         public string ResponsibleBy { get; set; }
 
         public virtual User CreatedUser { get; set; }

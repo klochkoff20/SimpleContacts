@@ -19,7 +19,7 @@ namespace SimpleContacts.DAL.Mapping
 
             builder.Entity<Department>().Property(e => e.Id).IsRequired();
             builder.Entity<Department>().Property(e => e.Name).IsRequired().HasMaxLength(128);
-            builder.Entity<Department>().Property(e => e.Location).HasMaxLength(256);
+            builder.Entity<Department>().Property(e => e.Location).HasMaxLength(128);
             builder.Entity<Department>().Property(e => e.Email).HasMaxLength(128);
             builder.Entity<Department>().Property(e => e.Phone).HasMaxLength(64);
             builder.Entity<Department>().Property(e => e.Description).HasMaxLength(1024);

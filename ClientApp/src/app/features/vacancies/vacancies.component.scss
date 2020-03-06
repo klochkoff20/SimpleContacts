@@ -17,13 +17,14 @@
     }
 
     .add-vacancy {
-      margin-left: 10px;
-      color: $light-blue-color;
-      font-size: $font-size-h1;
-      font-weight: 600;
+      .icon {
+        color: $light-blue-color;
+      }
 
       &:hover {
-        color: $blue-color;
+        .icon {
+          color: $blue-color;
+        }
       }
     }
   }
@@ -73,6 +74,12 @@
 
     .table {
       width: 100%;
+
+      .mat-cell {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px 15px 10px 0;
+      }
 
       .mat-column-id {
         padding-left: 20px;

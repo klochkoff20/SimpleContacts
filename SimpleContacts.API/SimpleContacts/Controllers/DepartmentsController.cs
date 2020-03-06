@@ -23,10 +23,10 @@ namespace SimpleContacts.Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>))]
-        public async Task<ActionResult<ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>>> GetAll(int page = -1, int pageSize = 15)
+        [ProducesResponseType(200, Type = typeof(ResponseMessageResult<List<DepartmentGeneralInfoViewModel>>))]
+        public async Task<ActionResult<ResponseMessageResult<List<DepartmentGeneralInfoViewModel>>>> GetAll()
         {
-            return await _departmentService.GetAllDepartmentsAsync(page, pageSize);
+            return await _departmentService.GetAllDepartmentsAsync();
         }
 
         [HttpGet("{pageIndex:int}/{pageSize:int}/{order}/{field:int}/{filter}")]
@@ -49,7 +49,7 @@ namespace SimpleContacts.Web.Controllers
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<BaseResponseMessageResult>> Create(DepartmentViewModel department)
+        public async Task<ActionResult<BaseResponseMessageResult>> Create(DepartmentInsertViewModel department)
         {
             return await _departmentService.CreateDepartmentAsync(department);
         }

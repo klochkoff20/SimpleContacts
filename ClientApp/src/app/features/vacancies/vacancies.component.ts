@@ -38,6 +38,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
+  vacancyAdded: EventEmitter<any> = new EventEmitter();
 
   constructor(private vacanciesService: VacanciesService, private dialog: MatDialog) {
   }
@@ -50,7 +51,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex = 0;
     });
 
-    merge(this.sort.sortChange, this.paginator.page, this.filterChange)
+    merge(this.sort.sortChange, this.paginator.page, this.filterChange, this.vacancyAdded)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -74,6 +75,17 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
       ).subscribe(data => this.data = data);
   }
 
+  createVacancy() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(CreateVacancyComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.vacancyAdded.emit();
+    });
+  }
+
   applyFilter(event: Event) {
     if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
@@ -86,16 +98,5 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
 
   formatDate(date) {
     return moment(date).format('DD/MM/YYYY');
-  }
-
-  createVacancy() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-
-    const dialogRef = this.dialog.open(CreateVacancyComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
   }
 }

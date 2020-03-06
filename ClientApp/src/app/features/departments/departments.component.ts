@@ -1,19 +1,20 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator, MatSort } from '@angular/material';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
-import * as moment from 'moment';
 
 import { DepartmentsService } from '../../services/departments.service';
 import { BasicInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
 import { DEPARTMENT_STATUSES } from '../../shared/constants';
 import { departmentsColumn } from '../../shared/enums';
+import { CreateCandidateComponent } from '../candidates/create-candidate/create-candidate.component';
+import { CreateDepartmentComponent } from './create-department/create-department.component';
 
 
 @Component({
   selector: 'app-departments',
   templateUrl: './departments.component.html',
-  styleUrls: ['./departments.component.scss']
+  styleUrls: [ './departments.component.scss' ]
 })
 export class DepartmentsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
@@ -37,8 +38,12 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
+  departmentAdded: EventEmitter<any> = new EventEmitter();
 
-  constructor(private departmentsService: DepartmentsService) {
+  constructor(
+    private departmentsService: DepartmentsService,
+    private dialog: MatDialog
+  ) {
   }
 
   ngOnInit() {
@@ -73,6 +78,17 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
       ).subscribe(data => this.data = data);
   }
 
+  createDepartment() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(CreateDepartmentComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.departmentAdded.emit();
+    });
+  }
+
   applyFilter(event: Event) {
     if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
@@ -83,7 +99,8 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
     this.filterChange.emit(event);
   }
 
-  formatDate(date) {
-    return moment(date).format('DD/MM/YYYY');
+  formatStringToMultiLine(str: BasicInfo<string>[]): string {
+    return str.map(s => s.name).join(',\n');
   }
+
 }

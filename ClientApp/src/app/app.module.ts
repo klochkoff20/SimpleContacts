@@ -31,6 +31,8 @@ import { CreateVacancyComponent } from './features/vacancies/create-vacancy/crea
 import { CreateCandidateComponent } from './features/candidates/create-candidate/create-candidate.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomChipListComponent } from './shared/components/custom-chip-list/custom-chip-list.component';
+import { CustomAutocompleteComponent } from './shared/components/custom-autocomplete/custom-autocomplete.component';
+import { CreateDepartmentComponent } from './features/departments/create-department/create-department.component';
 
 
 
@@ -57,7 +59,9 @@ const appRoutes: Routes = [
     OrganizerComponent,
     CreateVacancyComponent,
     CreateCandidateComponent,
-    CustomChipListComponent
+    CustomChipListComponent,
+    CustomAutocompleteComponent,
+    CreateDepartmentComponent
   ],
   imports: [
     HttpClientModule,
@@ -85,7 +89,8 @@ const appRoutes: Routes = [
   ],
   entryComponents: [
     CreateVacancyComponent,
-    CreateCandidateComponent
+    CreateCandidateComponent,
+    CreateDepartmentComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

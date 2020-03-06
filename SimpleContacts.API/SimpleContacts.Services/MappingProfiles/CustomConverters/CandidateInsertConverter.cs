@@ -5,7 +5,7 @@ using SimpleContacts.ViewModels;
 
 namespace SimpleContacts.Services.MappingProfiles.CustomConverters
 {
-    public class InsertCandidateConverter : ITypeConverter<CandidateInsertViewModel, Candidate>
+    public class CandidateInsertConverter : ITypeConverter<CandidateInsertViewModel, Candidate>
     {
         public Candidate Convert(CandidateInsertViewModel source, Candidate destination, ResolutionContext context)
         {

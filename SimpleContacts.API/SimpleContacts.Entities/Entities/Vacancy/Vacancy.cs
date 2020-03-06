@@ -6,7 +6,7 @@ namespace SimpleContacts.Entities.Entities
 {
     public class Vacancy
     {
-        Vacancy()
+        public Vacancy()
         {
             Comments = new HashSet<Comment>();
             VacanciesAttachments = new HashSet<VacanciesAttachments>();
@@ -16,9 +16,9 @@ namespace SimpleContacts.Entities.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public Guid DepartmentId { get; set; }
-        public Guid ProjectId { get; set; }
+        public string Project { get; set; }
         public VacancyPriority Priority { get; set; }
-        public DateTime TargetDate { get; set; }
+        public DateTime? TargetDate { get; set; }
         public EmploymentType EmploymentType { get; set; }
         public string Location { get; set; }
         public string Languages { get; set; }
@@ -30,16 +30,12 @@ namespace SimpleContacts.Entities.Entities
         public DateTime CreatedAt { get; set; }
         public string ResponsibleBy { get; set; }
         public string UpdatedBy { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public string Requirements { get; set; }
         public string Description { get; set; }
-        public string Responsibilities { get; set; }
-        public string HardSkills { get; set; }
-        public string OptionalHardSkills { get; set; }
-        public string SoftSkills { get; set; }
         public VacancyStatus Status { get; set; }
 
         public virtual Department Department { get; set; }
-        public virtual Project Project { get; set; }
         public virtual User CreatedUser { get; set; }
         public virtual User ResponsibleUser { get; set; }
         public virtual User UpdatedUser { get; set; }

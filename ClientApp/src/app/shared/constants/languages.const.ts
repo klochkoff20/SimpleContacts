@@ -3,5 +3,7 @@ export const LANGUAGES: string[] = [
     'English',
     'Russian',
     'Polish',
-    'German'
+    'German',
+    'Spanish',
+    'Other'
 ];

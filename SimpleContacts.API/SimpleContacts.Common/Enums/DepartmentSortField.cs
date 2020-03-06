@@ -5,7 +5,10 @@ namespace SimpleContacts.Common.Enums
     public enum DepartmentSortField
     {
         [Description("NoSort")]
-        NoSort = 0,
+        NoSort = -1,
+
+        [Description("CreatedAt")]
+        CreatedAt,
 
         [Description("Name")]
         Name,

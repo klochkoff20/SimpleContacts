@@ -17,15 +17,12 @@ namespace SimpleContacts.ViewModels
         public int? RequiredExperience { get; set; }
         public int? NumberOfPositions { get; set; }
         public UserViewModel CreatedUser { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         public UserViewModel ResponsibleUser { get; set; }
         public UserViewModel UpdatedUser { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
+        public string Requirements { get; set; }
         public string Description { get; set; }
-        public string Responsibilities { get; set; }
-        public string HardSkills { get; set; }
-        public string OptionalHardSkills { get; set; }
-        public string SoftSkills { get; set; }
         public VacancyStatus Status { get; set; }
 
         //public IList<Comment> Comments { get; set; }

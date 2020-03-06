@@ -15,7 +15,7 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
                 Id = source.Id,
                 Name = source.Name,
                 Department = context.Mapper.Map<BasicInfo<Guid>>(source.Department),
-                Project = context.Mapper.Map<BasicInfo<Guid>>(source.Project),
+                Project = source.Project,
                 Priority = Enum.GetName(typeof(VacancyPriority), source.Priority),
                 TargetDate = source.TargetDate,
                 ResponsibleUser = context.Mapper.Map<BasicInfo<string>>(source.ResponsibleUser),

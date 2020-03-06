@@ -8,10 +8,13 @@ namespace SimpleContacts.Common.Enums
         NoSort = 0,
 
         [Description("Contact")]
-        Contact,
+        LastName,
 
         [Description("DesiredPosition")]
         DesiredPosition,
+
+        [Description("Skills")]
+        Skills,
 
         [Description("ResponsibleUser")]
         ResponsibleUser,

@@ -10,6 +10,7 @@ using SimpleContacts.Services.Abstractions;
 using SimpleContacts.Infrastructure.Helpers;
 using SimpleContacts.Infrastructure.APIResponce;
 using SimpleContacts.Common.Enums;
+using System.Linq;
 
 namespace SimpleContacts.Services.Implementations
 {
@@ -29,7 +30,7 @@ namespace SimpleContacts.Services.Implementations
             _departmentRepository = departmentRepository;
         }
         
-        public async Task<ResponseMessageResult<string>> CreateDepartmentAsync(DepartmentViewModel department)
+        public async Task<ResponseMessageResult<string>> CreateDepartmentAsync(DepartmentInsertViewModel department)
         {
             var response = new ResponseMessageResult<string>();
 
@@ -38,18 +39,18 @@ namespace SimpleContacts.Services.Implementations
             await _departmentRepository.AddAsync(newDepartment);
             await _unitOfWork.SaveChangesAsync();
 
-            response.Content = department.Id.ToString();
-            response.Message = $"Department [{department.Name}] Id: [{department.Id}] was successfully added!";
+            response.Content = newDepartment.Id.ToString();
+            response.Message = $"Department [{newDepartment.Name}] Id: [{newDepartment.Id}] was successfully added!";
 
             return response;
         }
 
-        public async Task<ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>> GetAllDepartmentsAsync(int pageIndex, int pageSize)
+        public async Task<ResponseMessageResult<List<DepartmentGeneralInfoViewModel>>> GetAllDepartmentsAsync()
         {
-            var response = new ResponseMessageResult<PagedList<DepartmentGeneralInfoViewModel>>();
-            var departments = await _departmentRepository.GetAllAsync();
+            var response = new ResponseMessageResult<List<DepartmentGeneralInfoViewModel>>();
+            var departments = await _departmentRepository.GetAllDepartmentsAsync();
 
-            response.Content = _mapper.Map<List<DepartmentGeneralInfoViewModel>>(departments).ToPagedList(pageIndex, pageSize);
+            response.Content = _mapper.Map<List<DepartmentGeneralInfoViewModel>>(departments).ToList();
             return response;
         }
 

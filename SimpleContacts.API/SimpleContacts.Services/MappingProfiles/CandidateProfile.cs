@@ -13,7 +13,7 @@ namespace SimpleContacts.Services.MappingProfiles
 
             CreateMap<Candidate, CandidateGeneralInfoViewModel>().ConvertUsing<CandidateGeneralInfoConverter>();
 
-            CreateMap<CandidateInsertViewModel, Candidate>().ConvertUsing<InsertCandidateConverter>();
+            CreateMap<CandidateInsertViewModel, Candidate>().ConvertUsing<CandidateInsertConverter>();
             
         }
     }

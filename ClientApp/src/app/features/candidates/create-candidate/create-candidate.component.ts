@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 
 import { BasicInfo } from '../../../shared/interfaces';
 import {
@@ -17,7 +18,7 @@ import { CandidatesService } from '../../../services/candidates.service';
 @Component({
   selector: 'app-create-candidate',
   templateUrl: './create-candidate.component.html',
-  styleUrls: [ './create-candidate.component.scss' ],
+  styleUrls: [ './create-candidate.component.scss' ]
 })
 export class CreateCandidateComponent implements OnInit {
   candidateExperience: BasicInfo<number>[] = CANDIDATE_EXPERIENCES;
@@ -34,10 +35,14 @@ export class CreateCandidateComponent implements OnInit {
     'Vue developer'
   ];
   createCandidateForm: FormGroup;
-  skills: string | string[] = [];
   newCandidate: CandidateInsert;
+  errorMessage = '';
 
-  constructor(private formBuilder: FormBuilder, private candidatesService: CandidatesService) {
+  constructor(
+    private matDialogRef: MatDialogRef<CreateCandidateComponent>,
+    private formBuilder: FormBuilder,
+    private candidatesService: CandidatesService
+  ) {
   }
 
   ngOnInit() {
@@ -46,12 +51,12 @@ export class CreateCandidateComponent implements OnInit {
 
   initCreateCandidateForm(): FormGroup {
     return this.formBuilder.group({
-      firstName: [ '', [ Validators.required, Validators.maxLength(64) ] ],
-      lastName: [ '', [ Validators.required, Validators.maxLength(64) ] ],
-      dateOfBirth: [ '', [ Validators.required ] ],
+      firstName: [ '', [ Validators.required, Validators.pattern('^(?!\\s*$).+'), Validators.maxLength(64) ] ],
+      lastName: [ '', [ Validators.required, Validators.pattern('^(?!\\s*$).+'), Validators.maxLength(64) ] ],
+      dateOfBirth: [ null, [  ] ],
       gender: [ '', [] ],
       location: [ 'Lviv', [ Validators.maxLength(128) ] ],
-      readyToRelocate: [ '', [] ],
+      readyToRelocate: [ false, [] ],
       desiredPosition: [ '', [ Validators.maxLength(128) ] ],
       industry: [ '', [ Validators.maxLength(128) ] ],
       experience: [ '', [] ],
@@ -60,24 +65,20 @@ export class CreateCandidateComponent implements OnInit {
       employmentType: [ '', [] ],
       education: [ '', [ Validators.maxLength(256) ] ],
       languages: [ '', [] ],
-      desiredSalary: [ '', [] ],
+      desiredSalary: [ '', [ Validators.min(0) ] ],
       phoneNumber: [ '', [ Validators.maxLength(32) ] ],
       email: [ '', [ Validators.email, Validators.maxLength(128) ] ],
       skype: [ '', [ Validators.maxLength(128) ] ],
       linkedIn: [ '', [ Validators.maxLength(128) ] ],
       telegram: [ '', [ Validators.maxLength(128) ] ],
       facebook: [ '', [ Validators.maxLength(128) ] ],
+      preferableMethod: [ '', [ ] ],
       homePage: [ '', [ Validators.maxLength(256) ] ],
       status: [ '', [] ],
       source: [ '', [] ],
       skills: [ '', [ Validators.maxLength(1024) ] ],
       description: [ '', [ Validators.maxLength(2048) ] ]
     });
-  }
-
-  skillSelected(event) {
-    console.log(event);
-    this.skills = event;
   }
 
   createCandidate() {
@@ -108,13 +109,26 @@ export class CreateCandidateComponent implements OnInit {
       source: +this.createCandidateForm.get('source').value,
       skills: this.createCandidateForm.get('skills').value.toString(),
       description: this.createCandidateForm.get('description').value,
-      preferableMethod: 0,
+      preferableMethod: +this.createCandidateForm.get('preferableMethod').value,
+      // TODO after login
       responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69'
     };
 
-    this.candidatesService.createCandidate(this.newCandidate).subscribe(response => {
-      console.log(this.newCandidate);
-      console.log(response);
-    });
+    if (this.createCandidateForm.valid) {
+      this.candidatesService.createCandidate(this.newCandidate).subscribe(response => {
+        this.matDialogRef.close();
+      }, error => {
+        this.errorMessage = error.message;
+        this.scrollToError();
+      });
+    } else {
+      this.errorMessage = 'Fill all the required fields!';
+      this.scrollToError();
+    }
+  }
+
+  scrollToError() {
+    const errorField = document.querySelector('.mat-error');
+    errorField.scrollIntoView({ behavior: 'smooth' });
   }
 }

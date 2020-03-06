@@ -1,0 +1,16 @@
+<mat-form-field class="container">
+    <input
+      matInput
+      [placeholder]="placeholder"
+      [formControl]="myControl"
+      [matAutocomplete]="chipAutocomplete"
+      (keyup)="onValueChanged($event)">
+
+  <mat-autocomplete #chipAutocomplete="matAutocomplete"
+                    (optionSelected)=onValueSelected($event)>
+    <mat-option *ngFor="let option of filteredAutocomplete | async"
+                [value]="option">
+      {{ option }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

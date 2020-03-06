@@ -10,8 +10,8 @@ namespace SimpleContacts.Services.MappingProfiles
         public DepartmentProfile()
         {
             CreateMap<Department, DepartmentViewModel>().ReverseMap();
-
             CreateMap<Department, DepartmentGeneralInfoViewModel>().ConvertUsing<DepartmentGeneralInfoConverter>();
+            CreateMap<DepartmentInsertViewModel, Department>().ConvertUsing<DepartmentInsertConverter>();
 
             CreateMap<DepartmentsContacts, DepartmentContactsViewModel>().ReverseMap();
 

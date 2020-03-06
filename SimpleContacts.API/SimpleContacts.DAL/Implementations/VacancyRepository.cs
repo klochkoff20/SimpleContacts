@@ -42,7 +42,7 @@ namespace SimpleContacts.DAL.Implementations
             {
                 query = query.Where(e => e.Name.Contains(filter)
                                       || e.Department.Name.StartsWith(filter)
-                                      || e.Project.Name.StartsWith(filter)
+                                      || e.Project.StartsWith(filter)
                                       || e.ResponsibleUser.LastName.StartsWith(filter));
             }
 

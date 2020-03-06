@@ -5,4 +5,5 @@ export { DEPARTMENT_STATUSES } from './department-statuses.const';
 export { EMPLOYMENT_TYPES } from './employment-types.const';
 export { GENDERS } from './genders.const';
 export { LANGUAGES } from './languages.const';
+export { VACANCY_PRIORITIES } from './vacancy-priorities.const';
 export { VACANCY_STATUSES } from './vacancy-statuses.const';

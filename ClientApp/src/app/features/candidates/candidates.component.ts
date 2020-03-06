@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort } from '@angular/material';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
@@ -8,7 +9,6 @@ import { candidatesColumn } from '../../shared/enums';
 import { CandidatesService } from '../../services/candidates.service';
 import { CreateCandidateComponent } from './create-candidate/create-candidate.component';
 import { CandidateGeneralInfo } from '../../shared/interfaces';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-candidates',
@@ -35,21 +35,18 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
   errorMessage = '';
   filter = '%20';
 
-  createCandidateForm: FormGroup;
-
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
+  candidateAdded: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private candidatesService: CandidatesService,
-    private dialog: MatDialog,
-    private formBuilder: FormBuilder
+    private dialog: MatDialog
   ) {
   }
 
   ngOnInit() {
-    this.createCandidateForm = this.initCreateCandidateForm();
   }
 
   ngAfterViewInit() {
@@ -57,7 +54,7 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex = 0;
     });
 
-    merge(this.sort.sortChange, this.paginator.page, this.filterChange)
+    merge(this.sort.sortChange, this.paginator.page, this.filterChange, this.candidateAdded)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -81,8 +78,15 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
       ).subscribe(data => this.data = data);
   }
 
-  initCreateCandidateForm(): FormGroup {
-    return this.formBuilder.group({});
+  createCandidate() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(CreateCandidateComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.candidateAdded.emit();
+    });
   }
 
   applyFilter(event: Event) {
@@ -97,16 +101,5 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
 
   formatDate(date) {
     return moment(date).format('DD/MM/YYYY');
-  }
-
-  createCandidate() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-
-    const dialogRef = this.dialog.open(CreateCandidateComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-    });
   }
 }

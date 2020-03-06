@@ -30,7 +30,7 @@ namespace SimpleContacts.Services.Implementations
             _vacancyRepository = vacancyRepository;
         }
 
-        public async Task<ResponseMessageResult<string>> CreateVacancyAsync(VacancyViewModel vacancy)
+        public async Task<ResponseMessageResult<string>> CreateVacancyAsync(VacancyInsertViewModel vacancy)
         {
             var response = new ResponseMessageResult<string>();
 
@@ -39,18 +39,18 @@ namespace SimpleContacts.Services.Implementations
             await _vacancyRepository.AddAsync(newVacancy);
             await _unitOfWork.SaveChangesAsync();
 
-            response.Content = vacancy.Id.ToString();
-            response.Message = $"Vacancy [{vacancy.Name}] Id: [{vacancy.Id}] was successfully added";
+            response.Content = newVacancy.Id.ToString();
+            response.Message = $"Vacancy [{newVacancy.Name}] Id: [{newVacancy.Id}] was successfully added";
 
             return response;
         }
 
-        public async Task<ResponseMessageResult<PagedList<VacancyGeneralInfoViewModel>>> GetAllVacanciesAsync(int page, int pageSize)
+        public async Task<ResponseMessageResult<List<VacancyGeneralInfoViewModel>>> GetAllVacanciesAsync()
         {
-            var response = new ResponseMessageResult<PagedList<VacancyGeneralInfoViewModel>>();
+            var response = new ResponseMessageResult<List<VacancyGeneralInfoViewModel>>();
             var vacancies = await _vacancyRepository.GetAllVacanciesAsync();
 
-            response.Content = _mapper.Map<List<VacancyGeneralInfoViewModel>>(vacancies).ToPagedList(page, pageSize);
+            response.Content = _mapper.Map<List<VacancyGeneralInfoViewModel>>(vacancies).ToList();
 
             return response;
         }

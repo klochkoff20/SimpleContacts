@@ -1,7 +1,7 @@
 export interface CandidateInsert {
   firstName: string;
   lastName: string;
-  dateOfBirth: Date;
+  dateOfBirth?: Date;
   gender: number;
   location: string;
   readyToRelocate: boolean;

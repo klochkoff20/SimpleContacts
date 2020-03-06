@@ -391,6 +391,9 @@ namespace SimpleContacts.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(450)");
 
@@ -403,8 +406,8 @@ namespace SimpleContacts.DAL.Migrations
                         .HasMaxLength(128);
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -690,23 +693,19 @@ namespace SimpleContacts.DAL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1024)")
-                        .HasMaxLength(1024);
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
 
                     b.Property<byte>("EmploymentType")
                         .HasColumnType("tinyint");
 
-                    b.Property<string>("HardSkills")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1024)")
-                        .HasMaxLength(1024);
-
                     b.Property<string>("Languages")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Location")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -716,23 +715,23 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<int?>("NumberOfPositions")
                         .HasColumnType("int");
 
-                    b.Property<string>("OptionalHardSkills")
-                        .HasColumnType("nvarchar(1024)")
-                        .HasMaxLength(1024);
-
                     b.Property<byte>("Priority")
                         .HasColumnType("tinyint");
 
-                    b.Property<Guid>("ProjectId")
+                    b.Property<string>("Project")
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<Guid?>("ProjectId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("RequiredExperience")
                         .HasColumnType("int");
 
-                    b.Property<string>("Responsibilities")
+                    b.Property<string>("Requirements")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1024)")
-                        .HasMaxLength(1024);
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
 
                     b.Property<string>("ResponsibleBy")
                         .HasColumnType("nvarchar(450)");
@@ -743,17 +742,13 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<int?>("SalaryMin")
                         .HasColumnType("int");
 
-                    b.Property<string>("SoftSkills")
-                        .HasColumnType("nvarchar(1024)")
-                        .HasMaxLength(1024);
-
                     b.Property<byte>("Status")
                         .HasColumnType("tinyint");
 
-                    b.Property<DateTime>("TargetDate")
+                    b.Property<DateTime?>("TargetDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedBy")
@@ -999,11 +994,9 @@ namespace SimpleContacts.DAL.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SimpleContacts.Entities.Entities.Project", "Project")
+                    b.HasOne("SimpleContacts.Entities.Entities.Project", null)
                         .WithMany("Vacancies")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .HasForeignKey("ProjectId");
 
                     b.HasOne("SimpleContacts.Entities.Entities.User", "ResponsibleUser")
                         .WithMany("ResponcibleVacancies")

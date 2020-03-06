@@ -1,0 +1,10 @@
+@import "../../../../styles/mixins";
+
+.container {
+  width: 600px;
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

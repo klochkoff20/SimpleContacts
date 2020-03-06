@@ -13,6 +13,10 @@
 		el.innerHTML = '<span style="font-family: \'font\'">' + entity + '</span>' + html;
 	}
 	var icons = {
+		'icon-pen1': '&#xeaf7;',
+		'icon-bin1': '&#xeafa;',
+		'icon-dialog': '&#xe9e2;',
+		'icon-trash': '&#xeaf9;',
 		'icon-organizer': '&#xe903;',
 		'icon-arrow-up': '&#xe900;',
 		'icon-arrow-left': '&#xe90a;',

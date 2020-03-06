@@ -30,6 +30,8 @@
     <Compile Remove="Migrations\20200225135159_UpdatedNaming.Designer.cs" />
     <Compile Remove="Migrations\20200228090336_DepartmentComment.cs" />
     <Compile Remove="Migrations\20200228090336_DepartmentComment.Designer.cs" />
+    <Compile Remove="Migrations\20200306110416_VacanciesUpd.cs" />
+    <Compile Remove="Migrations\20200306110416_VacanciesUpd.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
