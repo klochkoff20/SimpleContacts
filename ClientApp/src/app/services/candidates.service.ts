@@ -19,4 +19,8 @@ export class CandidatesService {
   public createCandidate(candidate: CandidateInsert) {
     return this.http.post<CandidateInsert>(this.host, candidate);
   }
+
+  public deleteCandidate(id: string) {
+    return this.http.delete(this.host + `/${id}`);
+  }
 }

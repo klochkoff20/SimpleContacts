@@ -24,7 +24,8 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
     vacanciesColumn[vacanciesColumn.priority],
     vacanciesColumn[vacanciesColumn.targetDate],
     vacanciesColumn[vacanciesColumn.responsibleUser],
-    vacanciesColumn[vacanciesColumn.status]
+    vacanciesColumn[vacanciesColumn.status],
+    vacanciesColumn[vacanciesColumn.actions]
   ];
   statuses: BasicInfo<number>[] = VACANCY_STATUSES;
 
@@ -69,7 +70,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
           console.log(error.message);
-          this.errorMessage = error.message;
+          this.errorMessage = error.statusText;
           return of([]);
         })
       ).subscribe(data => this.data = data);

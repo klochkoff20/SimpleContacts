@@ -2,6 +2,15 @@
 @import "../../../styles/font-sizes";
 @import "../../../styles/mixins";
 
+.icon {
+  font-size: $font-size-h3;
+  color: $black-color;
+
+  &:hover {
+    color: $light-blue-color;
+  }
+}
+
 .wrapper {
   margin: 20px 60px;
 
@@ -113,6 +122,15 @@
         padding-right: 20px;
         min-width: 140px;
         max-width: 220px;
+      }
+
+      .mat-column-actions {
+        padding-right: 20px;
+        width: 107px;
+
+        &.mat-header-cell {
+          padding-left: 10px;
+        }
       }
     }
   }

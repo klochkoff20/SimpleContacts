@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort } from '@angular/material';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
@@ -9,6 +8,7 @@ import { candidatesColumn } from '../../shared/enums';
 import { CandidatesService } from '../../services/candidates.service';
 import { CreateCandidateComponent } from './create-candidate/create-candidate.component';
 import { CandidateGeneralInfo } from '../../shared/interfaces';
+import { DeleteCandidateComponent } from './delete-candidate/delete-candidate.component';
 
 @Component({
   selector: 'app-candidates',
@@ -38,7 +38,7 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
-  candidateAdded: EventEmitter<any> = new EventEmitter();
+  candidatesChange: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private candidatesService: CandidatesService,
@@ -54,7 +54,7 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex = 0;
     });
 
-    merge(this.sort.sortChange, this.paginator.page, this.filterChange, this.candidateAdded)
+    merge(this.sort.sortChange, this.paginator.page, this.filterChange, this.candidatesChange)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -72,7 +72,7 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
           console.log(error.message);
-          this.errorMessage = error.message;
+          this.errorMessage = error.statusText;
           return of([]);
         })
       ).subscribe(data => this.data = data);
@@ -85,7 +85,19 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CreateCandidateComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      this.candidateAdded.emit();
+      this.candidatesChange.emit();
+    });
+  }
+
+  deleteCandidate(candidate) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = candidate;
+
+    const dialogRef = this.dialog.open(DeleteCandidateComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.candidatesChange.emit();
     });
   }
 

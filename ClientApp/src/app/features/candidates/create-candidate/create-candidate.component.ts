@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 
-import { BasicInfo } from '../../../shared/interfaces';
+import { BasicInfo, CandidateInsert } from '../../../shared/interfaces';
 import {
   CANDIDATE_EXPERIENCES,
   CANDIDATE_SOURCES,
@@ -11,7 +11,6 @@ import {
   GENDERS,
   LANGUAGES
 } from '../../../shared/constants';
-import { CandidateInsert } from '../../../shared/interfaces/candidate-insert.interface';
 import { CandidatesService } from '../../../services/candidates.service';
 
 

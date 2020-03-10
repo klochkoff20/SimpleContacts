@@ -27,6 +27,7 @@
     <div class="loading-shade"
          *ngIf="isLoadingResults || isRateLimitReached">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
       <div class="error-message"
            *ngIf="isRateLimitReached">
         An Error occurred!<br>
@@ -92,7 +93,8 @@
             <button mat-icon-button>
               <mat-icon class="icon icon-pen1"></mat-icon>
             </button>
-            <button mat-icon-button>
+            <button mat-icon-button
+                    (click)="deleteCandidate(row)">
               <mat-icon class="icon icon-bin1"></mat-icon>
             </button>
           </td>

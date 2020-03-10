@@ -3,12 +3,12 @@ import { MatDialog, MatDialogConfig, MatPaginator, MatSort } from '@angular/mate
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 
-import { DepartmentsService } from '../../services/departments.service';
+import { CreateDepartmentComponent } from './create-department/create-department.component';
 import { BasicInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
+import { DepartmentsService } from '../../services/departments.service';
 import { DEPARTMENT_STATUSES } from '../../shared/constants';
 import { departmentsColumn } from '../../shared/enums';
-import { CreateCandidateComponent } from '../candidates/create-candidate/create-candidate.component';
-import { CreateDepartmentComponent } from './create-department/create-department.component';
+import { DeleteDepartmentComponent } from './delete-department/delete-department.component';
 
 
 @Component({
@@ -24,7 +24,8 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
     departmentsColumn[departmentsColumn.vacancies],
     departmentsColumn[departmentsColumn.projects],
     departmentsColumn[departmentsColumn.responsibleUser],
-    departmentsColumn[departmentsColumn.contacts]
+    departmentsColumn[departmentsColumn.contacts],
+    departmentsColumn[departmentsColumn.actions]
   ];
   statuses: BasicInfo<number>[] = DEPARTMENT_STATUSES;
 
@@ -38,7 +39,7 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
-  departmentAdded: EventEmitter<any> = new EventEmitter();
+  departmentsChange: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private departmentsService: DepartmentsService,
@@ -54,7 +55,7 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex = 0;
     });
 
-    merge(this.sort.sortChange, this.paginator.page, this.filterChange)
+    merge(this.sort.sortChange, this.paginator.page, this.filterChange, this.departmentsChange)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -72,7 +73,7 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
           this.isLoadingResults = false;
           this.isRateLimitReached = true;
           console.log(error.message);
-          this.errorMessage = error.message;
+          this.errorMessage = error.statusText;
           return of([]);
         })
       ).subscribe(data => this.data = data);
@@ -84,8 +85,20 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
 
     const dialogRef = this.dialog.open(CreateDepartmentComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.departmentAdded.emit();
+    dialogRef.afterClosed().subscribe(response => {
+      this.departmentsChange.emit();
+    });
+  }
+
+  deleteDepartment(department) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = department;
+
+    const dialogRef = this.dialog.open(DeleteDepartmentComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(response => {
+      this.departmentsChange.emit();
     });
   }
 

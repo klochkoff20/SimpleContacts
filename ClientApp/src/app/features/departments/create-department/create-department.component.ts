@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { DepartmentsService } from '../../../services/departments.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DepartmentInsert } from '../../../shared/interfaces';
+import { BasicInfo, DepartmentInsert } from '../../../shared/interfaces';
+import { DEPARTMENT_STATUSES, LOCATIONS } from '../../../shared/constants';
 
 @Component({
   selector: 'app-create-department',
@@ -10,9 +11,11 @@ import { DepartmentInsert } from '../../../shared/interfaces';
   styleUrls: [ './create-department.component.scss' ]
 })
 export class CreateDepartmentComponent implements OnInit {
-
+  departmentStatuses: BasicInfo<number>[] = DEPARTMENT_STATUSES;
+  locations: string[] = LOCATIONS;
   createDepartmentForm: FormGroup;
   newDepartment: DepartmentInsert;
+  errorMessage = '';
 
   constructor(
     private matDialogRef: MatDialogRef<CreateDepartmentComponent>,
@@ -32,14 +35,14 @@ export class CreateDepartmentComponent implements OnInit {
       email: [ '', [ Validators.email, Validators.maxLength(128) ] ],
       phoneNumber: [ '', [ Validators.maxLength(32) ] ],
       skype: [ '', [ Validators.maxLength(128) ] ],
-      status: [ '', [] ],
+      status: [ '', [  ] ],
       description: [ '', [ Validators.maxLength(2048) ] ]
     });
   }
 
   createDepartment() {
     this.newDepartment = {
-      name: this.createDepartmentForm.get('ame').value,
+      name: this.createDepartmentForm.get('name').value,
       location: this.createDepartmentForm.get('location').value,
       email: this.createDepartmentForm.get('email').value,
       phone: this.createDepartmentForm.get('phoneNumber').value,
@@ -50,17 +53,22 @@ export class CreateDepartmentComponent implements OnInit {
       createdBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
       responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69'
     };
+
+    if (this.createDepartmentForm.valid) {
+      this.departmentService.createDepartment(this.newDepartment).subscribe(response => {
+        this.matDialogRef.close();
+      }, error => {
+        this.errorMessage = error.message;
+        this.scrollToError();
+      });
+    } else {
+      this.errorMessage = 'Fill all the required fields!';
+      this.scrollToError();
+    }
   }
 
-  if (this.create.valid) {
-  this.candidatesService.createCandidate(this.newCandidate).subscribe(response => {
-  this.matDialogRef.close();
-}, error => {
-  this.errorMessage = error.message;
-  this.scrollToError();
-});
-} else {
-  this.errorMessage = 'Fill all the required fields!';
-  this.scrollToError();
-}
+  scrollToError() {
+    const errorField = document.querySelector('.mat-error');
+    errorField.scrollIntoView({ behavior: 'smooth' });
+  }
 }

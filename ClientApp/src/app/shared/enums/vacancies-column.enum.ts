@@ -6,5 +6,6 @@ export enum vacanciesColumn {
   priority,
   targetDate,
   responsibleUser,
-  status
+  status,
+  actions
 }

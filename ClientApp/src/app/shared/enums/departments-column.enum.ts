@@ -5,5 +5,6 @@ export enum departmentsColumn {
   vacancies,
   projects,
   responsibleUser,
-  contacts
+  contacts,
+  actions
 }

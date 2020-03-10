@@ -68,7 +68,5 @@ namespace SimpleContacts.Web.Controllers
         {
             return await _candidateService.DeleteCandidateAsync(id);
         }
-        
-
     }
 }

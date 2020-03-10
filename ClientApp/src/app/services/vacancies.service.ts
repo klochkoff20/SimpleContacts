@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { VacancyGeneralInfo, PagedListResponse } from '../shared/interfaces';
-import { VacancyInsert } from '../shared/interfaces/vacancy-insert.interface';
+import { VacancyGeneralInfo, PagedListResponse, VacancyInsert } from '../shared/interfaces';
 
 @Injectable({providedIn: 'root'})
 export class VacanciesService {
