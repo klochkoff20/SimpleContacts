@@ -57,7 +57,7 @@ namespace SimpleContacts.Web.Controllers
         [HttpPut("{id:Guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public async Task<ActionResult<BaseResponseMessageResult>> Update(Guid id, DepartmentViewModel department)
+        public async Task<ActionResult<BaseResponseMessageResult>> Update(Guid id, DepartmentUpdateViewModel department)
         {
             return await _departmentService.UpdateDepartmentAsync(id, department);
         }

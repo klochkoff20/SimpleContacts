@@ -4,11 +4,13 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 
 import { CreateDepartmentComponent } from './create-department/create-department.component';
-import { BasicInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
+import { BasicInfo, CandidateGeneralInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
 import { DepartmentsService } from '../../services/departments.service';
 import { DEPARTMENT_STATUSES } from '../../shared/constants';
 import { departmentsColumn } from '../../shared/enums';
 import { DeleteDepartmentComponent } from './delete-department/delete-department.component';
+import { UpdateCandidateComponent } from '../candidates/update-candidate/update-candidate.component';
+import { UpdateDepartmentComponent } from './update-department/update-department.component';
 
 
 @Component({
@@ -87,6 +89,23 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(response => {
       this.departmentsChange.emit();
+    });
+  }
+
+  updateDepartment(department: DepartmentGeneralInfo) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    this.departmentsService.getDepartment(department.id).subscribe(response => {
+      dialogConfig.data = response.content;
+
+      const dialogRef = this.dialog.open(UpdateDepartmentComponent, dialogConfig);
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.departmentsChange.emit();
+      });
+    }, error => {
+      console.log(error);
     });
   }
 

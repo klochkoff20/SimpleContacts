@@ -61,9 +61,7 @@
         <ng-container matColumnDef="skills">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> SKILLS </th>
           <td mat-cell *matCellDef="let row">
-            <ng-template ngFor let-skill [ngForOf]="row.skills">
-              {{ skill }},<br>
-            </ng-template>
+            <div [innerText]="formatStringToMultiLine(row.skills)"></div>
           </td>
         </ng-container>
 
@@ -90,7 +88,8 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button>
+            <button mat-icon-button
+                    (click)="updateCandidate(row)">
               <mat-icon class="icon icon-pen1"></mat-icon>
             </button>
             <button mat-icon-button

@@ -7,8 +7,9 @@ import * as moment from 'moment';
 import { candidatesColumn } from '../../shared/enums';
 import { CandidatesService } from '../../services/candidates.service';
 import { CreateCandidateComponent } from './create-candidate/create-candidate.component';
-import { CandidateGeneralInfo } from '../../shared/interfaces';
+import { BasicInfo, CandidateGeneralInfo } from '../../shared/interfaces';
 import { DeleteCandidateComponent } from './delete-candidate/delete-candidate.component';
+import { UpdateCandidateComponent } from './update-candidate/update-candidate.component';
 
 @Component({
   selector: 'app-candidates',
@@ -89,7 +90,7 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  deleteCandidate(candidate) {
+  deleteCandidate(candidate: CandidateGeneralInfo) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.data = candidate;
@@ -100,6 +101,24 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
       this.candidatesChange.emit();
     });
   }
+
+  updateCandidate(candidate: CandidateGeneralInfo) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    this.candidatesService.getCandidate(candidate.id).subscribe(response => {
+      dialogConfig.data = response.content;
+
+      const dialogRef = this.dialog.open(UpdateCandidateComponent, dialogConfig);
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.candidatesChange.emit();
+      });
+    }, error => {
+      console.log(error);
+    });
+  }
+
 
   applyFilter(event: Event) {
     if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
@@ -113,5 +132,10 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
 
   formatDate(date) {
     return moment(date).format('DD/MM/YYYY');
+  }
+
+
+  formatStringToMultiLine(str: string[]): string {
+    return str.join(',\n');
   }
 }

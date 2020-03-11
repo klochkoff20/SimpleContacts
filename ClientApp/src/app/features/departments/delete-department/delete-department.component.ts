@@ -25,6 +25,4 @@ export class DeleteDepartmentComponent {
       this.errorMessage = error.statusText;
     });
   }
-
-
 }

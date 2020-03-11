@@ -1,5 +1,5 @@
-import { Component, EventEmitter, forwardRef, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material';
+import { Component, forwardRef, Inject, Input, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatAutocompleteSelectedEvent } from '@angular/material';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -19,8 +19,8 @@ import { Observable } from 'rxjs';
 export class CustomAutocompleteComponent implements ControlValueAccessor, OnInit {
   myControl = new FormControl();
   filteredAutocomplete: Observable<string[]>;
-  value = '';
 
+  @Input() value: string;
   @Input() autocompleteValues: string[];
   @Input() placeholder: string;
 
@@ -36,6 +36,8 @@ export class CustomAutocompleteComponent implements ControlValueAccessor, OnInit
         startWith(''),
         map(value => this._filter(value))
     );
+
+    this.myControl.setValue(this.value);
   }
 
   onValueChanged(event) {

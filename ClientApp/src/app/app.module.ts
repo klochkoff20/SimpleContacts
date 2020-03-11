@@ -35,7 +35,9 @@ import { CustomAutocompleteComponent } from './shared/components/custom-autocomp
 import { CreateDepartmentComponent } from './features/departments/create-department/create-department.component';
 import { DeleteCandidateComponent } from './features/candidates/delete-candidate/delete-candidate.component';
 import { DeleteDepartmentComponent } from './features/departments/delete-department/delete-department.component';
-import { DeleteVacancyComponent } from './delete-vacancy/delete-vacancy.component';
+import { DeleteVacancyComponent } from './features/vacancies/delete-vacancy/delete-vacancy.component';
+import { UpdateCandidateComponent } from './features/candidates/update-candidate/update-candidate.component';
+import { UpdateDepartmentComponent } from './features/departments/update-department/update-department.component';
 
 
 
@@ -67,7 +69,9 @@ const appRoutes: Routes = [
     CreateDepartmentComponent,
     DeleteCandidateComponent,
     DeleteDepartmentComponent,
-    DeleteVacancyComponent
+    DeleteVacancyComponent,
+    UpdateCandidateComponent,
+    UpdateDepartmentComponent
   ],
   imports: [
     HttpClientModule,
@@ -97,6 +101,9 @@ const appRoutes: Routes = [
     CreateVacancyComponent,
     CreateCandidateComponent,
     CreateDepartmentComponent,
+    UpdateCandidateComponent,
+    UpdateDepartmentComponent,
+    DeleteVacancyComponent,
     DeleteCandidateComponent,
     DeleteDepartmentComponent
   ],

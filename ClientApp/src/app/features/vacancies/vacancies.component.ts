@@ -9,6 +9,7 @@ import { BasicInfo, VacancyGeneralInfo } from '../../shared/interfaces';
 import { CreateVacancyComponent } from './create-vacancy/create-vacancy.component';
 import { VACANCY_STATUSES } from '../../shared/constants';
 import { vacanciesColumn } from '../../shared/enums';
+import { DeleteVacancyComponent } from './delete-vacancy/delete-vacancy.component';
 
 @Component({
   selector: 'app-vacancies',
@@ -39,7 +40,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   filterChange: EventEmitter<any> = new EventEmitter();
-  vacancyAdded: EventEmitter<any> = new EventEmitter();
+  vacanciesChanged: EventEmitter<any> = new EventEmitter();
 
   constructor(private vacanciesService: VacanciesService, private dialog: MatDialog) {
   }
@@ -52,7 +53,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
       this.paginator.pageIndex = 0;
     });
 
-    merge(this.sort.sortChange, this.paginator.page, this.filterChange, this.vacancyAdded)
+    merge(this.sort.sortChange, this.paginator.page, this.filterChange, this.vacanciesChanged)
       .pipe(
         startWith({}),
         switchMap(() => {
@@ -83,7 +84,19 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(CreateVacancyComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      this.vacancyAdded.emit();
+      this.vacanciesChanged.emit();
+    });
+  }
+
+  deleteVacancy(vacancy) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = vacancy;
+
+    const dialogRef = this.dialog.open(DeleteVacancyComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.vacanciesChanged.emit();
     });
   }
 

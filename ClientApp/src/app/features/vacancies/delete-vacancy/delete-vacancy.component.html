@@ -1,0 +1,17 @@
+<div>
+  <h3>Are you sure you want to delete <strong>{{ vacancy.name }}</strong>?</h3>
+
+  <mat-error>{{ errorMessage }}</mat-error>
+
+  <div matDialogActions>
+    <button mat-button type="button"
+            (click)="deleteVacancy()">
+      Delete vacancy
+    </button>
+
+    <button mat-button mat-dialog-close
+            [mat-dialog-close]="false">
+      Cancel
+    </button>
+  </div>
+</div>

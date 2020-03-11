@@ -79,7 +79,7 @@ namespace SimpleContacts.Services.Implementations
             return response;
         }
 
-        public async Task<BaseResponseMessageResult> UpdateDepartmentAsync(Guid id, DepartmentViewModel department)
+        public async Task<BaseResponseMessageResult> UpdateDepartmentAsync(Guid id, DepartmentUpdateViewModel department)
         {
             var response = new BaseResponseMessageResult();
 

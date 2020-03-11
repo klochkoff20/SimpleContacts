@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import { CandidateInsert, PagedListContent } from '../shared/interfaces';
 import { environment } from '../../environments/environment';
-import { CandidateGeneralInfo, PagedListResponse } from '../shared/interfaces';
-import { CandidateInsert } from '../shared/interfaces/candidate-insert.interface';
+import { CandidateGeneralInfo, ResponseResult } from '../shared/interfaces';
+import { Candidate } from '../shared/interfaces/candidate.interface';
+
 
 @Injectable({providedIn: 'root'})
 export class CandidatesService {
@@ -13,11 +15,20 @@ export class CandidatesService {
   }
 
   public getCandidates(pageIndex: number, pageSize: number, order: string, field: number, filter: string) {
-    return this.http.get<PagedListResponse<CandidateGeneralInfo>>(this.host + `/${pageIndex}/${pageSize}/${order}/${field}/${filter}`);
+    const params = `/${pageIndex}/${pageSize}/${order}/${field}/${filter}`;
+    return this.http.get<ResponseResult<PagedListContent<CandidateGeneralInfo>>>(this.host + params);
+  }
+
+  public getCandidate(id: string) {
+    return this.http.get<ResponseResult<Candidate>>(this.host + `/${id}`);
   }
 
   public createCandidate(candidate: CandidateInsert) {
     return this.http.post<CandidateInsert>(this.host, candidate);
+  }
+
+  public updateCandidate(id: string, candidate: CandidateInsert) {
+    return this.http.put(this.host + `/${id}`, candidate);
   }
 
   public deleteCandidate(id: string) {

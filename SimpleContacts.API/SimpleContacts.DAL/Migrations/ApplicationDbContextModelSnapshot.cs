@@ -132,12 +132,6 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<DateTime?>("AddingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte>("AddingSource")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<Guid?>("ContactId")
                         .HasColumnType("uniqueidentifier");
 
@@ -149,6 +143,9 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
 
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
@@ -157,7 +154,7 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
 
-                    b.Property<int>("DesiredSalary")
+                    b.Property<int?>("DesiredSalary")
                         .HasColumnType("int");
 
                     b.Property<string>("Education")
@@ -168,10 +165,10 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
 
-                    b.Property<byte>("EmploymentType")
+                    b.Property<byte?>("EmploymentType")
                         .HasColumnType("tinyint");
 
-                    b.Property<byte>("Expirience")
+                    b.Property<byte?>("Experience")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Facebook")
@@ -183,7 +180,7 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(64)")
                         .HasMaxLength(64);
 
-                    b.Property<byte>("Gender")
+                    b.Property<byte?>("Gender")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("HomePage")
@@ -217,7 +214,7 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<int?>("PreferableMethod")
                         .HasColumnType("int");
 
-                    b.Property<bool>("ReadyToRelocate")
+                    b.Property<bool?>("ReadyToRelocate")
                         .HasColumnType("bit");
 
                     b.Property<string>("ResponsibleBy")
@@ -231,12 +228,18 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
 
-                    b.Property<byte>("Status")
+                    b.Property<byte?>("Source")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte?>("Status")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Telegram")
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -391,7 +394,7 @@ namespace SimpleContacts.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
@@ -424,8 +427,11 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<string>("Skype")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("Status")
+                    b.Property<byte?>("Status")
                         .HasColumnType("tinyint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

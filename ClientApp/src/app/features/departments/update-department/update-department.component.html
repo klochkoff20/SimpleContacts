@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Update department</h2>
+<mat-dialog-content class="container webkit-pretty-scroll">
+  <form class="form-container"
+        [formGroup]="updateDepartmentForm">
+    <mat-error>{{ errorMessage }}</mat-error>
+
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput
+             formControlName="name">
+    </mat-form-field>
+
+    <app-custom-autocomplete
+      [autocompleteValues]="locations"
+      [value]="location"
+      placeholder="Location"
+      formControlName="location">
+    </app-custom-autocomplete>
+
+    <mat-form-field>
+      <mat-label>Phone number</mat-label>
+      <input matInput
+             type="tel"
+             formControlName="phoneNumber">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput
+             type="email"
+             formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Skype</mat-label>
+      <input matInput
+             formControlName="skype">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of departmentStatuses"
+                    [value]="status.id">
+          {{ status.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput
+                formControlName="description">
+      </textarea>
+    </mat-form-field>
+
+    <div matDialogActions>
+      <button mat-button type="submit" (click)="updateDepartment()">Update department</button>
+      <button mat-button mat-dialog-close [mat-dialog-close]="false">Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>

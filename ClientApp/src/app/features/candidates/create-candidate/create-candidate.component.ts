@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 
@@ -40,12 +40,15 @@ export class CreateCandidateComponent implements OnInit {
   constructor(
     private matDialogRef: MatDialogRef<CreateCandidateComponent>,
     private formBuilder: FormBuilder,
-    private candidatesService: CandidatesService
+    private candidatesService: CandidatesService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
   }
 
   ngOnInit() {
     this.createCandidateForm = this.initCreateCandidateForm();
+
+    this.changeDetectorRef.detectChanges();
   }
 
   initCreateCandidateForm(): FormGroup {
@@ -71,7 +74,7 @@ export class CreateCandidateComponent implements OnInit {
       linkedIn: [ '', [ Validators.maxLength(128) ] ],
       telegram: [ '', [ Validators.maxLength(128) ] ],
       facebook: [ '', [ Validators.maxLength(128) ] ],
-      preferableMethod: [ '', [ ] ],
+      preferableMethod: [ '0', [ ] ],
       homePage: [ '', [ Validators.maxLength(256) ] ],
       status: [ '', [] ],
       source: [ '', [] ],
@@ -124,6 +127,10 @@ export class CreateCandidateComponent implements OnInit {
       this.errorMessage = 'Fill all the required fields!';
       this.scrollToError();
     }
+
+    console.log(this.createCandidateForm.get('languages').value);
+    console.log(this.createCandidateForm.get('languages').value.toString());
+
   }
 
   scrollToError() {

@@ -10,7 +10,7 @@ namespace SimpleContacts.ViewModels
         public BasicInfo<string> ResponsibleUser { get; set; }
         public DateTime? AddingDate { get; set; }
         public string AddingSource { get; set; }
-        public CandidateStatus Status { get; set; }
+        public CandidateStatus? Status { get; set; }
         public List<string> Skills { get; set; }
         public List<CommentViewModel> Comments { get; set; }
     }

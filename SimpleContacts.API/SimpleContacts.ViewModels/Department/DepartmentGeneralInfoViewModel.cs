@@ -6,7 +6,7 @@ namespace SimpleContacts.ViewModels
 {
     public class DepartmentGeneralInfoViewModel : BasicInfo<Guid>
     {
-        public DepartmentStatus Status { get; set; }
+        public DepartmentStatus? Status { get; set; }
         public IList<BasicInfo<Guid>> Projects { get; set; }
         public IList<BasicInfo<Guid>> Vacancies { get; set; }
         public BasicInfo<string> ResponsibleUser { get; set; }

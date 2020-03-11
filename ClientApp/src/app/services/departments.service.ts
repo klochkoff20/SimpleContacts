@@ -2,8 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { DepartmentGeneralInfo, DepartmentInsert, PagedListResponse, VacancyInsert } from '../shared/interfaces';
-import { ListResponse } from '../shared/interfaces/list-responce.interfase';
+import {
+  DepartmentGeneralInfo,
+  DepartmentInsert,
+  PagedListContent,
+  ResponseResult,
+  ListResponse,
+  Department
+} from '../shared/interfaces';
+
 
 @Injectable({providedIn: 'root'})
 export class DepartmentsService {
@@ -12,16 +19,25 @@ export class DepartmentsService {
   constructor( private http: HttpClient) {
   }
 
-  public createDepartment(department: DepartmentInsert) {
-    return this.http.post<DepartmentInsert>(this.host, department);
-  }
-
   public getAllDepartments() {
     return this.http.get<ListResponse<DepartmentGeneralInfo>>(this.host);
   }
 
   public getDepartments(pageIndex: number, pageSize: number, order: string, field: number, filter: string) {
-    return this.http.get<PagedListResponse<DepartmentGeneralInfo>>(this.host + `/${pageIndex}/${pageSize}/${order}/${field}/${filter}`);
+    const params = `/${pageIndex}/${pageSize}/${order}/${field}/${filter}`;
+    return this.http.get<ResponseResult<PagedListContent<DepartmentGeneralInfo>>>(this.host + params);
+  }
+
+  public getDepartment(id: string) {
+    return this.http.get<ResponseResult<Department>>(this.host + `/${id}`);
+  }
+
+  public createDepartment(department: DepartmentInsert) {
+    return this.http.post<DepartmentInsert>(this.host, department);
+  }
+
+  public updateDepartment(id: string, department: DepartmentInsert) {
+    return this.http.put(this.host + `/${id}`, department);
   }
 
   public deleteDepartment(id: string) {

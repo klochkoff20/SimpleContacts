@@ -78,7 +78,7 @@ namespace SimpleContacts.Services.Implementations
             return response;
         }
 
-        public async Task<BaseResponseMessageResult> UpdateCandidateAsync(Guid id, CandidateViewModel candidate)
+        public async Task<BaseResponseMessageResult> UpdateCandidateAsync(Guid id, CandidateUpdateViewModel candidate)
         {
             var response = new BaseResponseMessageResult();
 
