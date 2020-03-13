@@ -27,6 +27,7 @@ export interface Candidate extends BasicInfo<string> {
   status: number;
   source: number;
   skills: string;
+  skillsAsText: string;
   description: string;
   addingDate: Date;
   responsibleUser: BasicInfo<string>;

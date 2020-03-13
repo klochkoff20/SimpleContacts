@@ -67,7 +67,7 @@ namespace SimpleContacts.Services.Implementations
         {
             var response = new ResponseMessageResult<CandidateViewModel>();
 
-            var candidate = await _candidateRepository.GetAsync(id);
+            var candidate = await _candidateRepository.GetCandidateById(id);
             if(candidate == null)
             {
                 response.SetStatus(HttpStatusCode.NotFound, $"Candidate [{id}] was not found!");

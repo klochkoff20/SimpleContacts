@@ -55,7 +55,7 @@ export class CreateCandidateComponent implements OnInit {
     return this.formBuilder.group({
       firstName: [ '', [ Validators.required, Validators.pattern('^(?!\\s*$).+'), Validators.maxLength(64) ] ],
       lastName: [ '', [ Validators.required, Validators.pattern('^(?!\\s*$).+'), Validators.maxLength(64) ] ],
-      dateOfBirth: [ null, [  ] ],
+      dateOfBirth: [ null, [] ],
       gender: [ '', [] ],
       location: [ 'Lviv', [ Validators.maxLength(128) ] ],
       readyToRelocate: [ false, [] ],
@@ -74,11 +74,12 @@ export class CreateCandidateComponent implements OnInit {
       linkedIn: [ '', [ Validators.maxLength(128) ] ],
       telegram: [ '', [ Validators.maxLength(128) ] ],
       facebook: [ '', [ Validators.maxLength(128) ] ],
-      preferableMethod: [ '0', [ ] ],
+      preferableMethod: [ '0', [] ],
       homePage: [ '', [ Validators.maxLength(256) ] ],
       status: [ '', [] ],
       source: [ '', [] ],
-      skills: [ '', [ Validators.maxLength(1024) ] ],
+      skills: [ '', [ Validators.minLength(1), Validators.maxLength(1024) ] ],
+      skillsAsText: [ '', [ Validators.maxLength(2048) ] ],
       description: [ '', [ Validators.maxLength(2048) ] ]
     });
   }
@@ -110,6 +111,7 @@ export class CreateCandidateComponent implements OnInit {
       status: +this.createCandidateForm.get('status').value,
       source: +this.createCandidateForm.get('source').value,
       skills: this.createCandidateForm.get('skills').value.toString(),
+      skillsAsText: this.createCandidateForm.get('skillsAsText').value,
       description: this.createCandidateForm.get('description').value,
       preferableMethod: +this.createCandidateForm.get('preferableMethod').value,
       // TODO after login
@@ -127,10 +129,6 @@ export class CreateCandidateComponent implements OnInit {
       this.errorMessage = 'Fill all the required fields!';
       this.scrollToError();
     }
-
-    console.log(this.createCandidateForm.get('languages').value);
-    console.log(this.createCandidateForm.get('languages').value.toString());
-
   }
 
   scrollToError() {

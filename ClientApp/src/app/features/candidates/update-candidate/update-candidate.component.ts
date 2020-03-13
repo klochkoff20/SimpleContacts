@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
-import { BasicInfo, CandidateInsert } from '../../../shared/interfaces';
+import { Candidate, BasicInfo, CandidateUpdate } from '../../../shared/interfaces';
 import {
   CANDIDATE_EXPERIENCES,
   CANDIDATE_SOURCES,
@@ -11,7 +11,6 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { CandidatesService } from '../../../services/candidates.service';
-import { Candidate } from '../../../shared/interfaces/candidate.interface';
 
 @Component({
   selector: 'app-update-candidate',
@@ -32,11 +31,11 @@ export class UpdateCandidateComponent implements OnInit {
     'Human resources',
     'Vue developer'
   ];
-  skills: string[];
-  candidateLanguages: string[];
+  skills: string[] = [];
+  candidateLanguages: string[] = [];
 
   updateCandidateForm: FormGroup;
-  newCandidate: CandidateInsert;
+  newCandidate: CandidateUpdate;
   errorMessage = '';
 
   constructor(
@@ -49,8 +48,13 @@ export class UpdateCandidateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.skills = this.candidate.skills.split(',');
-    this.candidateLanguages = this.candidate.languages.split(',');
+    if (this.candidate.skills) {
+      this.skills = this.candidate.skills.split(',');
+    }
+
+    if (this.candidate.languages) {
+      this.candidateLanguages = this.candidate.languages.split(',');
+    }
 
     this.updateCandidateForm = this.initUpdateCandidateForm();
     this.changeDetectorRef.detectChanges();
@@ -69,9 +73,9 @@ export class UpdateCandidateComponent implements OnInit {
       experience: [ this.candidate.experience, [] ],
       currentWork: [ this.candidate.currentWork, [ Validators.maxLength(128) ] ],
       currentPosition: [ this.candidate.currentPosition, [ Validators.maxLength(128) ] ],
-      employmentType: [ this.candidate.employmentType, [  ] ],
+      employmentType: [ this.candidate.employmentType, [] ],
       education: [ this.candidate.education, [ Validators.maxLength(256) ] ],
-      languages: [ this.candidateLanguages, [  ] ],
+      languages: [ this.candidateLanguages, [] ],
       desiredSalary: [ this.candidate.desiredSalary, [ Validators.min(0) ] ],
       phoneNumber: [ this.candidate.phoneNumber, [ Validators.maxLength(32) ] ],
       email: [ this.candidate.email, [ Validators.email, Validators.maxLength(128) ] ],
@@ -84,11 +88,12 @@ export class UpdateCandidateComponent implements OnInit {
       status: [ this.candidate.status, [] ],
       source: [ this.candidate.source, [] ],
       skills: [ '', [ Validators.maxLength(1024) ] ],
+      skillsAsText: [ this.candidate.skillsAsText, [ Validators.maxLength(2048) ] ],
       description: [ this.candidate.description, [ Validators.maxLength(2048) ] ]
     });
   }
 
-  createCandidate() {
+  updateCandidate() {
     this.newCandidate = {
       firstName: this.updateCandidateForm.get('firstName').value,
       lastName: this.updateCandidateForm.get('lastName').value,
@@ -116,6 +121,7 @@ export class UpdateCandidateComponent implements OnInit {
       source: +this.updateCandidateForm.get('source').value,
       skills: this.updateCandidateForm.get('skills').value.toString(),
       description: this.updateCandidateForm.get('description').value,
+      skillsAsText: this.updateCandidateForm.get('skillsAsText').value,
       preferableMethod: +this.updateCandidateForm.get('preferableMethod').value,
       // TODO after login
       responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69'

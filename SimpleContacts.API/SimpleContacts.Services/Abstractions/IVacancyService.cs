@@ -13,7 +13,7 @@ namespace SimpleContacts.Services.Abstractions
         Task<ResponseMessageResult<List<VacancyGeneralInfoViewModel>>> GetAllVacanciesAsync();
         Task<ResponseMessageResult<PagedList<VacancyGeneralInfoViewModel>>> GetAllVacanciesSortedAsync(int page, int pageSize, string order, VacancySortField field, string filter);
         Task<ResponseMessageResult<VacancyViewModel>> GetVacancyById(Guid id);
-        Task<BaseResponseMessageResult> UpdateVacancyAsync(Guid id, VacancyViewModel vacancy);
+        Task<BaseResponseMessageResult> UpdateVacancyAsync(Guid id, VacancyUpdateViewModel vacancy);
         Task<BaseResponseMessageResult> DeleteVacancyAsync(Guid id);
     }
 }

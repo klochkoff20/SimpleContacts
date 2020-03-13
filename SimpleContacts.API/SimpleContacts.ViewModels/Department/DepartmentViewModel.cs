@@ -23,7 +23,7 @@ namespace SimpleContacts.ViewModels
         public BasicInfo<string> CreatedUser { get; set; }
         public BasicInfo<string> ResponsibleUser { get; set; }
         public IList<Project> Projects { get; set; }
-        public IList<Vacancy> Vacancies { get; set; }
+        // public IList<Vacancy> Vacancies { get; set; }
         public IList<DepartmentsContacts> ContactsDepartments { get; set; }
         public IList<DepartmentsAttachments> DepartmentsAttachments { get; set; }
         public IList<Comment> Comments { get; set; }

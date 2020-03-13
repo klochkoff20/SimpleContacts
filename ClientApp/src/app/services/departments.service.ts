@@ -8,7 +8,7 @@ import {
   PagedListContent,
   ResponseResult,
   ListResponse,
-  Department
+  Department, DepartmentUpdate
 } from '../shared/interfaces';
 
 
@@ -36,7 +36,7 @@ export class DepartmentsService {
     return this.http.post<DepartmentInsert>(this.host, department);
   }
 
-  public updateDepartment(id: string, department: DepartmentInsert) {
+  public updateDepartment(id: string, department: DepartmentUpdate) {
     return this.http.put(this.host + `/${id}`, department);
   }
 

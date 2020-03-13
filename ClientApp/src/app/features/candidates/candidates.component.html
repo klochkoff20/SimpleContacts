@@ -43,50 +43,53 @@
              matSortDirection="desc">
 
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> # </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> #</th>
           <td mat-cell
               *matCellDef="let row; let i = index"> {{  paginator.pageIndex * paginator.pageSize + i + 1 }} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> CANDIDATE </th>
-          <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> CANDIDATE</th>
+          <td mat-cell *matCellDef="let row"
+              (click)="openProfile(row)">
+            <a >{{ row.name }}</a>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> POSITION </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> POSITION</th>
           <td mat-cell *matCellDef="let row"> {{ row.desiredPosition }} </td>
         </ng-container>
 
         <ng-container matColumnDef="skills">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> SKILLS </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> SKILLS</th>
           <td mat-cell *matCellDef="let row">
             <div [innerText]="formatStringToMultiLine(row.skills)"></div>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="responsibleUser">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> RESPONSIBLE </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> RESPONSIBLE</th>
           <td mat-cell *matCellDef="let row"> {{ row.responsibleUser.name }} </td>
         </ng-container>
 
         <ng-container matColumnDef="addingDate">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> ADDING DATE </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ADDING DATE</th>
           <td mat-cell *matCellDef="let row"> {{ formatDate(row.addingDate) }} </td>
         </ng-container>
 
         <ng-container matColumnDef="addingSource">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> ADDING SOURCE </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ADDING SOURCE</th>
           <td mat-cell *matCellDef="let row"> {{ row.addingSource }} </td>
         </ng-container>
 
         <ng-container matColumnDef="lastActivity">
-          <th mat-header-cell *matHeaderCellDef> LAST ACTIVITY </th>
+          <th mat-header-cell *matHeaderCellDef> LAST ACTIVITY</th>
           <td mat-cell *matCellDef="let row"> {{ row.status }} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
+          <th mat-header-cell *matHeaderCellDef> ACTIONS</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button
                     (click)="updateCandidate(row)">

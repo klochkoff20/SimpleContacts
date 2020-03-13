@@ -12,7 +12,20 @@ namespace SimpleContacts.Services.MappingProfiles
         {
             CreateMap<Vacancy, VacancyViewModel>();
             CreateMap<Vacancy, VacancyGeneralInfoViewModel>().ConvertUsing<VacancyGeneralInfoConverter>();
-            CreateMap<VacancyInsertViewModel, Vacancy>().ConvertUsing<VacancyInsertConverter>();
+            CreateMap<VacancyInsertViewModel, Vacancy>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.Id = Guid.NewGuid();
+                    dest.CreatedAt = DateTime.Now;
+                    dest.UpdatedAt = DateTime.Now;
+                });
+
+            CreateMap<VacancyUpdateViewModel, Vacancy>()
+                .AfterMap((src, dest) =>
+                {
+                    dest.UpdatedAt = DateTime.Now;
+                });
+
             CreateMap<Vacancy, BasicInfo<Guid>>();
 
             CreateMap<Department, BasicInfo<Guid>>();

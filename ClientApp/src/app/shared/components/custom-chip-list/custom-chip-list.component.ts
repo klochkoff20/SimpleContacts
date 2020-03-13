@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, forwardRef, Inject, Input, Output, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent } from '@angular/material';
-import { COMMA, ENTER, SEMICOLON } from '@angular/cdk/keycodes';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { COMMA, ENTER, SEMICOLON } from '@angular/cdk/keycodes';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -46,7 +46,7 @@ export class CustomChipListComponent implements ControlValueAccessor, AfterViewI
   }
 
   writeValue(value: any) {
-    if (value !== '') {
+    if (value !== '' && value !== null) {
       this.chips.push(value);
     }
   }

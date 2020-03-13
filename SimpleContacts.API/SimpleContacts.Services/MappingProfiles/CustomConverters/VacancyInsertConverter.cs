@@ -13,7 +13,7 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
             {
                 Id = Guid.NewGuid(),
                 Name = source.Name,
-                DepartmentId = source.Department,
+                DepartmentId = source.DepartmentId,
                 Project = source.Project,
                 Priority = source.Priority,
                 TargetDate = source.TargetDate,

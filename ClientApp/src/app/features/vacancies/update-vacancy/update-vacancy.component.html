@@ -1,0 +1,125 @@
+<h2 mat-dialog-title>Update vacancy</h2>
+<mat-dialog-content class="container webkit-pretty-scroll">
+  <form class="form-container"
+        [formGroup]="updateVacancyForm">
+    <mat-error>{{ errorMessage }}</mat-error>
+
+    <mat-form-field>
+      <mat-label>Vacancy title</mat-label>
+      <input matInput
+             formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Department</mat-label>
+      <mat-select formControlName="department">
+        <mat-option *ngFor="let department of departments"
+                    [value]="department.id">
+          {{ department.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <app-custom-autocomplete
+      [autocompleteValues]="projects"
+      placeholder="Project"
+      formControlName="project"
+      [value]="project">
+    </app-custom-autocomplete>
+
+    <mat-form-field>
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option *ngFor="let priority of priorities"
+                    [value]="priority.id">
+          {{ priority.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Employment type</mat-label>
+      <mat-select formControlName="employmentType">
+        <mat-option *ngFor="let type of employmentTypes"
+                    [value]="type.id">
+          {{ type.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <input matInput
+             formControlName="location">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Languages</mat-label>
+      <mat-select multiple
+                  formControlName="languages">
+        <mat-option *ngFor="let language of languages"
+                    [value]="language">
+          {{ language }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="salary-container">
+      <mat-form-field class="salary">
+        <mat-label>Salary(min)</mat-label>
+        <input matInput
+               type="number"
+               formControlName="salaryMin">
+      </mat-form-field>
+
+      <mat-form-field class="salary">
+        <mat-label>Salary(max)</mat-label>
+        <input matInput
+               type="number"
+               formControlName="salaryMax">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Target date</mat-label>
+      <input matInput [matDatepicker]="picker"
+             formControlName="targetDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="month"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Number of positions</mat-label>
+      <input matInput
+             type="number"
+             formControlName="numberOfPositions">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Required experience, years</mat-label>
+      <input matInput
+             type="number"
+             formControlName="requiredExperience">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Requirements</mat-label>
+      <textarea matInput
+                formControlName="requirements">
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput
+                formControlName="description">
+      </textarea>
+    </mat-form-field>
+
+    <div matDialogActions>
+      <button mat-button type="submit" (click)="updateVacancy()">Update vacancy</button>
+      <button mat-button mat-dialog-close [mat-dialog-close]="false">Cancel</button>
+    </div>
+  </form>
+</mat-dialog-content>
+

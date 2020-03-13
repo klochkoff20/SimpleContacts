@@ -24,7 +24,7 @@ import {
   MatPaginatorModule,
   MatProgressSpinnerModule, MatRadioModule,
   MatSelectModule,
-  MatSortModule
+  MatSortModule, MatTabsModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateVacancyComponent } from './features/vacancies/create-vacancy/create-vacancy.component';
@@ -38,6 +38,11 @@ import { DeleteDepartmentComponent } from './features/departments/delete-departm
 import { DeleteVacancyComponent } from './features/vacancies/delete-vacancy/delete-vacancy.component';
 import { UpdateCandidateComponent } from './features/candidates/update-candidate/update-candidate.component';
 import { UpdateDepartmentComponent } from './features/departments/update-department/update-department.component';
+import { UpdateVacancyComponent } from './features/vacancies/update-vacancy/update-vacancy.component';
+import { CandidateProfileComponent } from './features/candidates/candidate-profile/candidate-profile.component';
+import { AvatarComponent } from './shared/components/avatar/avatar.component';
+import { BackgroundImageDirective } from './shared/directives/background-image/background-image.directive';
+import { DepartmentProfileComponent } from './department-profile/department-profile.component';
 
 
 
@@ -46,7 +51,9 @@ const appRoutes: Routes = [
   { path: 'organizer', component: OrganizerComponent },
   { path: 'vacancies', component: VacanciesComponent },
   { path: 'candidates', component: CandidatesComponent },
+  { path: 'candidate/:id', component: CandidateProfileComponent },
   { path: 'departments', component: DepartmentsComponent },
+  { path: 'department/:id', component: DepartmentProfileComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'accounts', component: AccountsComponent },
 ];
@@ -71,7 +78,12 @@ const appRoutes: Routes = [
     DeleteDepartmentComponent,
     DeleteVacancyComponent,
     UpdateCandidateComponent,
-    UpdateDepartmentComponent
+    UpdateDepartmentComponent,
+    UpdateVacancyComponent,
+    CandidateProfileComponent,
+    AvatarComponent,
+    BackgroundImageDirective,
+    DepartmentProfileComponent
   ],
   imports: [
     HttpClientModule,
@@ -95,12 +107,14 @@ const appRoutes: Routes = [
     MatRadioModule,
     MatChipsModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ],
   entryComponents: [
     CreateVacancyComponent,
     CreateCandidateComponent,
     CreateDepartmentComponent,
+    UpdateVacancyComponent,
     UpdateCandidateComponent,
     UpdateDepartmentComponent,
     DeleteVacancyComponent,

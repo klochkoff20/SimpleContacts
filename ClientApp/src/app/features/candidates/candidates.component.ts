@@ -10,6 +10,7 @@ import { CreateCandidateComponent } from './create-candidate/create-candidate.co
 import { BasicInfo, CandidateGeneralInfo } from '../../shared/interfaces';
 import { DeleteCandidateComponent } from './delete-candidate/delete-candidate.component';
 import { UpdateCandidateComponent } from './update-candidate/update-candidate.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidates',
@@ -43,7 +44,8 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
 
   constructor(
     private candidatesService: CandidatesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {
   }
 
@@ -77,6 +79,10 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
           return of([]);
         })
       ).subscribe(data => this.data = data);
+  }
+
+  openProfile(candidate: CandidateGeneralInfo) {
+    this.router.navigate([`candidate/${candidate.id}`]);
   }
 
   createCandidate() {

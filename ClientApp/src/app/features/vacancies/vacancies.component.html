@@ -63,7 +63,12 @@
 
         <ng-container matColumnDef="priority">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> PRIORITY</th>
-          <td mat-cell *matCellDef="let row"> {{ row.priority }} </td>
+          <td mat-cell *matCellDef="let row" [ngSwitch]="row.priority">
+            <span *ngSwitchCase="'Low'" style="color: #0CC89C">{{ row.priority }}</span>
+            <span *ngSwitchCase="'Medium'" style="color: #E29E21">{{ row.priority }}</span>
+            <span *ngSwitchCase="'High'" style="color: #fa0c0b">{{ row.priority }}</span>
+            <span *ngSwitchCase="'Highest'" style="color: #c80004">{{ row.priority }}</span>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="targetDate">
@@ -94,7 +99,8 @@
           <th mat-header-cell *matHeaderCellDef> ACTIONS</th>
           <td mat-cell *matCellDef="let row">
             <button mat-icon-button>
-              <mat-icon class="icon icon-pen1"></mat-icon>
+              <mat-icon class="icon icon-pen1"
+                        (click)="updateVacancy(row)"></mat-icon>
             </button>
             <button mat-icon-button
                     (click)="deleteVacancy(row)">

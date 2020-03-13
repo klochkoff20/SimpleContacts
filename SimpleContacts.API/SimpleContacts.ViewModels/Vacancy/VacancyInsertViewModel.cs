@@ -6,10 +6,10 @@ namespace SimpleContacts.ViewModels
     public class VacancyInsertViewModel
     {
         public string Name { get; set; }
-        public Guid Department { get; set; }
+        public Guid? DepartmentId { get; set; }
         public string Project { get; set; }
-        public VacancyPriority Priority { get; set; }
-        public EmploymentType EmploymentType { get; set; }
+        public VacancyPriority? Priority { get; set; }
+        public EmploymentType? EmploymentType { get; set; }
         public string Location { get; set; }
         public string Languages { get; set; }
         public int? SalaryMin { get; set; }
@@ -22,6 +22,6 @@ namespace SimpleContacts.ViewModels
         public string CreatedBy { get; set; }
         public string ResponsibleBy { get; set; }
         public string UpdatedBy { get; set; }
-        public VacancyStatus Status { get; set; }
+        public VacancyStatus? Status { get; set; }
     }
 }

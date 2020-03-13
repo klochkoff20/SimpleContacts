@@ -1,20 +1,20 @@
 export interface VacancyInsert {
   name: string;
-  department: string;
+  departmentId: string;
   project: string;
-  priority: number;
+  priority?: number;
   employmentType: number;
   location: string;
   languages: string;
-  salaryMin: number;
-  salaryMax: number;
+  salaryMin?: number;
+  salaryMax?: number;
   targetDate?: Date;
-  numberOfPositions: number;
-  requiredExperience: number;
+  numberOfPositions?: number;
+  requiredExperience?: number;
   requirements: string;
   description: string;
   createdBy: string;
   responsibleBy: string;
   updatedBy: string;
-  status: number;
+  status?: number;
 }

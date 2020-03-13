@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'font';
-  src:  url('fonts/font.eot?yj8oa3');
-  src:  url('fonts/font.eot?yj8oa3#iefix') format('embedded-opentype'),
-    url('fonts/font.ttf?yj8oa3') format('truetype'),
-    url('fonts/font.woff?yj8oa3') format('woff'),
-    url('fonts/font.svg?yj8oa3#font') format('svg');
+  src:  url('fonts/font.eot?1pgk0b');
+  src:  url('fonts/font.eot?1pgk0b#iefix') format('embedded-opentype'),
+    url('fonts/font.ttf?1pgk0b') format('truetype'),
+    url('fonts/font.woff?1pgk0b') format('woff'),
+    url('fonts/font.svg?1pgk0b#font') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,96 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-telephone:before {
+  content: "\eb19";
+}
+.icon-Home:before {
+  content: "\eb18";
+}
+.icon-yandex:before {
+  content: "\eb17";
+}
+.icon-viber:before {
+  content: "\eb0c";
+}
+.icon-skype1:before {
+  content: "\eb0d";
+}
+.icon-behance1:before {
+  content: "\eb0e";
+}
+.icon-google-plus1:before {
+  content: "\eb0f";
+}
+.icon-linkedin1:before {
+  content: "\eb10";
+}
+.icon-telegram1:before {
+  content: "\eb11";
+}
+.icon-twitter1:before {
+  content: "\eb12";
+}
+.icon-wordpress1:before {
+  content: "\eb13";
+}
+.icon-facebook1:before {
+  content: "\eb14";
+}
+.icon-technorati:before {
+  content: "\eb15";
+}
+.icon-instagram1:before {
+  content: "\eb16";
+}
+.icon-funnelandvacancy:before {
+  content: "\eb06";
+}
+.icon-userperfomance:before {
+  content: "\eb07";
+}
+.icon-pipeline:before {
+  content: "\eb08";
+}
+.icon-userstatistics:before {
+  content: "\eb09";
+}
+.icon-candidatesources:before {
+  content: "\eb0a";
+}
+.icon-buildyourown:before {
+  content: "\eb0b";
+}
+.icon-attach1:before {
+  content: "\eb05";
+}
+.icon-comment:before {
+  content: "\eb04";
+}
+.icon-delete:before {
+  content: "\eafd";
+}
+.icon-attach:before {
+  content: "\eafe";
+}
+.icon-info1:before {
+  content: "\eaff";
+}
+.icon-connection1:before {
+  content: "\eb00";
+}
+.icon-email:before {
+  content: "\eb01";
+}
+.icon-pdf:before {
+  content: "\eb02";
+}
+.icon-print:before {
+  content: "\eb03";
+}
+.icon-plus1:before {
+  content: "\eafb";
+}
 .icon-pen1:before {
   content: "\eaf7";
 }
@@ -33,6 +123,9 @@
 }
 .icon-dialog:before {
   content: "\e9e2";
+}
+.icon-tag:before {
+  content: "\eafc";
 }
 .icon-trash:before {
   content: "\eaf9";

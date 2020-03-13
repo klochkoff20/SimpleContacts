@@ -225,8 +225,15 @@
       </textarea>
     </mat-form-field>
 
+    <mat-form-field>
+      <mat-label>Skills as text</mat-label>
+      <textarea matInput
+                formControlName="skillsAsText">
+      </textarea>
+    </mat-form-field>
+
     <div matDialogActions>
-      <button mat-button type="submit" (click)="createCandidate()">Update candidate</button>
+      <button mat-button type="submit" (click)="updateCandidate()">Update candidate</button>
       <button mat-button mat-dialog-close [mat-dialog-close]="false">Cancel</button>
     </div>
   </form>

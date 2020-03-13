@@ -4,12 +4,11 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 
 import { CreateDepartmentComponent } from './create-department/create-department.component';
-import { BasicInfo, CandidateGeneralInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
+import { BasicInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
 import { DepartmentsService } from '../../services/departments.service';
 import { DEPARTMENT_STATUSES } from '../../shared/constants';
 import { departmentsColumn } from '../../shared/enums';
 import { DeleteDepartmentComponent } from './delete-department/delete-department.component';
-import { UpdateCandidateComponent } from '../candidates/update-candidate/update-candidate.component';
 import { UpdateDepartmentComponent } from './update-department/update-department.component';
 
 

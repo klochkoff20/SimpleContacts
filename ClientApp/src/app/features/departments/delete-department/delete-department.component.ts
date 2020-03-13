@@ -22,6 +22,7 @@ export class DeleteDepartmentComponent {
     this.departmentService.deleteDepartment(this.department.id).subscribe(response => {
       this.matDialogRef.close();
     }, error => {
+      console.log(error);
       this.errorMessage = error.statusText;
     });
   }

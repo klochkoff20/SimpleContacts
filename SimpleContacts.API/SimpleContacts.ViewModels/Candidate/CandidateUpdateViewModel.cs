@@ -31,8 +31,8 @@ namespace SimpleContacts.ViewModels
         public CandidateStatus? Status { get; set; }
         public CandidateSource? Source { get; set; }
         public string Skills { get; set; }
+        public string SkillsAsText { get; set; }
         public string Description { get; set; }
         public string ResponsibleBy { get; set; }
-        public DateTime? UpdatedAt { get; set; }
     }
 }

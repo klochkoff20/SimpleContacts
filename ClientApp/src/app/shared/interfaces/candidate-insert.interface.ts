@@ -25,6 +25,7 @@ export interface CandidateInsert {
   status: number;
   source: number;
   skills: string;
+  skillsAsText: string;
   description: string;
   responsibleBy: string;
 }

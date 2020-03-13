@@ -1,0 +1,8 @@
+<div class="size">
+
+  <div *ngIf="avatarImg; then user else default"></div>
+
+  <ng-template #user><div class="avatar image" [appBackgroundImage]="avatarImg"></div></ng-template>
+  <ng-template #default><div class="avatar default"></div></ng-template>
+
+</div>

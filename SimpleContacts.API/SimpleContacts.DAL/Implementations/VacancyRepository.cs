@@ -17,11 +17,21 @@ namespace SimpleContacts.DAL.Implementations
 
         }
 
+        public async Task<Vacancy> GetVacancyById(Guid id)
+        {
+            var query = Entities
+                    .Where(e => e.Id == id)
+                    .IncludeOptimized(e => e.Department)
+                    .IncludeOptimized(e => e.CreatedUser);
+
+            var vacancy = await Task.Run(() => query.FirstOrDefault());
+            return vacancy;
+        }
+
         public async Task<IEnumerable<Vacancy>> GetAllVacanciesAsync()
         {
             var query = Entities
                     .IncludeOptimized(e => e.Department)
-                    .IncludeOptimized(e => e.Project)
                     .IncludeOptimized(e => e.ResponsibleUser);
 
             var vacancies = await Task.Run(() => query.ToList());
@@ -32,7 +42,6 @@ namespace SimpleContacts.DAL.Implementations
         {
             var query = Entities
                     .IncludeOptimized(e => e.Department)
-                    .IncludeOptimized(e => e.Project)
                     .IncludeOptimized(e => e.ResponsibleUser)
                     .Where(e => e.Status < VacancyStatus.Complete);
 

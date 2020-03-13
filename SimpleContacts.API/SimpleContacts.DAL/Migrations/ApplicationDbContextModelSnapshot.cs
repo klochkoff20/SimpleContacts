@@ -221,8 +221,11 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Skills")
-                        .HasColumnType("nvarchar(1024)")
-                        .HasMaxLength(1024);
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
+
+                    b.Property<string>("SkillsAsText")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Skype")
                         .HasColumnType("nvarchar(128)")
@@ -688,13 +691,13 @@ namespace SimpleContacts.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("DepartmentId")
+                    b.Property<Guid?>("DepartmentId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -702,7 +705,7 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
 
-                    b.Property<byte>("EmploymentType")
+                    b.Property<byte?>("EmploymentType")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Languages")
@@ -721,7 +724,7 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<int?>("NumberOfPositions")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Priority")
+                    b.Property<byte?>("Priority")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Project")
@@ -748,7 +751,7 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<int?>("SalaryMin")
                         .HasColumnType("int");
 
-                    b.Property<byte>("Status")
+                    b.Property<byte?>("Status")
                         .HasColumnType("tinyint");
 
                     b.Property<DateTime?>("TargetDate")
@@ -997,8 +1000,7 @@ namespace SimpleContacts.DAL.Migrations
                     b.HasOne("SimpleContacts.Entities.Entities.Department", "Department")
                         .WithMany("Vacancies")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("SimpleContacts.Entities.Entities.Project", null)
                         .WithMany("Vacancies")

@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { PagedListContent, ResponseResult, VacancyGeneralInfo, VacancyInsert } from '../shared/interfaces';
+import { PagedListContent, ResponseResult, Vacancy, VacancyGeneralInfo, VacancyInsert, VacancyUpdate } from '../shared/interfaces';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class VacanciesService {
   host = environment.url + '/vacancies';
 
   constructor(private http: HttpClient) {
+  }
+
+  public getVacancy(id: string) {
+    return this.http.get<ResponseResult<Vacancy>>(this.host + `/${id}`);
   }
 
   public getVacancies(pageIndex: number, pageSize: number, order: string, field: number, filter: string) {
@@ -19,6 +23,10 @@ export class VacanciesService {
 
   public createVacancy(vacancy: VacancyInsert) {
     return this.http.post<VacancyInsert>(this.host, vacancy);
+  }
+
+  public updateVacancy(id: string, vacancy: VacancyUpdate) {
+    return this.http.put(this.host + `/${id}`, vacancy);
   }
 
   public deleteVacancy(id: string) {

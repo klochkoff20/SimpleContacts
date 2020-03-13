@@ -1,3 +1,93 @@
+.icon-telephone {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb19;');
+}
+.icon-Home {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb18;');
+}
+.icon-yandex {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb17;');
+}
+.icon-viber {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb0c;');
+}
+.icon-skype1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb0d;');
+}
+.icon-behance1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb0e;');
+}
+.icon-google-plus1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb0f;');
+}
+.icon-linkedin1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb10;');
+}
+.icon-telegram1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb11;');
+}
+.icon-twitter1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb12;');
+}
+.icon-wordpress1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb13;');
+}
+.icon-facebook1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb14;');
+}
+.icon-technorati {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb15;');
+}
+.icon-instagram1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb16;');
+}
+.icon-funnelandvacancy {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb06;');
+}
+.icon-userperfomance {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb07;');
+}
+.icon-pipeline {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb08;');
+}
+.icon-userstatistics {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb09;');
+}
+.icon-candidatesources {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb0a;');
+}
+.icon-buildyourown {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb0b;');
+}
+.icon-attach1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb05;');
+}
+.icon-comment {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb04;');
+}
+.icon-delete {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeafd;');
+}
+.icon-attach {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeafe;');
+}
+.icon-info1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeaff;');
+}
+.icon-connection1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb00;');
+}
+.icon-email {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb01;');
+}
+.icon-pdf {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb02;');
+}
+.icon-print {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeb03;');
+}
+.icon-plus1 {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeafb;');
+}
 .icon-pen1 {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeaf7;');
 }
@@ -6,6 +96,9 @@
 }
 .icon-dialog {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe9e2;');
+}
+.icon-tag {
+  *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeafc;');
 }
 .icon-trash {
   *zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xeaf9;');

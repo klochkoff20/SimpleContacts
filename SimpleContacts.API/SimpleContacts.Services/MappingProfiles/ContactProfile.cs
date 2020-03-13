@@ -2,7 +2,6 @@
 using SimpleContacts.Entities.Entities;
 using SimpleContacts.Services.MappingProfiles.CustomConverters;
 using SimpleContacts.ViewModels;
-using System;
 
 namespace SimpleContacts.Services.MappingProfiles
 {

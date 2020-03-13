@@ -25,6 +25,16 @@ namespace SimpleContacts.DAL.Implementations
             return candidates;
         }
 
+        public async Task<Candidate> GetCandidateById(Guid id)
+        {
+            var query = Entities
+                   .Where(e => e.Id == id)
+                   .IncludeOptimized(e => e.ResponsibleUser);
+
+            var candidate = await Task.Run(() => query.FirstOrDefault());
+            return candidate;
+        }
+
         public async Task<IEnumerable<Candidate>> GetAllCandidatesSortedAsync(string order, CandidateSortField field, string filter)
         {
             var query = Entities

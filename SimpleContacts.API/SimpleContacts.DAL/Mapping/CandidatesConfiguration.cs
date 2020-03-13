@@ -29,6 +29,7 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<Candidate>().Property(e => e.Facebook).HasMaxLength(128);
             builder.Entity<Candidate>().Property(e => e.HomePage).HasMaxLength(256);
             builder.Entity<Candidate>().Property(e => e.Skills).HasMaxLength(1024);
+            builder.Entity<Candidate>().Property(e => e.Skills).HasMaxLength(2048);
             builder.Entity<Candidate>().Property(e => e.Description).HasMaxLength(2048);
 
             builder.Entity<Skill>().Property(e => e.Id).IsRequired();

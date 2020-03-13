@@ -52,12 +52,12 @@ export class CreateVacancyComponent implements OnInit {
       project: [ '', [ Validators.maxLength(128) ] ],
       priority: [ '', [  ] ],
       employmentType: [ '', [  ] ],
-      location: [ '', [ Validators.maxLength(128) ] ],
+      location: [ 'Lviv', [ Validators.maxLength(128) ] ],
       languages: [ '', [ Validators.maxLength(128) ] ],
       salaryMin: [ '', [ Validators.min(1) ] ],
       salaryMax: [ '', [ Validators.min(1) ] ],
       targetDate: [ null, [  ] ],
-      numberOfPositions: [ '', [ Validators.min(0) ] ],
+      numberOfPositions: [ 1, [ Validators.min(0) ] ],
       requiredExperience: [ '', [ Validators.min(0) ] ],
       requirements: [ '', [ Validators.maxLength(2048) ] ],
       description: [ '', [ Validators.maxLength(2048) ] ]
@@ -67,7 +67,7 @@ export class CreateVacancyComponent implements OnInit {
   createVacancy() {
     this.newVacancy = {
       name: this.createVacancyForm.get('name').value,
-      department: this.createVacancyForm.get('department').value,
+      departmentId: this.createVacancyForm.get('department').value,
       project: this.createVacancyForm.get('project').value,
       priority: +this.createVacancyForm.get('priority').value,
       employmentType: +this.createVacancyForm.get('employmentType').value,

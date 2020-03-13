@@ -15,11 +15,11 @@ namespace SimpleContacts.Entities.Entities
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid DepartmentId { get; set; }
+        public Guid? DepartmentId { get; set; }
         public string Project { get; set; }
-        public VacancyPriority Priority { get; set; }
+        public VacancyPriority? Priority { get; set; }
         public DateTime? TargetDate { get; set; }
-        public EmploymentType EmploymentType { get; set; }
+        public EmploymentType? EmploymentType { get; set; }
         public string Location { get; set; }
         public string Languages { get; set; }
         public int? SalaryMin { get; set; }
@@ -27,13 +27,13 @@ namespace SimpleContacts.Entities.Entities
         public int? RequiredExperience { get; set; }
         public int? NumberOfPositions { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         public string ResponsibleBy { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string Requirements { get; set; }
         public string Description { get; set; }
-        public VacancyStatus Status { get; set; }
+        public VacancyStatus? Status { get; set; }
 
         public virtual Department Department { get; set; }
         public virtual User CreatedUser { get; set; }

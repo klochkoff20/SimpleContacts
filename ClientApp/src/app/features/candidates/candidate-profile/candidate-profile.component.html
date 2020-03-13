@@ -1,0 +1,193 @@
+<div class="container">
+  <div class="heading">
+    <app-avatar class="avatar large"></app-avatar>
+
+    <div class="basic-info-container">
+      <div class="name-container">
+        <h1 class="name">{{ candidate?.firstName }} {{ candidate?.lastName }}</h1>
+        <span [ngSwitch]="statuses[candidate?.status]?.name">
+            <span class="status" *ngSwitchCase="'Active'"
+                  style="background-color: #0CC89C">{{ statuses[candidate?.status]?.name }}</span>
+            <span class="status" *ngSwitchCase="'Not interested'"
+                  style="background-color: #A0ACBD">{{ statuses[candidate?.status]?.name }}</span>
+            <span class="status" *ngSwitchCase="'Passive search'"
+                  style="background-color: #E29E21">{{ statuses[candidate?.status]?.name }}</span>
+            <span class="status" *ngSwitchCase="'Freelancer'"
+                  style="background-color: #966DB2">{{ statuses[candidate?.status]?.name }}</span>
+            <span class="status" *ngSwitchCase="'Deleted'"
+                  style="background-color: #000000">{{ statuses[candidate?.status]?.name }}</span>
+          </span>
+      </div>
+
+      <h3 class="position">{{ candidate?.desiredPosition }}</h3>
+
+      <div class="adding-info">
+        <span> Added by {{ candidate?.responsibleUser?.name }} | </span>
+        <span>{{ formatDate(candidate?.addingDate) }} | </span>
+        <span>{{ sources[candidate?.source]?.name }}</span>
+      </div>
+
+      <div class="heading-buttons">
+        <button mat-flat-button>
+          <mat-icon class="icon icon-vacancies"></mat-icon>
+          <span>  Add to vacancy</span>
+        </button>
+
+        <button mat-flat-button>
+          <mat-icon class="icon icon-comment"></mat-icon>
+          <span>  Add comment</span>
+        </button>
+
+        <button mat-flat-button>
+          <mat-icon class="icon icon-email"></mat-icon>
+          <span>  Send email</span>
+        </button>
+
+        <button mat-flat-button>
+          <mat-icon class="icon icon-pen1"></mat-icon>
+          <span>  Edit profile</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="quick-actions">
+      <button mat-icon-button>
+        <mat-icon class="icon icon-print"></mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon class="icon icon-pdf"></mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon class="icon icon-connection1"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="tabs-container">
+    <mat-tab-group>
+      <mat-tab label="General information">
+        <div class="tab-wrapper">
+
+          <div class="row">
+            <div class="about">
+              <h3 class="frame-heading">About</h3>
+
+              <div class="field-container">
+                <span class="field-name">Birth date</span>
+                <span> {{ formatDate(candidate?.dateOfBirth) }}</span>
+              </div>
+
+              <div class="field-container">
+                <span class="field-name">Location | Ready to relocate</span>
+                <span>{{ candidate?.location }} | {{ candidate?.readyToRelocate }}</span>
+              </div>
+
+              <div class="field-container">
+                <span class="field-name">Education</span>
+                <span>{{ candidate?.education }}</span>
+              </div>
+
+              <div class="field-container">
+                <span class="field-name">Industry</span>
+                <span>{{ candidate?.industry }}</span>
+              </div>
+
+              <div class="field-container">
+                <span class="field-name">Experience</span>
+                <span>{{ experience[candidate?.experience]?.name }}</span>
+              </div>
+
+              <div class="field-container">
+                <span class="field-name">Current place of work | Position</span>
+                <span>{{ candidate?.currentWork }} | {{ candidate?.currentPosition }}</span>
+              </div>
+
+              <div class="field-container">
+                <span class="field-name">Desired salary</span>
+                <span>{{ candidate?.desiredSalary | currency }}</span>
+              </div>
+            </div>
+
+            <div class="contacts">
+              <h3 class="frame-heading">Contacts</h3>
+
+              <span class="icon icon-telephone">
+                <span class="contact">{{ candidate?.phoneNumber }}</span>
+              </span>
+
+              <span class="icon icon-yandex">
+                <span class="contact">{{ candidate?.email }}</span>
+              </span>
+
+              <span class="icon icon-skype1">
+                <span class="contact">{{ candidate?.skype }}</span>
+              </span>
+
+              <span class="icon icon-linkedin1">
+                <span class="contact">{{ candidate?.linkedIn }}</span>
+              </span>
+
+              <span class="icon icon-telegram1">
+                <span class="contact">{{ candidate?.telegram }}</span>
+              </span>
+
+              <span class="icon icon-facebook1">
+               <span class="contact">{{ candidate?.facebook }}</span>
+              </span>
+
+              <span class="icon icon-Home">
+                <span class="contact">{{ candidate?.homePage }}</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="skills">
+              <h3 class="frame-heading">Skills</h3>
+              <ul class="skills-list" *ngFor="let skill of candidateSkills">
+                <li>{{ skill }}</li>
+              </ul>
+            </div>
+
+            <div class="skills">
+              <h3 class="frame-heading">Skills as text</h3>
+              <span>{{ candidate?.skillsAsText }}</span>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="description">
+              <h3 class="frame-heading">Description</h3>
+              <span>{{ candidate?.description }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Evaluate candidate">
+        <div>
+          <h3 class="position">{{ candidate?.desiredPosition }}</h3>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Tasks">
+        <div>
+
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Activity log">
+        <div>
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+
+  </div>
+
+
+</div>

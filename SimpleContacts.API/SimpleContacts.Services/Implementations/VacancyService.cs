@@ -69,7 +69,7 @@ namespace SimpleContacts.Services.Implementations
         public async Task<ResponseMessageResult<VacancyViewModel>> GetVacancyById(Guid id)
         {
             var response = new ResponseMessageResult<VacancyViewModel>();
-            var vacancy = await _vacancyRepository.GetAsync(id);
+            var vacancy = await _vacancyRepository.GetVacancyById(id);
             if(vacancy == null)
             {
                 response.SetStatus(HttpStatusCode.NotFound, $"Vacancy [{id}] was not found!");
@@ -80,7 +80,7 @@ namespace SimpleContacts.Services.Implementations
             return response;
         }
 
-        public async Task<BaseResponseMessageResult> UpdateVacancyAsync(Guid id, VacancyViewModel vacancy)
+        public async Task<BaseResponseMessageResult> UpdateVacancyAsync(Guid id, VacancyUpdateViewModel vacancy)
         {
             var response = new BaseResponseMessageResult();
 

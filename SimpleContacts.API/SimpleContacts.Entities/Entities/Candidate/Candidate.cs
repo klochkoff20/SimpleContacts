@@ -42,6 +42,7 @@ namespace SimpleContacts.Entities.Entities
         public CandidateStatus? Status { get; set; }
         public CandidateSource? Source { get; set; }
         public string Skills { get; set; }
+        public string SkillsAsText { get; set; }
         public string Description { get; set; }
         public DateTime? AddingDate { get; set; } 
         public DateTime? UpdateDate { get; set; }

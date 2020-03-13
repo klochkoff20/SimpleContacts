@@ -1,0 +1,62 @@
+$extra-large: 72px;
+$large: 140px;
+$medium: 48px;
+$login: 40px;
+$small: 32px;
+$very-small: 24px;
+$extra-small: 18px;
+
+:host {
+  .size {
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &.extra-large .size {
+    width: $extra-large;
+    height: $extra-large;
+  }
+
+  &.large .size {
+    width: $large;
+    height: $large;
+  }
+
+  &.medium .size {
+    height: $medium;
+    width: $medium;
+  }
+
+  &.small .size {
+    height: $small;
+    width: $small;
+  }
+
+  &.very-small .size {
+    height: $very-small;
+    width: $very-small;
+  }
+
+  &.extra-small .size {
+    height: $extra-small;
+    width: $extra-small;
+  }
+
+  &.login .size {
+    height: $login;
+    width: $login;
+  }
+
+  .image {
+    height: 100%;
+    width: 100%;
+  }
+
+  .default {
+    height: 100%;
+    width: 100%;
+    background: url("../../../../assets/images/default-avatar.png") no-repeat;
+    background-size: 100% 100%;
+  }
+}

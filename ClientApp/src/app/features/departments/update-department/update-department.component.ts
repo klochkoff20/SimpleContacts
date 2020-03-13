@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { BasicInfo, Department, DepartmentInsert } from '../../../shared/interfaces';
+import { BasicInfo, Department, DepartmentUpdate } from '../../../shared/interfaces';
 import { DEPARTMENT_STATUSES, LOCATIONS } from '../../../shared/constants';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
@@ -14,7 +14,7 @@ export class UpdateDepartmentComponent implements OnInit {
   departmentStatuses: BasicInfo<number>[] = DEPARTMENT_STATUSES;
   locations: string[] = LOCATIONS;
   updateDepartmentForm: FormGroup;
-  newDepartment: DepartmentInsert;
+  newDepartment: DepartmentUpdate;
   location: string;
   errorMessage = '';
 

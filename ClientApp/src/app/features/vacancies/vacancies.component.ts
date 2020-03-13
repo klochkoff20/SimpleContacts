@@ -10,6 +10,7 @@ import { CreateVacancyComponent } from './create-vacancy/create-vacancy.componen
 import { VACANCY_STATUSES } from '../../shared/constants';
 import { vacanciesColumn } from '../../shared/enums';
 import { DeleteVacancyComponent } from './delete-vacancy/delete-vacancy.component';
+import { UpdateVacancyComponent } from './update-vacancy/update-vacancy.component';
 
 @Component({
   selector: 'app-vacancies',
@@ -88,7 +89,22 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  deleteVacancy(vacancy) {
+  updateVacancy(vacancy: VacancyGeneralInfo) {
+    this.vacanciesService.getVacancy(vacancy.id).subscribe(response => {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = response.content;
+
+      const dialogRef = this.dialog.open(UpdateVacancyComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+        this.vacanciesChanged.emit();
+      });
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  deleteVacancy(vacancy: VacancyGeneralInfo) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.data = vacancy;

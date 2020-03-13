@@ -1,6 +1,8 @@
 import { BasicInfo } from './basic-info.interface';
 
-export interface DepartmentGeneralInfo extends BasicInfo<string> {
+export interface DepartmentGeneralInfo {
+  id: string;
+  name: string;
   status: number;
   vacancies: BasicInfo<string>[];
   projects: BasicInfo<string>[];
