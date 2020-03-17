@@ -31,11 +31,11 @@ export class CreateDepartmentComponent implements OnInit {
   initCreateDepartmentForm(): FormGroup {
     return this.formBuilder.group({
       name: [ '', [ Validators.required, Validators.pattern('^(?!\\s*$).+'), Validators.maxLength(64) ] ],
-      location: [ '', [ Validators.required, Validators.pattern('^(?!\\s*$).+'), Validators.maxLength(64) ] ],
+      location: [ 'Lviv', [ Validators.required, Validators.pattern('^(?!\\s*$).+'), Validators.maxLength(64) ] ],
       email: [ '', [ Validators.email, Validators.maxLength(128) ] ],
       phoneNumber: [ '', [ Validators.maxLength(32) ] ],
       skype: [ '', [ Validators.maxLength(128) ] ],
-      status: [ '', [  ] ],
+      status: [ 0, [  ] ],
       description: [ '', [ Validators.maxLength(2048) ] ]
     });
   }

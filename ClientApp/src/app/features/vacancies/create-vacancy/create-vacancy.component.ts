@@ -16,7 +16,6 @@ import { EMPLOYMENT_TYPES, LANGUAGES, VACANCY_PRIORITIES } from '../../../shared
 export class CreateVacancyComponent implements OnInit {
   priorities: BasicInfo<number>[] = VACANCY_PRIORITIES;
   employmentTypes: BasicInfo<number>[] = EMPLOYMENT_TYPES;
-  languages: string[] = LANGUAGES;
   departments: DepartmentGeneralInfo[] = [];
   projects: string[] = [];
 
@@ -50,13 +49,12 @@ export class CreateVacancyComponent implements OnInit {
       name: [ '', [ Validators.required, Validators.maxLength(128) ] ],
       department: [ '', [ Validators.required ] ],
       project: [ '', [ Validators.maxLength(128) ] ],
-      priority: [ '', [  ] ],
-      employmentType: [ '', [  ] ],
+      priority: [ 1, [  ] ],
+      employmentType: [ 0, [  ] ],
       location: [ 'Lviv', [ Validators.maxLength(128) ] ],
-      languages: [ '', [ Validators.maxLength(128) ] ],
-      salaryMin: [ '', [ Validators.min(1) ] ],
-      salaryMax: [ '', [ Validators.min(1) ] ],
-      targetDate: [ null, [  ] ],
+      salaryMin: [ 0, [ Validators.min(0) ] ],
+      salaryMax: [ 0, [ Validators.min(0) ] ],
+      targetDate: [ null, [ Validators.required ] ],
       numberOfPositions: [ 1, [ Validators.min(0) ] ],
       requiredExperience: [ '', [ Validators.min(0) ] ],
       requirements: [ '', [ Validators.maxLength(2048) ] ],
@@ -72,7 +70,6 @@ export class CreateVacancyComponent implements OnInit {
       priority: +this.createVacancyForm.get('priority').value,
       employmentType: +this.createVacancyForm.get('employmentType').value,
       location: this.createVacancyForm.get('location').value,
-      languages: this.createVacancyForm.get('languages').value.toString(),
       salaryMin: +this.createVacancyForm.get('salaryMin').value,
       salaryMax: +this.createVacancyForm.get('salaryMax').value,
       targetDate: this.createVacancyForm.get('targetDate').value,
@@ -83,7 +80,7 @@ export class CreateVacancyComponent implements OnInit {
       createdBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
       responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
       updatedBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
-      status: 2
+      status: 0
     };
 
     if (this.createVacancyForm.valid) {

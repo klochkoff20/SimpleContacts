@@ -1,7 +1,6 @@
 @import '../../../../styles/color-palette';
 @import '../../../../styles/font-sizes';
-
-$border-radius: 0;
+@import '../../../../styles/mixins';
 
 .mat-flat-button {
   border-radius: 0;
@@ -21,23 +20,18 @@ $border-radius: 0;
     display: flex;
     margin: 20px 20px 0;
     padding: 20px;
-    border-top-left-radius: $border-radius;
-    border-top-right-radius: $border-radius;
     background-color: $white-color;
     justify-content: space-between;
-
 
     .basic-info-container {
       width: 100%;
       height: 140px;
       margin: 0 20px;
-      display: flex;
-      flex-direction: column;
+      @include flex-column-view;
       justify-content: space-between;
 
       .name-container {
-        display: flex;
-        flex-direction: row;
+        @include flex-row-view;
         align-items: center;
 
         .status {
@@ -78,20 +72,15 @@ $border-radius: 0;
     margin: 0 20px;
 
     ::ng-deep.mat-tab-header {
-      border-bottom-left-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
       background-color: $white-color;
     }
 
     ::ng-deep.mat-tab-body {
       margin-top: 20px;
-      border-radius: $border-radius;
-      //background-color: $white-color;
     }
 
     .tab-wrapper {
-      display: flex;
-      flex-direction: column;
+      @include flex-column-view;
 
       .row {
         margin-bottom: 20px;
@@ -100,9 +89,8 @@ $border-radius: 0;
 
         .about, .contacts {
           padding: 20px;
-          display: flex;
-          flex-direction: column;
           background-color: $white-color;
+          @include flex-column-view;
         }
 
         .about {
@@ -110,9 +98,8 @@ $border-radius: 0;
           margin-right: 20px;
 
           .field-container {
-            display: flex;
-            flex-direction: column;
             margin-bottom: 10px;
+            @include flex-column-view;
 
             .field-name {
               font-weight: 600;
@@ -124,11 +111,10 @@ $border-radius: 0;
           width: 30%;
 
           .icon {
-            margin-bottom: 8px;
-            vertical-align: center;
-            line-height: 20px;
             display: flex;
             align-items: center;
+            margin-bottom: 8px;
+            vertical-align: center;
 
             &::before {
               margin-right: 20px;
@@ -149,11 +135,6 @@ $border-radius: 0;
 
           &:first-child {
             margin-right: 20px;
-          }
-
-          .skills-list {
-            padding: 0;
-            list-style: none;
           }
         }
 

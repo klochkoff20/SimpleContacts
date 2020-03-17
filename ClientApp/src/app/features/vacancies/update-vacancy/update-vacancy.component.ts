@@ -14,13 +14,11 @@ import { DepartmentsService } from '../../../services/departments.service';
 export class UpdateVacancyComponent implements OnInit {
   priorities: BasicInfo<number>[] = VACANCY_PRIORITIES;
   employmentTypes: BasicInfo<number>[] = EMPLOYMENT_TYPES;
-  languages: string[] = LANGUAGES;
   departments: DepartmentGeneralInfo[] = [];
   projects: string[] = [];
 
   updateVacancyForm: FormGroup;
   newVacancy: VacancyUpdate;
-  vacancyLanguages: string[];
   project: string;
   errorMessage = '';
 
@@ -34,7 +32,6 @@ export class UpdateVacancyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.vacancyLanguages = this.vacancy.languages.split(',');
     this.project = this.vacancy.project;
 
     this.departmentService.getAllDepartments().subscribe(response => {
@@ -58,7 +55,6 @@ export class UpdateVacancyComponent implements OnInit {
       priority: [ this.vacancy.priority, [  ] ],
       employmentType: [ this.vacancy.employmentType, [  ] ],
       location: [ this.vacancy.location, [ Validators.maxLength(128) ] ],
-      languages: [ this.vacancyLanguages, [ Validators.maxLength(128) ] ],
       salaryMin: [ this.vacancy.salaryMin, [ Validators.min(0) ] ],
       salaryMax: [ this.vacancy.salaryMax, [ Validators.min(0) ] ],
       targetDate: [ this.vacancy.targetDate, [  ] ],
@@ -77,7 +73,6 @@ export class UpdateVacancyComponent implements OnInit {
       priority: +this.updateVacancyForm.get('priority').value,
       employmentType: +this.updateVacancyForm.get('employmentType').value,
       location: this.updateVacancyForm.get('location').value,
-      languages: this.updateVacancyForm.get('languages').value.toString(),
       salaryMin: +this.updateVacancyForm.get('salaryMin').value,
       salaryMax: +this.updateVacancyForm.get('salaryMax').value,
       targetDate: this.updateVacancyForm.get('targetDate').value,
@@ -87,8 +82,7 @@ export class UpdateVacancyComponent implements OnInit {
       description: this.updateVacancyForm.get('description').value,
       createdBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
       responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
-      updatedBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
-      status: 2
+      updatedBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69'
     };
 
     if (this.updateVacancyForm.valid) {

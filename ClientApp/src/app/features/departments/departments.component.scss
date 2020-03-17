@@ -1,5 +1,6 @@
 @import "../../../styles/color-palette";
 @import "../../../styles/font-sizes";
+@import "../../../styles/classes";
 @import "../../../styles/mixins";
 
 .icon {
@@ -15,8 +16,7 @@
   margin: 20px 60px;
 
   .heading {
-    display: flex;
-    flex-direction: row;
+    @include flex-row-view;
     align-items: center;
     margin: 20px 0;
 
@@ -39,8 +39,7 @@
   }
 
   .search {
-    display: flex;
-    flex-direction: row;
+    @include flex-row-view;
     justify-content: space-between;
     align-items: center;
 
@@ -49,41 +48,13 @@
     }
   }
 
-  .mat-elevation-z8 {
-    position: relative;
-    min-height: 256px;
-
-    .loading-shade {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 56px;
-      right: 0;
-      background: rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .error-message {
-        color: $red-color;
-        font-size: $font-size-h3;
-        font-weight: 600;
-        text-align: center;
-        line-height: 36px;
-      }
-    }
-  }
-
   .table-container {
     position: relative;
-    min-height: 200px;
-    max-height: 636px;
     overflow: auto;
+    @include set-min-max-height(400px, 636px);
 
     .table {
       width: 100%;
-
 
       .mat-cell {
         overflow: hidden;
@@ -93,35 +64,28 @@
 
       .mat-column-id {
         padding-left: 20px;
-        min-width: 30px;
-        max-width: 70px;
+        @include set-min-max-width(30px, 70px);
       }
 
       .mat-column-name {
-        min-width: 140px;
-        max-width: 250px;
+        @include set-min-max-width(140px, 250px);
       }
 
       .mat-column-status {
-        min-width: 120px;
-        max-width: 160px;
+        @include set-min-max-width(120px, 160px);
       }
 
       .mat-column-vacancies,
       .mat-column-projects {
-        min-width: 200px;
-        max-width: 280px;
+        @include set-min-max-width(200px, 280px);
       }
 
       .mat-column-responsibleUser {
-        min-width: 120px;
-        max-width: 200px;
+        @include set-min-max-width(120px, 200px);
       }
 
       .mat-column-contacts {
-        padding-right: 20px;
-        min-width: 140px;
-        max-width: 220px;
+        @include set-min-max-width(140px, 220px);
       }
 
       .mat-column-actions {
@@ -134,8 +98,4 @@
       }
     }
   }
-}
-
-::ng-deep.mat-form-field-infix {
-  width: 120px !important;
 }

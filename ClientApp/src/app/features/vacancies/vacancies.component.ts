@@ -15,7 +15,7 @@ import { UpdateVacancyComponent } from './update-vacancy/update-vacancy.componen
 @Component({
   selector: 'app-vacancies',
   templateUrl: './vacancies.component.html',
-  styleUrls: [ './vacancies.component.scss' ]
+  styleUrls: [ './vacancies.component.scss', './vacancies.component.media.scss' ]
 })
 export class VacanciesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
@@ -104,6 +104,14 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
     });
   }
 
+  updateStatus(event, vacancy) {
+    this.vacanciesService.updateVacancyStatus(vacancy.id, event.value).subscribe(response => {
+      this.vacanciesChanged.emit();
+    }, error => {
+      console.log(error);
+    });
+  }
+
   deleteVacancy(vacancy: VacancyGeneralInfo) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -117,7 +125,7 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
+    if ((event.target as HTMLInputElement).value.trim() !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
     } else {
       this.filter = '%20';
@@ -128,5 +136,17 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
 
   formatDate(date) {
     return moment(date).format('DD/MM/YYYY');
+  }
+
+  countDays(date) {
+    const difference = moment(date).diff(moment(), 'days');
+
+    if (difference > 7) {
+      return { value: 0, text: `${difference} days left` };
+    } else if (difference > 0) {
+      return { value: 1, text: `${difference} days left` };
+    }
+
+    return { value: 2, text: `${-difference} days passed` };
   }
 }

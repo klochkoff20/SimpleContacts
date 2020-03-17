@@ -4,11 +4,8 @@ namespace SimpleContacts.Common.Enums
 {
     public enum VacancyStatus : byte
     {
-        [Description("New")]
-        New = 0,
-
         [Description("In Progress")]
-        InProgress,
+        InProgress = 0,
 
         [Description("On Hold")]
         OnHold,

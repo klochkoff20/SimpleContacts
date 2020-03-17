@@ -1,19 +1,44 @@
 @import 'color-palette';
+@import 'font-sizes';
 
-.webkit-pretty-scroll {
-  &::-webkit-scrollbar-track {
-    //border-radius: 5px;
-    background-color: $light-grey-color;
+@mixin set-min-max-width($min, $max) {
+  min-width: $min;
+  max-width: $max;
+}
+
+@mixin set-min-max-height($min, $max) {
+  min-height: $min;
+  max-height: $max;
+}
+
+@mixin flex-column-view {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-row-view {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@mixin mat-radio-group-in-two-rows {
+  .mat-form-field {
+    width: 100%;
   }
 
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background-color: $light-grey-color;
+  .mat-radio-button {
+    width: 48%;
   }
 
-  &::-webkit-scrollbar-thumb {
-    //border-radius: 5px;
-    background-color: $light-blue-color;
+  ::ng-deep.mat-radio-label-content {
+    width: 100%;
   }
 }
+
+

@@ -5,7 +5,6 @@ export interface VacancyUpdate {
   priority?: number;
   employmentType: number;
   location: string;
-  languages: string;
   salaryMin?: number;
   salaryMax?: number;
   targetDate?: Date;

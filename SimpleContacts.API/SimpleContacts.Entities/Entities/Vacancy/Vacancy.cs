@@ -21,7 +21,6 @@ namespace SimpleContacts.Entities.Entities
         public DateTime? TargetDate { get; set; }
         public EmploymentType? EmploymentType { get; set; }
         public string Location { get; set; }
-        public string Languages { get; set; }
         public int? SalaryMin { get; set; }
         public int? SalaryMax { get; set; }
         public int? RequiredExperience { get; set; }

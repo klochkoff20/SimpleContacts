@@ -9,7 +9,6 @@ export interface Vacancy {
   targetDate: Date;
   employmentType?: number;
   location: string;
-  languages: string;
   salaryMin?: number;
   salaryMax?: number;
   requiredExperience?: number;

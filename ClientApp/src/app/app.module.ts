@@ -29,7 +29,7 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { CreateVacancyComponent } from './features/vacancies/create-vacancy/create-vacancy.component';
 import { CreateCandidateComponent } from './features/candidates/create-candidate/create-candidate.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomChipListComponent } from './shared/components/custom-chip-list/custom-chip-list.component';
 import { CustomAutocompleteComponent } from './shared/components/custom-autocomplete/custom-autocomplete.component';
 import { CreateDepartmentComponent } from './features/departments/create-department/create-department.component';
@@ -42,7 +42,7 @@ import { UpdateVacancyComponent } from './features/vacancies/update-vacancy/upda
 import { CandidateProfileComponent } from './features/candidates/candidate-profile/candidate-profile.component';
 import { AvatarComponent } from './shared/components/avatar/avatar.component';
 import { BackgroundImageDirective } from './shared/directives/background-image/background-image.directive';
-import { DepartmentProfileComponent } from './department-profile/department-profile.component';
+import { DepartmentProfileComponent } from './features/departments/department-profile/department-profile.component';
 
 
 
@@ -85,31 +85,32 @@ const appRoutes: Routes = [
     BackgroundImageDirective,
     DepartmentProfileComponent
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    FontAwesomeModule,
-    RouterModule.forRoot(appRoutes),
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatAutocompleteModule,
-    MatRadioModule,
-    MatChipsModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatTabsModule
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        FontAwesomeModule,
+        RouterModule.forRoot(appRoutes),
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatAutocompleteModule,
+        MatRadioModule,
+        MatChipsModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatTabsModule,
+        FormsModule
+    ],
   entryComponents: [
     CreateVacancyComponent,
     CreateCandidateComponent,

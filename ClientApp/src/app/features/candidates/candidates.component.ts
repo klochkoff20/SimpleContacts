@@ -1,21 +1,21 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort } from '@angular/material';
+import { Router } from '@angular/router';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 import * as moment from 'moment';
 
 import { candidatesColumn } from '../../shared/enums';
+import { CandidateGeneralInfo } from '../../shared/interfaces';
 import { CandidatesService } from '../../services/candidates.service';
 import { CreateCandidateComponent } from './create-candidate/create-candidate.component';
-import { BasicInfo, CandidateGeneralInfo } from '../../shared/interfaces';
 import { DeleteCandidateComponent } from './delete-candidate/delete-candidate.component';
 import { UpdateCandidateComponent } from './update-candidate/update-candidate.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidates',
   templateUrl: './candidates.component.html',
-  styleUrls: [ './candidates.component.scss' ]
+  styleUrls: [ './candidates.component.scss', './candidates.component.media.scss' ]
 })
 export class CandidatesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
@@ -125,9 +125,8 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
     });
   }
 
-
   applyFilter(event: Event) {
-    if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
+    if ((event.target as HTMLInputElement).value.trim() !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
     } else {
       this.filter = '%20';

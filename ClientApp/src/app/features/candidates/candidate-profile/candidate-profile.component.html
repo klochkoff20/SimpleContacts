@@ -146,9 +146,9 @@
           <div class="row">
             <div class="skills">
               <h3 class="frame-heading">Skills</h3>
-              <ul class="skills-list" *ngFor="let skill of candidateSkills">
-                <li>{{ skill }}</li>
-              </ul>
+              <mat-chip-list>
+                <mat-chip *ngFor="let skill of candidateSkills">{{ skill }}</mat-chip>
+              </mat-chip-list>
             </div>
 
             <div class="skills">
@@ -167,27 +167,11 @@
         </div>
       </mat-tab>
 
-      <mat-tab label="Evaluate candidate">
-        <div>
-          <h3 class="position">{{ candidate?.desiredPosition }}</h3>
-        </div>
-      </mat-tab>
-
-      <mat-tab label="Tasks">
-        <div>
-
-        </div>
-      </mat-tab>
-
       <mat-tab label="Activity log">
         <div>
 
         </div>
       </mat-tab>
     </mat-tab-group>
-
-
   </div>
-
-
 </div>

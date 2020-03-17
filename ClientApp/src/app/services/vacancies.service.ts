@@ -29,6 +29,10 @@ export class VacanciesService {
     return this.http.put(this.host + `/${id}`, vacancy);
   }
 
+  public updateVacancyStatus(id: string, status: number) {
+    return this.http.put(this.host + `/${id}/${status}`, status);
+  }
+
   public deleteVacancy(id: string) {
     return this.http.delete(this.host + `/${id}`);
   }

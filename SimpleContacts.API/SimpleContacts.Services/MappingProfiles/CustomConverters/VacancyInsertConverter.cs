@@ -19,7 +19,6 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
                 TargetDate = source.TargetDate,
                 EmploymentType = source.EmploymentType,
                 Location = source.Location,
-                Languages = source.Languages,
                 SalaryMin = source.SalaryMin,
                 SalaryMax = source.SalaryMax,
                 RequiredExperience = source.RequiredExperience,

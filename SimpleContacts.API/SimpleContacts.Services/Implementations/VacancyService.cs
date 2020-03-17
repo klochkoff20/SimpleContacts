@@ -85,7 +85,7 @@ namespace SimpleContacts.Services.Implementations
             var response = new BaseResponseMessageResult();
 
             var oldVacancy = await _vacancyRepository.GetAsync(id);
-            if (vacancy == null)
+            if (oldVacancy == null)
             {
                 response.SetStatus(HttpStatusCode.NotFound, $"Vacancy [{id}] was not found!");
                 return response;
@@ -96,6 +96,25 @@ namespace SimpleContacts.Services.Implementations
             await _unitOfWork.SaveChangesAsync();
 
             response.Message = $"Vacancy [{id}] was updated!";
+            return response;
+        }
+
+        public async Task<BaseResponseMessageResult> UpdateVacancyStatusAsync(Guid id, VacancyStatus status)
+        {
+            var response = new BaseResponseMessageResult();
+
+            var vacancy = await _vacancyRepository.GetAsync(id);
+            if(vacancy == null)
+            {
+                response.SetStatus(HttpStatusCode.NotFound, $"Vacancy [{id}] was not found!");
+                return response;
+            }
+            
+            vacancy.Status = status;
+            _vacancyRepository.Update(vacancy);
+            await _unitOfWork.SaveChangesAsync();
+
+            response.Message = $"Vacancy [{id}] status was updated!";
             return response;
         }
 

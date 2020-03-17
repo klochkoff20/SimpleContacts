@@ -1,5 +1,6 @@
 @import "../../../styles/color-palette";
 @import "../../../styles/font-sizes";
+@import "../../../styles/classes";
 @import "../../../styles/mixins";
 
 .icon {
@@ -15,8 +16,7 @@
   margin: 20px 60px;
 
   .heading {
-    display: flex;
-    flex-direction: row;
+    @include flex-row-view;
     align-items: center;
     margin: 20px 0;
 
@@ -39,48 +39,24 @@
   }
 
   .search {
-    display: flex;
-    flex-direction: row;
+    @include flex-row-view;
     justify-content: space-between;
     align-items: center;
+
+    .mat-form-field {
+      width: 300px;
+    }
 
     .advanced-search {
 
     }
   }
 
-  .mat-elevation-z8 {
-    position: relative;
-    min-height: 256px;
-    background-color: $grey-color;
-
-    .loading-shade {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 56px;
-      right: 0;
-      background: rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .error-message {
-        color: $red-color;
-        font-size: $font-size-h3;
-        font-weight: 600;
-        text-align: center;
-        line-height: 36px;
-      }
-    }
-  }
-
   .table-container {
     position: relative;
-    min-height: 200px;
-    max-height: 636px;
     overflow: auto;
+    @include set-min-max-height(400px, 636px);
+
 
     .table {
       width: 100%;
@@ -93,35 +69,29 @@
 
       .mat-column-id {
         padding-left: 20px;
-        min-width: 30px;
-        max-width: 50px;
+        @include set-min-max-width(30px, 50px);
       }
 
       .mat-column-name {
-        min-width: 150px;
-        max-width: 180px;
+        @include set-min-max-width(150px, 180px);
       }
 
       .mat-column-position,
       .mat-column-skills {
-        min-width: 200px;
-        max-width: 250px;
+        @include set-min-max-width(170px, 250px);
       }
 
       .mat-column-responsibleUser {
-        min-width: 120px;
-        max-width: 200px;
+        @include set-min-max-width(120px, 200px);
       }
 
       .mat-column-addingDate,
       .mat-column-addingSource {
-        min-width: 100px;
-        max-width: 150px;
+        @include set-min-max-width(100px, 150px);
       }
 
       .mat-column-lastActivity {
-        min-width: 250px;
-        max-width: 300px;
+        @include set-min-max-width(200px, 300px);
       }
 
       .mat-column-actions {
@@ -135,9 +105,3 @@
     }
   }
 }
-
-::ng-deep.mat-form-field-infix {
-  width: 120px;
-}
-
-

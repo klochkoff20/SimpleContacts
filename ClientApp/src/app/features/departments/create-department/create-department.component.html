@@ -10,10 +10,11 @@
              formControlName="name">
     </mat-form-field>
 
-    <app-custom-autocomplete placeholder="Location"
-                             [autocompleteValues]="locations"
-                             formControlName="location">
-    </app-custom-autocomplete>
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <input matInput
+             formControlName="location">
+    </mat-form-field>
 
     <mat-form-field>
       <mat-label>Phone number</mat-label>

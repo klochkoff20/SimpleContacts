@@ -22,8 +22,12 @@ export class DeleteDepartmentComponent {
     this.departmentService.deleteDepartment(this.department.id).subscribe(response => {
       this.matDialogRef.close();
     }, error => {
+      if (error.status === 500) {
+        this.errorMessage = 'Close all the vacancies before deleting the department!';
+      } else {
+        this.errorMessage = error.statusText;
+      }
       console.log(error);
-      this.errorMessage = error.statusText;
     });
   }
 }

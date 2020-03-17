@@ -60,6 +60,14 @@ namespace SimpleContacts.Web.Controllers
             return await _vancancyService.UpdateVacancyAsync(id, vacancy);
         }
 
+        [HttpPut("{id:Guid}/{status:int}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<BaseResponseMessageResult>> UpdateStatus(Guid id, VacancyStatus status)
+        {
+            return await _vancancyService.UpdateVacancyStatusAsync(id, status);
+        }
+
         [HttpDelete("{id:Guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]

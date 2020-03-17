@@ -40,6 +40,10 @@ export class DepartmentsService {
     return this.http.put(this.host + `/${id}`, department);
   }
 
+  public updateDepartmentStatus(id: string, status: number) {
+    return this.http.put(this.host + `/${id}/${status}`, status);
+  }
+
   public deleteDepartment(id: string) {
     return this.http.delete(this.host + `/${id}`);
   }

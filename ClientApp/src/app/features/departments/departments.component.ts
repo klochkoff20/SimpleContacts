@@ -1,21 +1,21 @@
-import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatPaginator, MatSort } from '@angular/material';
 import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 import { merge, of } from 'rxjs';
 
-import { CreateDepartmentComponent } from './create-department/create-department.component';
+import { departmentsColumn } from '../../shared/enums';
+import { DEPARTMENT_STATUSES } from '../../shared/constants';
 import { BasicInfo, DepartmentGeneralInfo } from '../../shared/interfaces';
 import { DepartmentsService } from '../../services/departments.service';
-import { DEPARTMENT_STATUSES } from '../../shared/constants';
-import { departmentsColumn } from '../../shared/enums';
-import { DeleteDepartmentComponent } from './delete-department/delete-department.component';
+import { CreateDepartmentComponent } from './create-department/create-department.component';
 import { UpdateDepartmentComponent } from './update-department/update-department.component';
+import { DeleteDepartmentComponent } from './delete-department/delete-department.component';
 
 
 @Component({
   selector: 'app-departments',
   templateUrl: './departments.component.html',
-  styleUrls: [ './departments.component.scss' ]
+  styleUrls: [ './departments.component.scss', './departments.component.media.scss' ]
 })
 export class DepartmentsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
@@ -120,8 +120,16 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  updateStatus(event, department) {
+    this.departmentsService.updateDepartmentStatus(department.id, event.value).subscribe(response => {
+      this.departmentsChange.emit();
+    }, error => {
+      console.log(error);
+    });
+  }
+
   applyFilter(event: Event) {
-    if ((event.target as HTMLInputElement).value !== '' && (event.target as HTMLInputElement).value !== '.') {
+    if ((event.target as HTMLInputElement).value.trim() !== '' && (event.target as HTMLInputElement).value !== '.') {
       this.filter = (event.target as HTMLInputElement).value;
     } else {
       this.filter = '%20';
@@ -133,5 +141,4 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
   formatStringToMultiLine(str: BasicInfo<string>[]): string {
     return str.map(s => s.name).join(',\n');
   }
-
 }

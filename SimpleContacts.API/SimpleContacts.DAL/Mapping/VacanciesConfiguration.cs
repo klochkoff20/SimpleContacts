@@ -31,7 +31,6 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<Vacancy>().Property(e => e.Name).IsRequired().HasMaxLength(128);
             builder.Entity<Vacancy>().Property(e => e.Project).HasMaxLength(128);
             builder.Entity<Vacancy>().Property(e => e.Location).HasMaxLength(128);            
-            builder.Entity<Vacancy>().Property(e => e.Languages).HasMaxLength(128);
             builder.Entity<Vacancy>().Property(e => e.Requirements).IsRequired().HasMaxLength(2048);
             builder.Entity<Vacancy>().Property(e => e.Description).IsRequired().HasMaxLength(2048);
 

@@ -52,16 +52,6 @@
              formControlName="location">
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Languages</mat-label>
-      <mat-select multiple formControlName="languages">
-        <mat-option *ngFor="let language of languages"
-                    [value]="language">
-          {{ language }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
     <div class="salary-container">
       <mat-form-field class="salary">
         <mat-label>Salary(min)</mat-label>

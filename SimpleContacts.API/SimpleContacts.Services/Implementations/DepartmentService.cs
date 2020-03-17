@@ -99,6 +99,27 @@ namespace SimpleContacts.Services.Implementations
             return response;
         }
 
+        public async Task<BaseResponseMessageResult> UpdateDepartmentStatusAsync
+            (Guid id, DepartmentStatus status)
+        {
+            var response = new BaseResponseMessageResult();
+
+            var department = await _departmentRepository.GetAsync(id);
+            if (department == null)
+            {
+                response.SetStatus(HttpStatusCode.NotFound, $"Department [{id}] was not found!");
+                return response;
+            }
+
+            department.Status = status;
+            _departmentRepository.Update(department);
+            await _unitOfWork.SaveChangesAsync();
+
+            response.Message = $"Department [{id}] status was updated!";
+
+            return response;
+        }
+
         public async Task<BaseResponseMessageResult> DeleteDepartmentAsync(Guid id)
         {
             var response = new BaseResponseMessageResult();

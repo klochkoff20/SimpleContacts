@@ -14,6 +14,7 @@ namespace SimpleContacts.Services.Abstractions
         Task<ResponseMessageResult<PagedList<VacancyGeneralInfoViewModel>>> GetAllVacanciesSortedAsync(int page, int pageSize, string order, VacancySortField field, string filter);
         Task<ResponseMessageResult<VacancyViewModel>> GetVacancyById(Guid id);
         Task<BaseResponseMessageResult> UpdateVacancyAsync(Guid id, VacancyUpdateViewModel vacancy);
+        Task<BaseResponseMessageResult> UpdateVacancyStatusAsync(Guid id, VacancyStatus status);
         Task<BaseResponseMessageResult> DeleteVacancyAsync(Guid id);
     }
 }

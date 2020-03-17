@@ -4,7 +4,6 @@
   width: 600px;
 
   .form-container {
-    display: flex;
-    flex-direction: column;
+    @include flex-column-view;
   }
 }
