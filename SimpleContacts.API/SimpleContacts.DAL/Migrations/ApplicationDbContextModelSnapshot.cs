@@ -168,9 +168,6 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<byte?>("EmploymentType")
                         .HasColumnType("tinyint");
 
-                    b.Property<byte?>("Experience")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("Facebook")
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
@@ -199,6 +196,9 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(64)")
                         .HasMaxLength(64);
 
+                    b.Property<byte>("Level")
+                        .HasColumnType("tinyint");
+
                     b.Property<string>("LinkedIn")
                         .HasColumnType("nvarchar(128)")
                         .HasMaxLength(128);
@@ -217,9 +217,6 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<bool?>("ReadyToRelocate")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ResponsibleBy")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Skills")
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
@@ -234,6 +231,9 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<byte?>("Source")
                         .HasColumnType("tinyint");
 
+                    b.Property<DateTime?>("StartedPractice")
+                        .HasColumnType("datetime2");
+
                     b.Property<byte?>("Status")
                         .HasColumnType("tinyint");
 
@@ -244,11 +244,14 @@ namespace SimpleContacts.DAL.Migrations
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ContactId");
 
-                    b.HasIndex("ResponsibleBy");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Candidates");
                 });
@@ -266,21 +269,6 @@ namespace SimpleContacts.DAL.Migrations
                     b.HasIndex("FileId");
 
                     b.ToTable("CandidatesAttachments");
-                });
-
-            modelBuilder.Entity("SimpleContacts.Entities.Entities.CandidatesTags", b =>
-                {
-                    b.Property<Guid>("CandidateId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TagId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CandidateId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("CandidatesTags");
                 });
 
             modelBuilder.Entity("SimpleContacts.Entities.Entities.CandidatesVacancies", b =>
@@ -424,23 +412,20 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(64)")
                         .HasMaxLength(64);
 
-                    b.Property<string>("ResponsibleBy")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Skype")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte?>("Status")
-                        .HasColumnType("tinyint");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedBy");
 
-                    b.HasIndex("ResponsibleBy");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Departments");
                 });
@@ -458,21 +443,6 @@ namespace SimpleContacts.DAL.Migrations
                     b.HasIndex("FileId");
 
                     b.ToTable("DepartmentsAttachments");
-                });
-
-            modelBuilder.Entity("SimpleContacts.Entities.Entities.DepartmentsContacts", b =>
-                {
-                    b.Property<Guid>("DepartmentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ContactId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("DepartmentId", "ContactId");
-
-                    b.HasIndex("ContactId");
-
-                    b.ToTable("DepartmentsContacts");
                 });
 
             modelBuilder.Entity("SimpleContacts.Entities.Entities.FileAttachment", b =>
@@ -578,21 +548,6 @@ namespace SimpleContacts.DAL.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("SimpleContacts.Entities.Entities.Tag", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
-                });
-
             modelBuilder.Entity("SimpleContacts.Entities.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -685,6 +640,21 @@ namespace SimpleContacts.DAL.Migrations
                     b.ToTable("VacanciesAttachments");
                 });
 
+            modelBuilder.Entity("SimpleContacts.Entities.Entities.VacanciesUsers", b =>
+                {
+                    b.Property<Guid>("VacancyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("VacancyId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("VacanciesUsers");
+                });
+
             modelBuilder.Entity("SimpleContacts.Entities.Entities.Vacancy", b =>
                 {
                     b.Property<Guid>("Id")
@@ -738,9 +708,6 @@ namespace SimpleContacts.DAL.Migrations
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
 
-                    b.Property<string>("ResponsibleBy")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("SalaryMax")
                         .HasColumnType("int");
 
@@ -770,11 +737,31 @@ namespace SimpleContacts.DAL.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.HasIndex("ResponsibleBy");
-
                     b.HasIndex("UpdatedBy");
 
                     b.ToTable("Vacancies");
+                });
+
+            modelBuilder.Entity("SimpleContacts.Entities.Entities.VacancyOnHold", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("From")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("To")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("VacancyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("VacancyOnHold");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -834,10 +821,9 @@ namespace SimpleContacts.DAL.Migrations
                         .WithMany("Candidates")
                         .HasForeignKey("ContactId");
 
-                    b.HasOne("SimpleContacts.Entities.Entities.User", "ResponsibleUser")
-                        .WithMany("ResponcibleCandidates")
-                        .HasForeignKey("ResponsibleBy")
-                        .OnDelete(DeleteBehavior.NoAction);
+                    b.HasOne("SimpleContacts.Entities.Entities.User", null)
+                        .WithMany("ResponsibleCandidates")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SimpleContacts.Entities.Entities.CandidatesAttachments", b =>
@@ -845,28 +831,13 @@ namespace SimpleContacts.DAL.Migrations
                     b.HasOne("SimpleContacts.Entities.Entities.Candidate", "Candidate")
                         .WithMany("CandidatesAttachments")
                         .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SimpleContacts.Entities.Entities.FileAttachment", "FileAttachment")
                         .WithMany("CandidatesAttachments")
                         .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SimpleContacts.Entities.Entities.CandidatesTags", b =>
-                {
-                    b.HasOne("SimpleContacts.Entities.Entities.Candidate", "Candidate")
-                        .WithMany("CandidatesTags")
-                        .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("SimpleContacts.Entities.Entities.Tag", "Tag")
-                        .WithMany("CandidatesTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -875,13 +846,13 @@ namespace SimpleContacts.DAL.Migrations
                     b.HasOne("SimpleContacts.Entities.Entities.Candidate", "Candidate")
                         .WithMany("CandidatesVacancies")
                         .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SimpleContacts.Entities.Entities.Vacancy", "Vacancy")
                         .WithMany("CandidatesVacancies")
                         .HasForeignKey("VacancyId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -918,10 +889,9 @@ namespace SimpleContacts.DAL.Migrations
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("SimpleContacts.Entities.Entities.User", "ResponsibleUser")
+                    b.HasOne("SimpleContacts.Entities.Entities.User", null)
                         .WithMany("ResponsibleDepartments")
-                        .HasForeignKey("ResponsibleBy")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("SimpleContacts.Entities.Entities.DepartmentsAttachments", b =>
@@ -929,28 +899,13 @@ namespace SimpleContacts.DAL.Migrations
                     b.HasOne("SimpleContacts.Entities.Entities.Department", "Department")
                         .WithMany("DepartmentsAttachments")
                         .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SimpleContacts.Entities.Entities.FileAttachment", "FileAttachment")
                         .WithMany("DepartmentsAttachments")
                         .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SimpleContacts.Entities.Entities.DepartmentsContacts", b =>
-                {
-                    b.HasOne("SimpleContacts.Entities.Entities.Contact", "Contact")
-                        .WithMany("ContactsDepartments")
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("SimpleContacts.Entities.Entities.Department", "Department")
-                        .WithMany("ContactsDepartments")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -976,13 +931,28 @@ namespace SimpleContacts.DAL.Migrations
                     b.HasOne("SimpleContacts.Entities.Entities.FileAttachment", "FileAttachment")
                         .WithMany("VacanciesAttachments")
                         .HasForeignKey("FileId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SimpleContacts.Entities.Entities.Vacancy", "Vacancy")
                         .WithMany("VacanciesAttachments")
                         .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("SimpleContacts.Entities.Entities.VacanciesUsers", b =>
+                {
+                    b.HasOne("SimpleContacts.Entities.Entities.User", "User")
+                        .WithMany("ResponsibleVacancies")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("SimpleContacts.Entities.Entities.Vacancy", "Vacancy")
+                        .WithMany("ResponsibleUsers")
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -1002,15 +972,19 @@ namespace SimpleContacts.DAL.Migrations
                         .WithMany("Vacancies")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("SimpleContacts.Entities.Entities.User", "ResponsibleUser")
-                        .WithMany("ResponcibleVacancies")
-                        .HasForeignKey("ResponsibleBy")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("SimpleContacts.Entities.Entities.User", "UpdatedUser")
                         .WithMany("UpdatedVacancies")
                         .HasForeignKey("UpdatedBy")
                         .OnDelete(DeleteBehavior.NoAction);
+                });
+
+            modelBuilder.Entity("SimpleContacts.Entities.Entities.VacancyOnHold", b =>
+                {
+                    b.HasOne("SimpleContacts.Entities.Entities.Vacancy", "Vacancy")
+                        .WithMany("VacancyOnHold")
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

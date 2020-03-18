@@ -11,6 +11,8 @@ namespace SimpleContacts.Entities.Entities
             Comments = new HashSet<Comment>();
             VacanciesAttachments = new HashSet<VacanciesAttachments>();
             CandidatesVacancies = new HashSet<CandidatesVacancies>();
+            ResponsibleUsers = new HashSet<VacanciesUsers>();
+            VacancyOnHold = new HashSet<VacancyOnHold>();
         }
 
         public Guid Id { get; set; }
@@ -27,7 +29,6 @@ namespace SimpleContacts.Entities.Entities
         public int? NumberOfPositions { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public string ResponsibleBy { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string Requirements { get; set; }
@@ -36,9 +37,10 @@ namespace SimpleContacts.Entities.Entities
 
         public virtual Department Department { get; set; }
         public virtual User CreatedUser { get; set; }
-        public virtual User ResponsibleUser { get; set; }
         public virtual User UpdatedUser { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<VacanciesUsers> ResponsibleUsers { get; set; }
+        public virtual ICollection<VacancyOnHold> VacancyOnHold { get; set; }
         public virtual ICollection<VacanciesAttachments> VacanciesAttachments { get; set; }
         public virtual ICollection<CandidatesVacancies> CandidatesVacancies { get; set; }
     }

@@ -32,7 +32,7 @@ namespace SimpleContacts.DAL.Implementations
         {
             var query = Entities
                     .IncludeOptimized(e => e.Department)
-                    .IncludeOptimized(e => e.ResponsibleUser);
+                    .IncludeOptimized(e => e.ResponsibleUsers);
 
             var vacancies = await Task.Run(() => query.ToList());
             return vacancies;
@@ -42,7 +42,7 @@ namespace SimpleContacts.DAL.Implementations
         {
             var query = Entities
                     .IncludeOptimized(e => e.Department)
-                    .IncludeOptimized(e => e.ResponsibleUser)
+                    .IncludeOptimized(e => e.ResponsibleUsers)
                     .Where(e => e.Status < VacancyStatus.Complete);
 
             var vacancies = new List<Vacancy>();
@@ -51,8 +51,7 @@ namespace SimpleContacts.DAL.Implementations
             {
                 query = query.Where(e => e.Name.Contains(filter)
                                       || e.Department.Name.StartsWith(filter)
-                                      || e.Project.StartsWith(filter)
-                                      || e.ResponsibleUser.LastName.StartsWith(filter));
+                                      || e.Project.StartsWith(filter));
             }
 
             if (field != VacancySortField.NoSort)
@@ -74,7 +73,7 @@ namespace SimpleContacts.DAL.Implementations
                     .IncludeOptimized(e => e.Project)
                     .IncludeOptimized(e => e.CreatedUser)
                     .IncludeOptimized(e => e.UpdatedUser)
-                    .IncludeOptimized(e => e.ResponsibleUser)
+                    .IncludeOptimized(e => e.ResponsibleUsers)
                     .IncludeOptimized(e => e.Comments)
                     .IncludeOptimized(e => e.VacanciesAttachments)
                         .IncludeOptimized(e => e.VacanciesAttachments.Select(s => s.Vacancy))

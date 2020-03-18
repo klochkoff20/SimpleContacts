@@ -6,8 +6,9 @@ export interface CandidateUpdate {
   location: string;
   readyToRelocate: boolean;
   desiredPosition: string;
+  level: number;
   industry: string;
-  experience: number;
+  startedPractice?: Date;
   currentWork: string;
   currentPosition: string;
   employmentType: number;
@@ -27,5 +28,4 @@ export interface CandidateUpdate {
   skills: string;
   skillsAsText: string;
   description: string;
-  responsibleBy: string;
 }

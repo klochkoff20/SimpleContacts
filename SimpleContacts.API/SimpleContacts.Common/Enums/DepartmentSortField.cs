@@ -11,12 +11,6 @@ namespace SimpleContacts.Common.Enums
         CreatedAt,
 
         [Description("Name")]
-        Name,
-
-        [Description("Status")]
-        Status,
-
-        [Description("ResponsibleUser")]
-        ResponsibleUser = 5
+        Name
     }
 }

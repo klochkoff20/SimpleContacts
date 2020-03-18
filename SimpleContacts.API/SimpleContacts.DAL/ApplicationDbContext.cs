@@ -9,19 +9,18 @@ namespace SimpleContacts.DAL
     {
         public virtual DbSet<Candidate> Candidates { get; set; }
         public virtual DbSet<CandidatesAttachments> CandidatesAttachments { get; set; }
-        public virtual DbSet<CandidatesTags> CandidatesTags { get; set; }
         public virtual DbSet<CandidatesVacancies> CandidatesVacancies { get; set; }
+        public virtual DbSet<VacancyOnHold> VacancyOnHold { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<DepartmentsAttachments> DepartmentsAttachments { get; set; }
-        public virtual DbSet<DepartmentsContacts> DepartmentsContacts { get; set; }
         public virtual DbSet<Vacancy> Vacancies { get; set; }
+        public virtual DbSet<VacanciesUsers> VacanciesUsers { get; set; }
         public virtual DbSet<VacanciesAttachments> VacanciesAttachments { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<FileAttachment> FileAttachments { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {

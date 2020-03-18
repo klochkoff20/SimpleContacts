@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { Candidate, BasicInfo, CandidateUpdate } from '../../../shared/interfaces';
 import {
-  CANDIDATE_EXPERIENCES,
+  CANDIDATE_EXPERIENCES, CANDIDATE_LEVELS,
   CANDIDATE_SOURCES,
   CANDIDATE_STATUSES,
   EMPLOYMENT_TYPES,
@@ -18,10 +18,10 @@ import { CandidatesService } from '../../../services/candidates.service';
   styleUrls: [ './update-candidate.component.scss' ]
 })
 export class UpdateCandidateComponent implements OnInit {
-  candidateExperience: BasicInfo<number>[] = CANDIDATE_EXPERIENCES;
   candidateStatuses: BasicInfo<number>[] = CANDIDATE_STATUSES;
   candidateSources: BasicInfo<number>[] = CANDIDATE_SOURCES;
   employmentTypes: BasicInfo<number>[] = EMPLOYMENT_TYPES;
+  candidateLevels: BasicInfo<number>[] = CANDIDATE_LEVELS;
   genders: BasicInfo<number>[] = GENDERS;
   languages: string[] = LANGUAGES;
   candidateSkills: string[] = [
@@ -69,8 +69,9 @@ export class UpdateCandidateComponent implements OnInit {
       location: [ this.candidate.location, [ Validators.maxLength(128) ] ],
       readyToRelocate: [ this.candidate.readyToRelocate, [] ],
       desiredPosition: [ this.candidate.desiredPosition, [ Validators.maxLength(128) ] ],
+      level: [ this.candidate.level, [] ],
       industry: [ this.candidate.industry, [ Validators.maxLength(128) ] ],
-      experience: [ this.candidate.experience, [] ],
+      startedPractice: [ this.candidate.startedPractice, [] ],
       currentWork: [ this.candidate.currentWork, [ Validators.maxLength(128) ] ],
       currentPosition: [ this.candidate.currentPosition, [ Validators.maxLength(128) ] ],
       employmentType: [ this.candidate.employmentType, [] ],
@@ -102,8 +103,9 @@ export class UpdateCandidateComponent implements OnInit {
       location: this.updateCandidateForm.get('location').value,
       readyToRelocate: this.updateCandidateForm.get('readyToRelocate').value,
       desiredPosition: this.updateCandidateForm.get('desiredPosition').value,
+      level: +this.updateCandidateForm.get('level').value,
       industry: this.updateCandidateForm.get('industry').value,
-      experience: +this.updateCandidateForm.get('experience').value,
+      startedPractice: this.updateCandidateForm.get('startedPractice').value,
       currentWork: this.updateCandidateForm.get('currentWork').value,
       currentPosition: this.updateCandidateForm.get('currentPosition').value,
       employmentType: +this.updateCandidateForm.get('employmentType').value,
@@ -123,8 +125,6 @@ export class UpdateCandidateComponent implements OnInit {
       description: this.updateCandidateForm.get('description').value,
       skillsAsText: this.updateCandidateForm.get('skillsAsText').value,
       preferableMethod: +this.updateCandidateForm.get('preferableMethod').value,
-      // TODO after login
-      responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69'
     };
 
     if (this.updateCandidateForm.valid) {

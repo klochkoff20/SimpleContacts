@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SimpleContacts.Common.Enums;
 
 namespace SimpleContacts.ViewModels
@@ -19,13 +20,13 @@ namespace SimpleContacts.ViewModels
         public int? NumberOfPositions { get; set; }
         public BasicInfo<string> CreatedUser { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public BasicInfo<string> ResponsibleUser { get; set; }
         public BasicInfo<string> UpdatedUser { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public string Requirements { get; set; }
         public string Description { get; set; }
         public VacancyStatus? Status { get; set; }
 
+        public IList<VacanciesUsersViewModel> ResponsibleUsers { get; set; }
         // public IList<CommentViewModel> Comments { get; set; }
         // public IList<VacanciesAttachments> VacanciesAttachments { get; set; }
         // public IList<CandidatesVacancies> CandidatesVacancies { get; set; }

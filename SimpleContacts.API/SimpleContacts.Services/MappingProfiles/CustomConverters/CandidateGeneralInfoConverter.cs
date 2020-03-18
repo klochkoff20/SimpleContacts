@@ -16,7 +16,7 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
                 Id = source.Id,
                 Name = $"{source.FirstName} {source.LastName}",
                 DesiredPosition = source.DesiredPosition,
-                ResponsibleUser = context.Mapper.Map<BasicInfo<string>>(source.ResponsibleUser),
+                Level = Enum.GetName(typeof(CandidateLevel), source.Level),
                 AddingDate = source.AddingDate,
                 AddingSource = Enum.GetName(typeof(CandidateSource), source.Source),
                 Skills = source.Skills.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList(),

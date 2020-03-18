@@ -56,6 +56,16 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Level</mat-label>
+      <mat-select formControlName="level">
+        <mat-option *ngFor="let level of candidateLevels"
+                    [value]="level.id">
+          {{ level.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>Industry</mat-label>
       <input matInput
              formControlName="industry">
@@ -81,13 +91,11 @@
     <br>
 
     <mat-form-field>
-      <mat-label>Experience</mat-label>
-      <mat-select formControlName="experience">
-        <mat-option *ngFor="let experience of candidateExperience"
-                    [value]="experience.id">
-          {{ experience.name }}
-        </mat-option>
-      </mat-select>
+      <mat-label>Started practice</mat-label>
+      <input matInput [matDatepicker]="picker2"
+             formControlName="startedPractice">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker #picker2 startView="multi-year"></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>

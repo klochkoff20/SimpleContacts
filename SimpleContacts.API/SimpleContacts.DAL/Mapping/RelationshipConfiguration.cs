@@ -14,65 +14,61 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<Role>().HasMany(r => r.Users).WithOne().HasForeignKey(r => r.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Role>().Property(e => e.Description).HasMaxLength(128);
 
-            builder.Entity<CandidatesTags>().HasKey(e => new { e.CandidateId, e.TagId });
-            builder.Entity<CandidatesTags>().HasOne(e => e.Candidate)
-                   .WithMany(e => e.CandidatesTags)
-                   .HasForeignKey(e => e.CandidateId)
-                   .OnDelete(DeleteBehavior.NoAction);
-            builder.Entity<CandidatesTags>().HasOne(e => e.Tag)
-                   .WithMany(e => e.CandidatesTags)
-                   .HasForeignKey(e => e.TagId)
-                   .OnDelete(DeleteBehavior.NoAction);
-
             builder.Entity<CandidatesAttachments>().HasKey(e => new { e.CandidateId, e.FileId });
             builder.Entity<CandidatesAttachments>().HasOne(e => e.Candidate)
                    .WithMany(e => e.CandidatesAttachments)
                    .HasForeignKey(e => e.CandidateId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<CandidatesAttachments>().HasOne(e => e.FileAttachment)
                    .WithMany(e => e.CandidatesAttachments)
                    .HasForeignKey(e => e.FileId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<CandidatesVacancies>().HasKey(e => new { e.CandidateId, e.VacancyId });
             builder.Entity<CandidatesVacancies>().HasOne(e => e.Candidate)
                    .WithMany(e => e.CandidatesVacancies)
                    .HasForeignKey(e => e.CandidateId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<CandidatesVacancies>().HasOne(e => e.Vacancy)
                    .WithMany(e => e.CandidatesVacancies)
                    .HasForeignKey(e => e.VacancyId)
-                   .OnDelete(DeleteBehavior.NoAction);
-
-            builder.Entity<DepartmentsContacts>().HasKey(e => new { e.DepartmentId, e.ContactId });
-            builder.Entity<DepartmentsContacts>().HasOne(e => e.Contact)
-                   .WithMany(e => e.ContactsDepartments)
-                   .HasForeignKey(e => e.ContactId)
-                   .OnDelete(DeleteBehavior.NoAction);
-            builder.Entity<DepartmentsContacts>().HasOne(e => e.Department)
-                   .WithMany(e => e.ContactsDepartments)
-                   .HasForeignKey(e => e.DepartmentId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<DepartmentsAttachments>().HasKey(e => new { e.DepartmentId, e.FileId });
             builder.Entity<DepartmentsAttachments>().HasOne(e => e.Department)
                    .WithMany(e => e.DepartmentsAttachments)
                    .HasForeignKey(e => e.DepartmentId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<DepartmentsAttachments>().HasOne(e => e.FileAttachment)
                    .WithMany(e => e.DepartmentsAttachments)
                    .HasForeignKey(e => e.FileId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<VacanciesAttachments>().HasKey(e => new { e.VacancyId, e.FileId });
             builder.Entity<VacanciesAttachments>().HasOne(e => e.Vacancy)
                    .WithMany(e => e.VacanciesAttachments)
                    .HasForeignKey(e => e.VacancyId)
-                   .OnDelete(DeleteBehavior.NoAction);
+                   .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<VacanciesAttachments>().HasOne(e => e.FileAttachment)
                    .WithMany(e => e.VacanciesAttachments)
                    .HasForeignKey(e => e.FileId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+
+            builder.Entity<VacanciesUsers>().HasKey(e => new { e.VacancyId, e.UserId });
+            builder.Entity<VacanciesUsers>().HasOne(e => e.User)
+                   .WithMany(e => e.ResponsibleVacancies)
+                   .HasForeignKey(e => e.UserId)
                    .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<VacanciesUsers>().HasOne(e => e.Vacancy)
+                   .WithMany(e => e.ResponsibleUsers)
+                   .HasForeignKey(e => e.VacancyId)
+                   .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<VacancyOnHold>().HasOne(e => e.Vacancy)
+                   .WithMany(e => e.VacancyOnHold)
+                   .HasForeignKey(e => e.VacancyId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

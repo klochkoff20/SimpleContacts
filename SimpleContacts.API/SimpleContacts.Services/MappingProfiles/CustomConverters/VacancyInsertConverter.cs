@@ -25,7 +25,6 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
                 NumberOfPositions = source.NumberOfPositions,
                 CreatedBy = source.CreatedBy,
                 CreatedAt = DateTime.Now,
-                ResponsibleBy = source.ResponsibleBy,
                 UpdatedBy = source.UpdatedBy,
                 UpdatedAt = DateTime.Now,
                 Requirements = source.Requirements,

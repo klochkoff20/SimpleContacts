@@ -12,11 +12,6 @@ namespace SimpleContacts.DAL.Mapping
                    .HasForeignKey(e => e.CreatedBy)
                    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Entity<Department>().HasOne(e => e.ResponsibleUser)
-                   .WithMany(e => e.ResponsibleDepartments)
-                   .HasForeignKey(e => e.ResponsibleBy)
-                   .OnDelete(DeleteBehavior.NoAction);
-
             builder.Entity<Department>().HasMany(e => e.Projects)
                    .WithOne(e => e.Department)
                    .HasForeignKey(e => e.DepartmentId)

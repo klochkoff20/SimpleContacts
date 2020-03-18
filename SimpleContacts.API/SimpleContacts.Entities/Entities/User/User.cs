@@ -12,9 +12,9 @@ namespace SimpleContacts.Entities.Entities
         {
             Comments = new HashSet<Comment>();
             AddedFiles = new HashSet<FileAttachment>();
-            ResponcibleCandidates = new HashSet<Candidate>();
+            ResponsibleCandidates = new HashSet<Candidate>();
             CreatedVacancies = new HashSet<Vacancy>();
-            ResponcibleVacancies = new HashSet<Vacancy>();
+            ResponsibleVacancies = new HashSet<VacanciesUsers>();
             UpdatedVacancies = new HashSet<Vacancy>();
             CreatedDepartments = new HashSet<Department>();
             ResponsibleDepartments = new HashSet<Department>();
@@ -31,9 +31,9 @@ namespace SimpleContacts.Entities.Entities
         //public virtual Role Role { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<FileAttachment> AddedFiles { get; set; }
-        public virtual ICollection<Candidate> ResponcibleCandidates { get; set; }
+        public virtual ICollection<Candidate> ResponsibleCandidates { get; set; }
         public virtual ICollection<Vacancy> CreatedVacancies { get; set; }
-        public virtual ICollection<Vacancy> ResponcibleVacancies { get; set; }
+        public virtual ICollection<VacanciesUsers> ResponsibleVacancies { get; set; }
         public virtual ICollection<Vacancy> UpdatedVacancies { get; set; }
         public virtual ICollection<Department> CreatedDepartments { get; set; }
         public virtual ICollection<Department> ResponsibleDepartments { get; set; }

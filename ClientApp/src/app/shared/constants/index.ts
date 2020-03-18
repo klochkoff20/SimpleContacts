@@ -1,4 +1,5 @@
 export { CANDIDATE_EXPERIENCES } from './candidate-experiences.const';
+export { CANDIDATE_LEVELS } from './candidate-levels.const';
 export { CANDIDATE_SOURCES } from './candidate-sources.const';
 export { CANDIDATE_STATUSES } from './candidate-statuses.const';
 export { DEPARTMENT_STATUSES } from './department-statuses.const';

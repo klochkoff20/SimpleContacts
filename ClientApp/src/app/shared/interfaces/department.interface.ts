@@ -7,10 +7,8 @@ export interface Department {
   phone: string;
   email: string;
   skype: string;
-  status?: number;
   description: string;
   createdBy: BasicInfo<string>;
   createdAt?: Date;
   updatedAt?: Date;
-  responsibleBy: BasicInfo<string>;
 }

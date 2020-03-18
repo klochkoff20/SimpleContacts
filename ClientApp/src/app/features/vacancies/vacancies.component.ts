@@ -144,9 +144,9 @@ export class VacanciesComponent implements OnInit, AfterViewInit {
     if (difference > 7) {
       return { value: 0, text: `${difference} days left` };
     } else if (difference > 0) {
-      return { value: 1, text: `${difference} days left` };
+      return { value: 1, text: `${difference} day(s) left` };
     }
 
-    return { value: 2, text: `${-difference} days passed` };
+    return { value: 2, text: `${-difference} day(s) passed` };
   }
 }

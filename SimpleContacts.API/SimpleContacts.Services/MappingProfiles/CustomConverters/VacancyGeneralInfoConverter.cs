@@ -3,6 +3,8 @@ using AutoMapper;
 using SimpleContacts.ViewModels;
 using SimpleContacts.Common.Enums;
 using SimpleContacts.Entities.Entities;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SimpleContacts.Services.MappingProfiles.CustomConverters
 {
@@ -18,7 +20,7 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
                 Project = source.Project,
                 Priority = Enum.GetName(typeof(VacancyPriority), source.Priority),
                 TargetDate = source.TargetDate,
-                ResponsibleUser = context.Mapper.Map<BasicInfo<string>>(source.ResponsibleUser),
+                ResponsibleUsers = context.Mapper.Map<IList<VacanciesUsersViewModel>>(source.ResponsibleUsers),
                 Status = source.Status
             };
 

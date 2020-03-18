@@ -22,8 +22,8 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
     candidatesColumn[candidatesColumn.id],
     candidatesColumn[candidatesColumn.name],
     candidatesColumn[candidatesColumn.position],
+    candidatesColumn[candidatesColumn.level],
     candidatesColumn[candidatesColumn.skills],
-    candidatesColumn[candidatesColumn.responsibleUser],
     candidatesColumn[candidatesColumn.addingDate],
     candidatesColumn[candidatesColumn.addingSource],
     candidatesColumn[candidatesColumn.lastActivity],
@@ -90,18 +90,6 @@ export class CandidatesComponent implements OnInit, AfterViewInit {
     dialogConfig.autoFocus = true;
 
     const dialogRef = this.dialog.open(CreateCandidateComponent, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.candidatesChange.emit();
-    });
-  }
-
-  deleteCandidate(candidate: CandidateGeneralInfo) {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    dialogConfig.data = candidate;
-
-    const dialogRef = this.dialog.open(DeleteCandidateComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
       this.candidatesChange.emit();

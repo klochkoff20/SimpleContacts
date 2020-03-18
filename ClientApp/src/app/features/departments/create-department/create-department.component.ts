@@ -11,8 +11,6 @@ import { DEPARTMENT_STATUSES, LOCATIONS } from '../../../shared/constants';
   styleUrls: [ './create-department.component.scss' ]
 })
 export class CreateDepartmentComponent implements OnInit {
-  departmentStatuses: BasicInfo<number>[] = DEPARTMENT_STATUSES;
-  locations: string[] = LOCATIONS;
   createDepartmentForm: FormGroup;
   newDepartment: DepartmentInsert;
   errorMessage = '';
@@ -35,7 +33,6 @@ export class CreateDepartmentComponent implements OnInit {
       email: [ '', [ Validators.email, Validators.maxLength(128) ] ],
       phoneNumber: [ '', [ Validators.maxLength(32) ] ],
       skype: [ '', [ Validators.maxLength(128) ] ],
-      status: [ 0, [  ] ],
       description: [ '', [ Validators.maxLength(2048) ] ]
     });
   }
@@ -47,11 +44,9 @@ export class CreateDepartmentComponent implements OnInit {
       email: this.createDepartmentForm.get('email').value,
       phone: this.createDepartmentForm.get('phoneNumber').value,
       skype: this.createDepartmentForm.get('skype').value,
-      status: +this.createDepartmentForm.get('status').value,
       description: this.createDepartmentForm.get('description').value,
       // TODO after login
       createdBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69',
-      responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69'
     };
 
     if (this.createDepartmentForm.valid) {

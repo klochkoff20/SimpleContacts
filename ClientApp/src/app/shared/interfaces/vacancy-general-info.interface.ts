@@ -5,6 +5,6 @@ export interface VacancyGeneralInfo extends BasicInfo<string> {
   project: string;
   priority: string;
   targetDate: string;
-  responsibleUser: BasicInfo<string>;
+  responsibleUsers: any;
   status: number;
 }

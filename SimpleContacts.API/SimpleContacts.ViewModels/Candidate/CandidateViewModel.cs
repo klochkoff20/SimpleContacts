@@ -15,14 +15,14 @@ namespace SimpleContacts.ViewModels
         public string Location { get; set; }
         public bool? ReadyToRelocate { get; set; }
         public string Languages { get; set; }
-        public string ResponsibleBy { get; set; }
         public string Industry { get; set; }
-        public CandidateExperience? Experience { get; set; }
+        public DateTime? StartedPractice { get; set; }
         public string CurrentWork { get; set; }
         public string CurrentPosition { get; set; }
         public EmploymentType? EmploymentType { get; set; }
         public string Education { get; set; }
         public string DesiredPosition { get; set; }
+        public CandidateLevel Level { get; set; }
         public int? DesiredSalary { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

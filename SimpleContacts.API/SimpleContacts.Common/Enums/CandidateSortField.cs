@@ -13,16 +13,16 @@ namespace SimpleContacts.Common.Enums
         [Description("DesiredPosition")]
         DesiredPosition,
 
+        [Description("Level")]
+        Level,
+
         [Description("Skills")]
         Skills,
-
-        [Description("ResponsibleUser")]
-        ResponsibleUser,
 
         [Description("AddingDate")]
         AddingDate,
 
         [Description("AddingSource")]
-        AddingSource
+        Source
     }
 }

@@ -7,6 +7,9 @@ namespace SimpleContacts.Common.Enums
         [Description("AddedManually")]
         AddedManually = 0,
 
+        [Description("Recommended candidate")]
+        RecommendedCandidate,
+
         [Description("CV")]
         CV,
 

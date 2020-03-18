@@ -8,7 +8,6 @@ namespace SimpleContacts.Entities.Entities
         public Contact()
         {
             Candidates = new HashSet<Candidate>();
-            ContactsDepartments = new HashSet<DepartmentsContacts>();
         }
 
         public Guid Id { get; set; }
@@ -23,6 +22,5 @@ namespace SimpleContacts.Entities.Entities
         public int? PreferableMethod { get; set; }
         
         public virtual ICollection<Candidate> Candidates { get; set; }
-        public virtual ICollection<DepartmentsContacts> ContactsDepartments { get; set; }
     }
 }

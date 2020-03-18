@@ -11,7 +11,6 @@ namespace SimpleContacts.Entities.Entities
             Comments = new HashSet<Comment>();
             CandidatesVacancies = new HashSet<CandidatesVacancies>();
             CandidatesAttachments = new HashSet<CandidatesAttachments>();
-            CandidatesTags = new HashSet<CandidatesTags>();
         }
 
         public Guid Id { get; set; }
@@ -22,14 +21,14 @@ namespace SimpleContacts.Entities.Entities
         public string Location { get; set; }
         public bool? ReadyToRelocate { get; set; }
         public string Languages { get; set; }
-        public string ResponsibleBy { get; set; }
         public string Industry { get; set; }
-        public CandidateExperience? Experience { get; set; }
+        public DateTime? StartedPractice { get; set; }
         public string CurrentWork { get; set; }
         public string CurrentPosition { get; set; }
         public EmploymentType? EmploymentType { get; set; }
         public string Education { get; set; }
         public string DesiredPosition { get; set; }
+        public CandidateLevel Level { get; set; }
         public int? DesiredSalary { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
@@ -47,10 +46,8 @@ namespace SimpleContacts.Entities.Entities
         public DateTime? AddingDate { get; set; } 
         public DateTime? UpdateDate { get; set; }
 
-        public virtual User ResponsibleUser { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<CandidatesVacancies> CandidatesVacancies { get; set; }
         public virtual ICollection<CandidatesAttachments> CandidatesAttachments { get; set; }
-        public virtual ICollection<CandidatesTags> CandidatesTags { get; set; }
     }
 }

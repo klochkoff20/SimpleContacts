@@ -6,23 +6,33 @@
       <div class="name-container">
         <h1 class="name">{{ candidate?.firstName }} {{ candidate?.lastName }}</h1>
         <span [ngSwitch]="statuses[candidate?.status]?.name">
-            <span class="status" *ngSwitchCase="'Active'"
-                  style="background-color: #0CC89C">{{ statuses[candidate?.status]?.name }}</span>
-            <span class="status" *ngSwitchCase="'Not interested'"
-                  style="background-color: #A0ACBD">{{ statuses[candidate?.status]?.name }}</span>
-            <span class="status" *ngSwitchCase="'Passive search'"
-                  style="background-color: #E29E21">{{ statuses[candidate?.status]?.name }}</span>
-            <span class="status" *ngSwitchCase="'Freelancer'"
-                  style="background-color: #966DB2">{{ statuses[candidate?.status]?.name }}</span>
-            <span class="status" *ngSwitchCase="'Deleted'"
-                  style="background-color: #000000">{{ statuses[candidate?.status]?.name }}</span>
+            <span *ngSwitchCase="'Active'"
+                  class="status background-color-green">
+              {{ statuses[candidate?.status]?.name }}
+            </span>
+            <span *ngSwitchCase="'Not interested'"
+                  class="status background-color-grey">
+              {{ statuses[candidate?.status]?.name }}
+            </span>
+            <span *ngSwitchCase="'Passive search'"
+                  class="status background-color-orange">
+              {{ statuses[candidate?.status]?.name }}
+            </span>
+            <span *ngSwitchCase="'Freelancer'"
+                  class="status background-color-purple">
+              {{ statuses[candidate?.status]?.name }}
+            </span>
+            <span *ngSwitchCase="'Deleted'"
+                  class="status background-color-black">
+              {{ statuses[candidate?.status]?.name }}
+            </span>
           </span>
       </div>
 
       <h3 class="position">{{ candidate?.desiredPosition }}</h3>
 
       <div class="adding-info">
-        <span> Added by {{ candidate?.responsibleUser?.name }} | </span>
+        <span> Added at </span>
         <span>{{ formatDate(candidate?.addingDate) }} | </span>
         <span>{{ sources[candidate?.source]?.name }}</span>
       </div>
@@ -46,6 +56,12 @@
         <button mat-flat-button>
           <mat-icon class="icon icon-pen1"></mat-icon>
           <span>  Edit profile</span>
+        </button>
+
+        <button mat-flat-button
+                (click)="deleteCandidate()">
+          <mat-icon class="icon icon-bin1"></mat-icon>
+          <span>  Delete profile</span>
         </button>
       </div>
     </div>
@@ -95,8 +111,13 @@
               </div>
 
               <div class="field-container">
+                <span class="field-name">Level</span>
+                <span>{{ level[candidate?.level]?.name }}</span>
+              </div>
+
+              <div class="field-container">
                 <span class="field-name">Experience</span>
-                <span>{{ experience[candidate?.experience]?.name }}</span>
+                <span>{{ countYears(candidate?.startedPractice) }}</span>
               </div>
 
               <div class="field-container">

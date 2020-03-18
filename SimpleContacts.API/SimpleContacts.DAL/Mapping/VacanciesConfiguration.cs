@@ -17,11 +17,6 @@ namespace SimpleContacts.DAL.Mapping
                    .HasForeignKey(e => e.CreatedBy)
                    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.Entity<Vacancy>().HasOne(e => e.ResponsibleUser)
-                   .WithMany(e => e.ResponcibleVacancies)
-                   .HasForeignKey(e => e.ResponsibleBy)
-                   .OnDelete(DeleteBehavior.NoAction);
-
             builder.Entity<Vacancy>().HasOne(e => e.UpdatedUser)
                    .WithMany(e => e.UpdatedVacancies)
                    .HasForeignKey(e => e.UpdatedBy)
@@ -35,6 +30,8 @@ namespace SimpleContacts.DAL.Mapping
             builder.Entity<Vacancy>().Property(e => e.Description).IsRequired().HasMaxLength(2048);
 
             builder.Entity<Vacancy>().HasIndex(e => e.Name).HasName("IX_VACANCY_NAME");
+
+
         }
     }
 }

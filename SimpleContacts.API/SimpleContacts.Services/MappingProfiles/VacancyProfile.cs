@@ -28,7 +28,9 @@ namespace SimpleContacts.Services.MappingProfiles
 
             CreateMap<Vacancy, BasicInfo<Guid>>();
 
-            CreateMap<Department, BasicInfo<Guid>>();
+            CreateMap<VacanciesUsers, VacanciesUsersViewModel>().ReverseMap();
+
+            CreateMap<VacancyOnHold, VacancyOnHoldViewModel>().ReverseMap();
         }
     }
 }

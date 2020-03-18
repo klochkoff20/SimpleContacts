@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material';
 
 import { BasicInfo, CandidateInsert } from '../../../shared/interfaces';
 import {
-  CANDIDATE_EXPERIENCES,
+  CANDIDATE_EXPERIENCES, CANDIDATE_LEVELS,
   CANDIDATE_SOURCES,
   CANDIDATE_STATUSES,
   EMPLOYMENT_TYPES,
@@ -20,10 +20,10 @@ import { CandidatesService } from '../../../services/candidates.service';
   styleUrls: [ './create-candidate.component.scss' ]
 })
 export class CreateCandidateComponent implements OnInit {
-  candidateExperience: BasicInfo<number>[] = CANDIDATE_EXPERIENCES;
   candidateStatuses: BasicInfo<number>[] = CANDIDATE_STATUSES;
   candidateSources: BasicInfo<number>[] = CANDIDATE_SOURCES;
   employmentTypes: BasicInfo<number>[] = EMPLOYMENT_TYPES;
+  candidateLevels: BasicInfo<number>[] = CANDIDATE_LEVELS;
   genders: BasicInfo<number>[] = GENDERS;
   languages: string[] = LANGUAGES;
   candidateSkills: string[] = [
@@ -60,8 +60,9 @@ export class CreateCandidateComponent implements OnInit {
       location: [ 'Lviv', [ Validators.maxLength(128) ] ],
       readyToRelocate: [ false, [] ],
       desiredPosition: [ '', [ Validators.maxLength(128) ] ],
+      level: [ '', [] ],
       industry: [ '', [ Validators.maxLength(128) ] ],
-      experience: [ '', [] ],
+      startedPractice: [ null, [] ],
       currentWork: [ '', [ Validators.maxLength(128) ] ],
       currentPosition: [ '', [ Validators.maxLength(128) ] ],
       employmentType: [ '', [] ],
@@ -93,8 +94,9 @@ export class CreateCandidateComponent implements OnInit {
       location: this.createCandidateForm.get('location').value,
       readyToRelocate: this.createCandidateForm.get('readyToRelocate').value,
       desiredPosition: this.createCandidateForm.get('desiredPosition').value,
+      level: +this.createCandidateForm.get('level').value,
       industry: this.createCandidateForm.get('industry').value,
-      experience: +this.createCandidateForm.get('experience').value,
+      startedPractice: this.createCandidateForm.get('startedPractice').value,
       currentWork: this.createCandidateForm.get('currentWork').value,
       currentPosition: this.createCandidateForm.get('currentPosition').value,
       employmentType: +this.createCandidateForm.get('employmentType').value,
@@ -114,14 +116,13 @@ export class CreateCandidateComponent implements OnInit {
       skillsAsText: this.createCandidateForm.get('skillsAsText').value,
       description: this.createCandidateForm.get('description').value,
       preferableMethod: +this.createCandidateForm.get('preferableMethod').value,
-      // TODO after login
-      responsibleBy: '4E08B2A6-0A10-40E2-BC0A-406D3F53FB69'
     };
 
     if (this.createCandidateForm.valid) {
       this.candidatesService.createCandidate(this.newCandidate).subscribe(response => {
         this.matDialogRef.close();
       }, error => {
+        console.log(error);
         this.errorMessage = error.message;
         this.scrollToError();
       });

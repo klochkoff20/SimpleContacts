@@ -9,12 +9,13 @@ export interface Candidate extends BasicInfo<string> {
   readyToRelocate: boolean;
   languages: string;
   industry: string;
-  experience: number;
+  startedPractice?: Date;
   currentWork: string;
   currentPosition: string;
   employmentType: number;
   education: string;
   desiredPosition: string;
+  level: number;
   desiredSalary: number;
   phoneNumber: string;
   email: string;
@@ -30,5 +31,4 @@ export interface Candidate extends BasicInfo<string> {
   skillsAsText: string;
   description: string;
   addingDate: Date;
-  responsibleUser: BasicInfo<string>;
 }

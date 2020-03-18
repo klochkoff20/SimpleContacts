@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { CandidatesService } from '../../../services/candidates.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { CandidateGeneralInfo } from '../../../shared/interfaces';
+import { BasicInfo, CandidateGeneralInfo } from '../../../shared/interfaces';
 
 @Component({
   selector: 'app-delete-candidate',
@@ -14,13 +14,13 @@ export class DeleteCandidateComponent {
   constructor(
     private candidateService: CandidatesService,
     private matDialogRef: MatDialogRef<DeleteCandidateComponent>,
-    @Inject(MAT_DIALOG_DATA) public candidate: CandidateGeneralInfo
+    @Inject(MAT_DIALOG_DATA) public candidate: BasicInfo<string>
   ) {
   }
 
   deleteCandidate() {
     this.candidateService.deleteCandidate(this.candidate.id).subscribe(response => {
-      this.matDialogRef.close();
+      this.matDialogRef.close(true);
     }, error => {
       this.errorMessage = error.statusText;
     });

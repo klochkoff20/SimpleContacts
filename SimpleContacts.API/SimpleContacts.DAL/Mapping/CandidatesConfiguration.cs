@@ -7,11 +7,6 @@ namespace SimpleContacts.DAL.Mapping
     {
         public static void Configure(ModelBuilder builder)
         {
-            builder.Entity<Candidate>().HasOne(e => e.ResponsibleUser)
-                   .WithMany(e => e.ResponcibleCandidates)
-                   .HasForeignKey(e => e.ResponsibleBy)
-                   .OnDelete(DeleteBehavior.NoAction);
-
             builder.Entity<Candidate>().Property(e => e.Id).IsRequired();
             builder.Entity<Candidate>().Property(e => e.FirstName).IsRequired().HasMaxLength(64);
             builder.Entity<Candidate>().Property(e => e.LastName).IsRequired().HasMaxLength(64);
@@ -34,9 +29,6 @@ namespace SimpleContacts.DAL.Mapping
 
             builder.Entity<Skill>().Property(e => e.Id).IsRequired();
             builder.Entity<Skill>().Property(e => e.Name).HasMaxLength(128);
-
-            builder.Entity<Tag>().Property(e => e.Id).IsRequired();
-            builder.Entity<Tag>().Property(e => e.Name).HasMaxLength(256);
         }
     }
 }

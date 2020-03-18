@@ -7,7 +7,7 @@ namespace SimpleContacts.ViewModels
     public class CandidateGeneralInfoViewModel : BasicInfo<Guid>
     {
         public string DesiredPosition { get; set; }
-        public BasicInfo<string> ResponsibleUser { get; set; }
+        public string Level { get; set; }
         public DateTime? AddingDate { get; set; }
         public string AddingSource { get; set; }
         public CandidateStatus? Status { get; set; }

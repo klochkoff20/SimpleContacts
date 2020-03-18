@@ -70,7 +70,7 @@ namespace SimpleContacts.Services.Implementations
         {
             var response = new ResponseMessageResult<VacancyViewModel>();
             var vacancy = await _vacancyRepository.GetVacancyById(id);
-            if(vacancy == null)
+            if (vacancy == null)
             {
                 response.SetStatus(HttpStatusCode.NotFound, $"Vacancy [{id}] was not found!");
                 return response;
@@ -104,12 +104,22 @@ namespace SimpleContacts.Services.Implementations
             var response = new BaseResponseMessageResult();
 
             var vacancy = await _vacancyRepository.GetAsync(id);
-            if(vacancy == null)
+            if (vacancy == null)
             {
                 response.SetStatus(HttpStatusCode.NotFound, $"Vacancy [{id}] was not found!");
                 return response;
             }
-            
+
+            if (status == VacancyStatus.OnHold)
+            {
+                vacancy.Priority = VacancyPriority.Low;
+            }
+
+            if (vacancy.Status == VacancyStatus.OnHold && status != VacancyStatus.OnHold)
+            {
+                vacancy.CreatedAt = DateTime.Now;
+            }
+
             vacancy.Status = status;
             _vacancyRepository.Update(vacancy);
             await _unitOfWork.SaveChangesAsync();

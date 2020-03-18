@@ -10,12 +10,11 @@
              formControlName="name">
     </mat-form-field>
 
-    <app-custom-autocomplete
-      [autocompleteValues]="locations"
-      [value]="location"
-      placeholder="Location"
-      formControlName="location">
-    </app-custom-autocomplete>
+    <mat-form-field>
+      <mat-label>Location</mat-label>
+      <input matInput
+             formControlName="locattion">
+    </mat-form-field>
 
     <mat-form-field>
       <mat-label>Phone number</mat-label>
@@ -35,16 +34,6 @@
       <mat-label>Skype</mat-label>
       <input matInput
              formControlName="skype">
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="status">
-        <mat-option *ngFor="let status of departmentStatuses"
-                    [value]="status.id">
-          {{ status.name }}
-        </mat-option>
-      </mat-select>
     </mat-form-field>
 
     <mat-form-field>

@@ -37,16 +37,6 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="status">
-        <mat-option *ngFor="let status of departmentStatuses"
-                    [value]="status.id">
-          {{ status.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field>
       <mat-label>Description</mat-label>
       <textarea matInput
                 formControlName="description">

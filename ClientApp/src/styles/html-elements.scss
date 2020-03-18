@@ -1,4 +1,5 @@
 @import "font-sizes";
+@import "color-palette";
 
 .heading-title-h1 {
   font-size: $font-size-h1;
@@ -22,4 +23,36 @@
 
 .heading-title-h6 {
   font-size: $font-size-h6;
+}
+
+.background-color-white {
+  color: $white-color;
+}
+
+.background-color-black {
+  background-color: $black-color;
+}
+
+.background-color-grey {
+  background-color: $grey-background-color;
+}
+
+.background-color-green {
+  background-color: $green-background-color;
+}
+
+.background-color-orange {
+  background-color: $orange-background-color;
+}
+
+.background-color-red {
+  background-color: $red-background-color;
+}
+
+.background-color-dark-red {
+  background-color: $dark-red-background-color;
+}
+
+.background-color-purple {
+  background-color: $purple-background-color;
 }

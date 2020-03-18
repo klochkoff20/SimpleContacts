@@ -21,14 +21,11 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     departmentsColumn[departmentsColumn.id],
     departmentsColumn[departmentsColumn.name],
-    departmentsColumn[departmentsColumn.status],
     departmentsColumn[departmentsColumn.vacancies],
     departmentsColumn[departmentsColumn.projects],
-    departmentsColumn[departmentsColumn.responsibleUser],
     departmentsColumn[departmentsColumn.contacts],
     departmentsColumn[departmentsColumn.actions]
   ];
-  statuses: BasicInfo<number>[] = DEPARTMENT_STATUSES;
 
   data: DepartmentGeneralInfo[] = [];
   resultsLength: number;
@@ -117,14 +114,6 @@ export class DepartmentsComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(response => {
       this.departmentsChange.emit();
-    });
-  }
-
-  updateStatus(event, department) {
-    this.departmentsService.updateDepartmentStatus(department.id, event.value).subscribe(response => {
-      this.departmentsChange.emit();
-    }, error => {
-      console.log(error);
     });
   }
 

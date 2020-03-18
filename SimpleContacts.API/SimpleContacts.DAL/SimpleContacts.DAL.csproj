@@ -36,6 +36,8 @@
     <Compile Remove="Migrations\20200311093231_updatedCandidate.Designer.cs" />
     <Compile Remove="Migrations\20200317081934_DepartmentDeleteProject.cs" />
     <Compile Remove="Migrations\20200317081934_DepartmentDeleteProject.Designer.cs" />
+    <Compile Remove="Migrations\20200318090230_AddedCandidateLevelAndExperience.cs" />
+    <Compile Remove="Migrations\20200318090230_AddedCandidateLevelAndExperience.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

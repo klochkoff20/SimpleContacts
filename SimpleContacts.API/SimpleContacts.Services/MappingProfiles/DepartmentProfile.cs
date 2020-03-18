@@ -26,7 +26,6 @@ namespace SimpleContacts.Services.MappingProfiles
                     dest.UpdatedAt = DateTime.Now;
                 });
 
-            CreateMap<DepartmentsContacts, DepartmentContactsViewModel>().ReverseMap();
 
             CreateMap<Vacancy, DepartmentVacancyViewModel>()
                 .ForMember(
@@ -34,7 +33,8 @@ namespace SimpleContacts.Services.MappingProfiles
                     opt => opt.MapFrom(src => $"{src.SalaryMin}-{src.SalaryMax}$")
                 );
 
-            CreateMap<DepartmentsContacts, DepartmentContactsViewModel>().ConvertUsing<DepartmentContactsConverter>();
+
+            CreateMap<Department, BasicInfo<Guid>>();
         }
     }
 }

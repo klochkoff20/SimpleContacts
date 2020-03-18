@@ -17,11 +17,9 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
                 Phone = source.Phone,
                 Email = source.Email,
                 Skype = source.Skype,
-                Status = source.Status,
                 Description = source.Description,
                 CreatedBy = source.CreatedBy,
-                CreatedAt = DateTime.Now,
-                ResponsibleBy = source.ResponsibleBy
+                CreatedAt = DateTime.Now
             };
 
             return department;

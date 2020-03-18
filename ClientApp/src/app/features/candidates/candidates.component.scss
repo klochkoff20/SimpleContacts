@@ -81,8 +81,8 @@
         @include set-min-max-width(170px, 250px);
       }
 
-      .mat-column-responsibleUser {
-        @include set-min-max-width(120px, 200px);
+      .mat-column-level {
+        @include set-min-max-width(80px, 120px);
       }
 
       .mat-column-addingDate,

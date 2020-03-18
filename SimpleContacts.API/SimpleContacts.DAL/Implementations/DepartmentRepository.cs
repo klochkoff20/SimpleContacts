@@ -20,9 +20,7 @@ namespace SimpleContacts.DAL.Implementations
         {
             var query = Entities
                     .IncludeOptimized(e => e.Projects)
-                    .IncludeOptimized(e => e.Vacancies)
-                    .IncludeOptimized(e => e.ResponsibleUser)
-                    .IncludeOptimized(e => e.ContactsDepartments);
+                    .IncludeOptimized(e => e.Vacancies);
 
             var departments = await Task.Run(() => query.ToList());
             return departments;
@@ -32,9 +30,7 @@ namespace SimpleContacts.DAL.Implementations
         {
             var query = Entities
                     .IncludeOptimized(e => e.Projects)
-                    .IncludeOptimized(e => e.Vacancies)
-                    .IncludeOptimized(e => e.ResponsibleUser)
-                    .IncludeOptimized(e => e.ContactsDepartments);
+                    .IncludeOptimized(e => e.Vacancies);
 
             var departments = new List<Department>();
 
@@ -42,7 +38,7 @@ namespace SimpleContacts.DAL.Implementations
             {
                 query = query.Where(e => e.Name.Contains(filter)
                                       || e.Vacancies.Any(v => v.Name.Contains(filter))
-                                      || e.ResponsibleUser.LastName.Contains(filter));
+                                      || e.Projects.Any(p => p.Name.Contains(filter)));
             }
 
             if(field != DepartmentSortField.NoSort)

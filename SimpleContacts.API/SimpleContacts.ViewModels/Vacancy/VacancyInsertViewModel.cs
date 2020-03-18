@@ -19,7 +19,6 @@ namespace SimpleContacts.ViewModels
         public string Requirements { get; set; }
         public string Description { get; set; }
         public string CreatedBy { get; set; }
-        public string ResponsibleBy { get; set; }
         public string UpdatedBy { get; set; }
         public VacancyStatus? Status { get; set; }
     }

@@ -14,10 +14,8 @@ namespace SimpleContacts.Services.MappingProfiles.CustomConverters
             {
                 Id = source.Id,
                 Name = source.Name,
-                Status = source.Status,
                 Vacancies = context.Mapper.Map<List<BasicInfo<Guid>>>(source.Vacancies),
                 Projects = context.Mapper.Map<List<BasicInfo<Guid>>>(source.Projects),
-                ResponsibleUser = context.Mapper.Map<UserGeneralInfoViewModel>(source.ResponsibleUser),
                 Phone = source.Phone,
                 Email = source.Email
                 //DepartmentContacts = context.Mapper.Map<List<DepartmentContactsViewModel>>(source.ContactsDepartments)

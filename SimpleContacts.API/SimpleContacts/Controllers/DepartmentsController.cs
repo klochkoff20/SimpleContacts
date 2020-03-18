@@ -62,15 +62,6 @@ namespace SimpleContacts.Web.Controllers
             return await _departmentService.UpdateDepartmentAsync(id, department);
         }
 
-
-        [HttpPut("{id:Guid}/{status:int}")]
-        [ProducesResponseType(200)]
-        [ProducesResponseType(404)]
-        public async Task<ActionResult<BaseResponseMessageResult>> UpdateStatus(Guid id, DepartmentStatus status)
-        {
-            return await _departmentService.UpdateDepartmentStatusAsync(id, status);
-        }
-
         [HttpDelete("{id:Guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(403)]
